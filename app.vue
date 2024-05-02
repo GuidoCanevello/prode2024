@@ -1,6 +1,7 @@
 <template>
-  <div>
-    Hola
-    <NuxtWelcome />
-  </div>
+  <v-app>
+    <v-card>
+      
+    </v-card>
+  </v-app>
 </template>
