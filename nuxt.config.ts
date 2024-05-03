@@ -1,3 +1,4 @@
+import { createResolver, defineNuxtModule, addServerHandler } from 'nuxt/kit';
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -15,7 +16,7 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
-    //...
+    '@pinia/nuxt'
   ],
   vite: {
     vue: {
