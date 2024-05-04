@@ -23,7 +23,7 @@ jobs:
 
     - name: Install & Generate 🔧
       env:
-        IS_PIPELINE: true
+        IS_PIPELINE: "true"
       run: |
         npm ci
         npm run generate
@@ -31,6 +31,8 @@ jobs:
         NUXT_APP_BASE_URL: ${{ vars.NUXT_APP_BASE_URL  }}
 
     - name: Deploy 🚀
+      env:
+        IS_PIPELINE: "false"
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: dist
