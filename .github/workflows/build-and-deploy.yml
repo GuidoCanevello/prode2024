@@ -22,12 +22,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install & Generate 🔧
-      env:
-        IS_PIPELINE: "true"
       run: |
         npm ci
         npm run generate
       env:
+        IS_PIPELINE: "true"
         NUXT_APP_BASE_URL: ${{ vars.NUXT_APP_BASE_URL  }}
 
     - name: Deploy 🚀
