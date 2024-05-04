@@ -6,7 +6,7 @@ export default async (_nitroApp: Nitro) => {
     try {
         // TODO move URI to env
         const mongoURI = process.env.MONGO_URI;
-        const isPipeline = process.env.IS_PIPELINE == "true" ?? false;
+        const isPipeline = process.env.IS_PIPELINE == "true";
 
         if (!isPipeline && mongoURI != undefined) {
             await mongoose.connect(mongoURI);
