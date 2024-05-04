@@ -5,6 +5,11 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
+  runtimeConfig: {
+    mongoURI: process.env.MONGO_URI,
+    isPipeline: process.env.IS_PIPELINE,
+  },
+
   // Nitro
   nitro: {
     plugins: ['~/server/index.ts']
