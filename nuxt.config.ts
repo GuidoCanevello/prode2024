@@ -10,13 +10,16 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    mongoURI: process.env.MONGO_URI,
+    mongoURI: process.env.MONGODB_URI,
     isPipeline: process.env.IS_PIPELINE,
   },
 
-  // Nitro
-  nitro: {
-    plugins: ['~/server/index.ts']
+  // Esencial para Mongoose y build/generate. https://stackoverflow.com/questions/77027136/nuxts-npm-run-build-stuck-because-of-nuxt-mongoose
+  hooks: {
+    close: (nuxt) => {
+      if (!nuxt.options._prepare)
+        process.exit()
+    }
   },
 
   // Vuetify
@@ -31,7 +34,9 @@ export default defineNuxtConfig({
       })
     },
     // Pinia
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    // Nuxt Server Utils
+    "nuxt-server-utils",
   ],
   vite: {
     vue: {
