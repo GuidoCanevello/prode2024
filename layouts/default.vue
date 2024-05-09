@@ -4,19 +4,69 @@ import { useTheme } from 'vuetify'
 
 const theme = useTheme();
 
-const tabItems: {
-  name: string,
-  route: string
-}[] = [{
-  name: "Inicio",
-  route: "Inicio"
-}]
+interface ITabItem {
+  title: string,
+  value: string,
+  icon: string,
+  route: string,
+  isAdmin?: boolean
+}
 
-const tab = ref(tabItems[0].name);
+const tabItems: ITabItem[] = [
+
+  {
+    title: "Inicio",
+    value: "tab-0",
+    icon: "mdi-soccer-field",
+    route: "/",
+  },
+  {
+    title: "Fase de Grupos",
+    value: "tab-1",
+    icon: "mdi-account-group-outline",
+    route: "/fase-grupos",
+  },
+  {
+    title: "Fase Final",
+    value: "tab-2",
+    icon: "mdi-tournament",
+    route: "/fase-final",
+  },
+  {
+    title: "Mejores Jugadores",
+    value: "tab-3",
+    icon: "mdi-soccer",
+    route: "/mejores-jugadores",
+  },
+  {
+    title: "Reglamento",
+    value: "tab-4",
+    icon: "mdi-book-open-page-variant-outline",
+    route: "/reglamento",
+  },
+  {
+    title: "Backend",
+    value: "tab-5",
+    icon: "mdi-shield-crown-outline",
+    route: "/backend",
+    isAdmin: true,
+  }]
+
+const currentTab = ref();
 
 const onChangeTheme = () => {
   theme.global.name.value = theme.global.current.value.dark ? "myLightTheme" : "myDarkTheme";
 }
+
+const checkPermissions = (item: ITabItem) => {
+  // TODO - fix when i have a store with the User Name
+  return true;
+  // return (
+  //   !item.isAdmin ||
+  //   (item.isAdmin && this.USUARIO_NOMBRE_CUENTA === "ADMIN")
+  // );
+};
+
 </script>
 
 <template>
@@ -33,18 +83,19 @@ const onChangeTheme = () => {
           </v-col>
         </v-row>
 
-        <v-tabs v-model="tab" align-tabs="title">
-          <v-tab v-for="item in tabItems" :key="item.name" :value="item" :to="item.route">
-            {{ item.name }}
-          </v-tab>
+        <v-tabs v-model="currentTab" align-tabs="title">
+          <template v-for="item in tabItems">
+            <v-tab :key="item.title" v-if="checkPermissions(item)" :value="item.value" :text="item.title"
+              :prepend-icon="item.icon" :to="item.route" router>
+              {{ item.title }}
+            </v-tab>
+          </template>
         </v-tabs>
       </v-card>
     </header>
 
     <v-main id="main-app">
-
-    <slot />
-
+      <slot />
     </v-main>
   </v-app>
 </template>
