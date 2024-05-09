@@ -1,5 +1,6 @@
-import { createResolver, defineNuxtModule, addServerHandler } from 'nuxt/kit';
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
+
+// TODO https://www.the-koi.com/projects/how-to-set-up-a-project-with-nuxt3-and-vuetify3-with-a-quick-overview/
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -26,6 +27,8 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
+  
+  css: ['vuetify/styles'], // vuetify ships precompiled css, no need to import sass  
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
