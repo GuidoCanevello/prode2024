@@ -2,61 +2,31 @@
 </script>
 
 <template>
-  <v-container>
-    <v-card>
-      <v-card-text>
-        <v-row>
-          <v-col>
-            <v-card color="primary-darken-1">
-              <v-container grid-list-xs>
-                <v-card color="primary">
-                  <v-container grid-list-xs />
-                </v-card>
-              </v-container>
-            </v-card>
-          </v-col>
+  <v-container id="page-container">
+    <v-row>
+      <v-col>
+        <v-container>
+          <HomeDondeEmpezarCard />
+        </v-container>
 
-          <v-col>
-            <v-card color="secondary-darken-1">
-              <v-container grid-list-xs>
-                <v-card color="secondary">
-                  <v-container grid-list-xs />
-                </v-card>
-              </v-container>
-            </v-card>
-          </v-col>
+        <v-container>
+          <HomePartidoProximoCard />
+        </v-container>
 
-          <v-col>
-            <v-card color="background">
-              <v-container grid-list-xs />
-            </v-card>
-          </v-col>
+        <v-container>
+          <HomeListadoPartidosCard />
+        </v-container>
+      </v-col>
 
-          <v-col>
-            <v-card color="surface">
-              <v-container grid-list-xs />
-            </v-card>
-          </v-col>
-        </v-row>
+      <v-col>
+        <v-container>
+          <HomeRankingCard />
+        </v-container>
 
-        <v-row>
-          <v-col>
-            <v-btn color="success">text</v-btn>
-          </v-col>
-
-          <v-col>
-            <v-btn color="error">text</v-btn>
-          </v-col>
-
-          <v-col>
-            <v-btn color="info">text</v-btn>
-          </v-col>
-
-          <v-col>
-            <v-btn color="warning">text</v-btn>
-          </v-col>
-        </v-row>
-      </v-card-text>
-    </v-card>
+        <v-container>
+          <HomeNovedadesCard />
+        </v-container>
+      </v-col>
+    </v-row>
   </v-container>
 </template>

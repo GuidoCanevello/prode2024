@@ -1,0 +1,8 @@
+#page-container {
+    padding-inline: 32px;
+}
+
+#page-container > .v-row > .v-col {
+    padding-inline: 0px;
+}
+

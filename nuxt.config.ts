@@ -27,8 +27,11 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
-  
-  css: ['vuetify/styles'], // vuetify ships precompiled css, no need to import sass  
+
+  css: [
+    'vuetify/styles', // vuetify ships precompiled css, no need to import sass  
+    '@/assets/css/main.css'
+  ],
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
