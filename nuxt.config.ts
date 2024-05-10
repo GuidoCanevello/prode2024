@@ -12,7 +12,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     mongoURI: process.env.MONGODB_URI,
-    isPipeline: process.env.IS_PIPELINE,
+    isDevelopment: process.env.IS_DEVELOPMENT,
   },
 
   // Esencial para Mongoose y build/generate. https://stackoverflow.com/questions/77027136/nuxts-npm-run-build-stuck-because-of-nuxt-mongoose

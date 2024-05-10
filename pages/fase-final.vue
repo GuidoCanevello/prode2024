@@ -2,7 +2,9 @@
 </script>
 
 <template>
-    <v-container>
-      Fase Final
-    </v-container>
+  <v-container>
+    Fase Final
+    
+    <UnderConstructionCard />
+  </v-container>
 </template>

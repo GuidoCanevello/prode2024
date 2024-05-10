@@ -3,10 +3,6 @@
 
 <template>
   <v-container>
-    <UnderConstructionCard />
-  </v-container>
-
-  <v-container>
     <v-card>
       <v-card-text>
         <v-row>

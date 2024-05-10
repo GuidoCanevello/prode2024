@@ -2,7 +2,9 @@
 </script>
 
 <template>
-    <v-container>
-      Mejores Jugadores
-    </v-container>
+  <v-container>
+    Mejores Jugadores
+
+    <UnderConstructionCard />
+  </v-container>
 </template>

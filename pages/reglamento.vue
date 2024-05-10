@@ -2,7 +2,9 @@
 </script>
 
 <template>
-    <v-container>
-      Reglamento
-    </v-container>
+  <v-container>
+    Reglamento
+
+    <UnderConstructionCard />
+  </v-container>
 </template>
