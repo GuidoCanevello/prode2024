@@ -72,7 +72,7 @@ export const equipos_create_post = async function (data: IEquipo) {
  * Actualiza los datos de un Equipo
  * 
  * @param id El Id del Equipo a modificar
- * @param data Los datos actualizados del Equipo
+ * @param data Los datos actualizados del Equipo (no es necesario que vengan todos, solo los que se van a actualizar)
  */
 export const equipos_put = async function (id: TMongoID, data: IEquipo) {
     data._id = undefined;
