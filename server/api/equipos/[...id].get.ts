@@ -1,26 +1,12 @@
-import { Equipo } from "~/server/models/Equipo.model";
+import { equipos_get } from "~/server/controllers/Equipo.controller";
+import handleControllerError from "~/server/utils/handleControllerError";
 
 export default defineEventHandler(async (event) => {
-    const query = await Equipo.findById(event.context.params?.id).exec()
-        .catch((error) => {
-            if (error.name === "CastError") {
-                throw {
-                    number: 400,
-                    content: "Id incorrecto",
-                }
-            } else {
-                throw {
-                    content: error,
-                }
-            }
-        });
+    const id = event.context.params?.id;
 
-    if (query === null) {
-        throw {
-            number: 404,
-            content: "No se encuentra el Equipo",
-        }
+    try {
+        return await equipos_get(id)
+    } catch (error) {
+        return handleControllerError(event, error);
     }
-
-    return query;
 })

@@ -1,13 +1,10 @@
-import { Equipo } from "~/server/models/Equipo.model";
+import { equipos_list } from "~/server/controllers/Equipo.controller";
+import handleControllerError from "~/server/utils/handleControllerError";
 
 export default defineEventHandler(async (event) => {
-    const query = await Equipo.find()
-        .catch((error) => {
-            throw {
-                number: 500,
-                content: error,
-            };
-        });
-
-    return query;
+    try {
+        return await equipos_list();
+    } catch (error) {
+        return handleControllerError(event, error);
+    }
 })
