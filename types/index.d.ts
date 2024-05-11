@@ -1,0 +1,3 @@
+interface ITest {
+    a: String
+}
