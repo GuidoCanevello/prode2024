@@ -1,3 +1,4 @@
+// Test Comment
 // TODO borrar cuando ya tenga otra store lista, la dejo a modo de ejemplo
 import { defineStore } from 'pinia';
 
