@@ -59,13 +59,13 @@ export const equipos_create_post = async function (data: IEquipo) {
 
     data._id = new mongoose.Types.ObjectId();
 
-    const newUsuario = await Equipo.create(data)
+    const newEquipo = await Equipo.create(data)
         .catch((error) => {
             return {
                 content: error,
             }
         });
-    return newUsuario;
+    return newEquipo;
 }
 
 /**
