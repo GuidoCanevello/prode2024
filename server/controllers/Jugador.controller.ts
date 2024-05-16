@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { Jugador } from "~/server/models/Jugador.model";
-// const usuario_controller = require('./Usuario.controller');
+import { usuarios_list, usuarios_put } from "./Usuario.controller";
 
 /**
  * Obtiene el listado de todos los Jugadores cargados
@@ -16,7 +16,6 @@ export const jugadores_list = async function () {
 
     return query;
 }
-
 
 /**
  * Obtiene un Jugador segun su Id
@@ -128,83 +127,83 @@ export const jugadores_delete = async function (id: TMongoID) {
     return answer;
 }
 
-// TODO armar cuando tenga Usuario.Controller
-// export const jugadores_actualizar_mejores = async function (idMejorJugador, idMejorArquero, idMejorGoleador) {
-//     const queryMejorJugador = await Jugador.findOneAndUpdate({ _id: idMejorJugador }, { esMejorJugador: true }).exec()
-//         .catch((error) => {
-//             if (error.name === "CastError") {
-//                 throw {
-//                     number: 400,
-//                     content: "Id incorrecto",
-//                 }
-//             } else {
-//                 throw {
-//                     content: error,
-//                 }
-//             }
-//         });
 
-//     if (queryMejorJugador === null) {
-//         throw {
-//             number: 404,
-//             content: "No se encuentra el Jugador",
-//         }
-//     }
+export const jugadores_actualizar_mejores = async function (idMejorJugador: TMongoID, idMejorArquero: TMongoID, idMejorGoleador: TMongoID) {
+    const queryMejorJugador = await Jugador.findOneAndUpdate({ _id: idMejorJugador }, { esMejorJugador: true }).exec()
+        .catch((error) => {
+            if (error.name === "CastError") {
+                throw {
+                    number: 400,
+                    content: "Id incorrecto",
+                }
+            } else {
+                throw {
+                    content: error,
+                }
+            }
+        });
 
-//     const queryMejorArquero = await Jugador.findOneAndUpdate({ _id: idMejorArquero }, { esMejorArquero: true }).exec()
-//         .catch((error) => {
-//             if (error.name === "CastError") {
-//                 throw {
-//                     number: 400,
-//                     content: "Id incorrecto",
-//                 }
-//             } else {
-//                 throw {
-//                     content: error,
-//                 }
-//             }
-//         });
+    if (queryMejorJugador === null) {
+        throw {
+            number: 404,
+            content: "No se encuentra el Jugador",
+        }
+    }
 
-//     if (queryMejorArquero === null) {
-//         throw {
-//             number: 404,
-//             content: "No se encuentra el Jugador",
-//         }
-//     }
+    const queryMejorArquero = await Jugador.findOneAndUpdate({ _id: idMejorArquero }, { esMejorArquero: true }).exec()
+        .catch((error) => {
+            if (error.name === "CastError") {
+                throw {
+                    number: 400,
+                    content: "Id incorrecto",
+                }
+            } else {
+                throw {
+                    content: error,
+                }
+            }
+        });
 
-//     const queryMejorGoleador = await Jugador.findOneAndUpdate({ _id: idMejorGoleador }, { esMejorGoleador: true }).exec()
-//         .catch((error) => {
-//             if (error.name === "CastError") {
-//                 throw {
-//                     number: 400,
-//                     content: "Id incorrecto",
-//                 }
-//             } else {
-//                 throw {
-//                     content: error,
-//                 }
-//             }
-//         });
+    if (queryMejorArquero === null) {
+        throw {
+            number: 404,
+            content: "No se encuentra el Jugador",
+        }
+    }
 
-//     if (queryMejorGoleador === null) {
-//         throw {
-//             number: 404,
-//             content: "No se encuentra el Jugador",
-//         }
-//     }
+    const queryMejorGoleador = await Jugador.findOneAndUpdate({ _id: idMejorGoleador }, { esMejorGoleador: true }).exec()
+        .catch((error) => {
+            if (error.name === "CastError") {
+                throw {
+                    number: 400,
+                    content: "Id incorrecto",
+                }
+            } else {
+                throw {
+                    content: error,
+                }
+            }
+        });
 
-//     const usuarios = await usuario_controller.usuarios_list();
-//     const puntosPorAcierto = 6;
+    if (queryMejorGoleador === null) {
+        throw {
+            number: 404,
+            content: "No se encuentra el Jugador",
+        }
+    }
 
-//     for (const usuario of usuarios) {
-//         let puntosJugadores = 0;
+    const usuarios = await usuarios_list();
+    const puntosPorAcierto = 6;
 
-//         puntosJugadores += String(usuario.prediccionMejorJugador) == String(idMejorJugador) ? puntosPorAcierto : 0;
-//         puntosJugadores += String(usuario.prediccionMejorArquero) == String(idMejorArquero) ? puntosPorAcierto : 0;
-//         puntosJugadores += String(usuario.prediccionMejorGoleador) == String(idMejorGoleador) ? puntosPorAcierto : 0;
+    for (const usuario of usuarios) {
+        let puntosJugadores = 0;
 
-//         await usuario_controller.usuarios_put(usuario._id, { puntos: usuario.puntos + puntosJugadores });
-//     }
+        puntosJugadores += String(usuario.prediccionMejorJugador) == String(idMejorJugador) ? puntosPorAcierto : 0;
+        puntosJugadores += String(usuario.prediccionMejorArquero) == String(idMejorArquero) ? puntosPorAcierto : 0;
+        puntosJugadores += String(usuario.prediccionMejorGoleador) == String(idMejorGoleador) ? puntosPorAcierto : 0;
 
-//     return true;
-// }
+        await usuarios_put(usuario._id, { puntos: usuario.puntos + puntosJugadores });
+    }
+
+    return true;
+}
