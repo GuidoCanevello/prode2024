@@ -81,6 +81,11 @@ export const usuarios_create_post = async function (data: IUsuario) {
 export const usuarios_put = async function (id: TMongoID, data: IUsuario) {
     data._id = undefined;
 
+    // Validar que todos los Ids de Jugadores son validos (get tira error si no existe)
+    if (data.prediccionMejorJugador != undefined) await jugadores_get(data.prediccionMejorJugador);
+    if (data.prediccionMejorArquero != undefined) await jugadores_get(data.prediccionMejorArquero);
+    if (data.prediccionMejorGoleador != undefined) await jugadores_get(data.prediccionMejorGoleador);
+
     const query = await Usuario.findOneAndUpdate({ _id: id }, data, { new: true }).exec()
         .catch((error) => {
             if (error.name === "CastError") {
@@ -189,47 +194,6 @@ export const usuarios_get_with_password = async function (id: TMongoID) {
         throw {
             number: 404,
             content: "No se encuentra el Usuario",
-        }
-    }
-
-    return query;
-}
-
-/**
- * Actualiza los datos de las predicciones de Jugadores de un Usuario
- * 
- * @param id El Id del Usuario
- * @param prediccionMejorJugador El Id del Jugador a establecer como prediccion de Mejor Jugador
- * @param prediccionMejorArquero El Id del Jugador a establecer como prediccion de Mejor Arquero
- * @param prediccionMejorGoleador El Id del Jugador a establecer como prediccion de Mejor Goleador
- */
-export const usuarios_put_prediccion_jugador = async function (id: TMongoID, prediccionMejorJugador: TMongoID, prediccionMejorArquero: TMongoID, prediccionMejorGoleador: TMongoID) {
-    if (prediccionMejorJugador != undefined) await jugadores_get(prediccionMejorJugador);
-    if (prediccionMejorArquero != undefined) await jugadores_get(prediccionMejorArquero);
-    if (prediccionMejorGoleador != undefined) await jugadores_get(prediccionMejorGoleador);
-
-    const query = await Usuario.findOneAndUpdate({ _id: id }, {
-        prediccionMejorJugador,
-        prediccionMejorArquero,
-        prediccionMejorGoleador
-    }, { new: true }).exec()
-        .catch((error) => {
-            if (error.name === "CastError") {
-                throw {
-                    number: 400,
-                    content: "Id incorrecto",
-                }
-            } else {
-                throw {
-                    content: error,
-                }
-            }
-        });
-
-    if (query === null) {
-        throw {
-            number: 404,
-            content: "No se encuentra al Usuario",
         }
     }
 
