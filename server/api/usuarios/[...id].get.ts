@@ -1,9 +1,10 @@
-import { usuarios_get, usuarios_get_with_password } from "~/server/controllers/Usuario.controller";
+import usuarios_get from "~/server/controllers/usuarios/usuarios_get";
+import usuarios_get_with_password from "~/server/controllers/usuarios/usuarios_get_with_password";
 import handleControllerError from "~/server/utils/handleControllerError";
 
 export default defineEventHandler(async (event) => {
     const id = event.context.params?.id;
-    const isWithPassword = (await readBody(event)).isWithPassword;
+    const isWithPassword = getQuery(event).isWithPassword;
 
     try {
         if (isWithPassword != undefined && !isWithPassword) {

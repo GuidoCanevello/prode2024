@@ -1,4 +1,4 @@
-import { jugadores_put } from "~/server/controllers/Jugador.controller";
+import jugadores_put from "~/server/controllers/jugadores/jugadores_put";
 import handleControllerError from "~/server/utils/handleControllerError";
 
 export default defineEventHandler(async (event) => {

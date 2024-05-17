@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { usuarios_put } from "~/server/controllers/Usuario.controller";
+import usuarios_put from '~/server/controllers/usuarios/usuarios_put';
 import handleControllerError from "~/server/utils/handleControllerError";
 
 export default defineEventHandler(async (event) => {

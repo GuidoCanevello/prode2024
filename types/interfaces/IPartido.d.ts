@@ -1,0 +1,17 @@
+interface IPartido {
+    _id?: TMongoID,
+    equipo1?: TMongoID,
+    equipo2?: TMongoID,
+    golesEquipo1?: number,
+    golesEquipo2?: number,
+    penalesEquipo1?: number,
+    penalesEquipo2?: number,
+    grupo?: string,
+    fecha?: Date,
+    seRealizo?: boolean,
+    esEliminatoria?: boolean,
+    tipoEliminatoria?: string,
+    identificadorEliminatorias?: string,
+    partidoEquipo1?: TMongoID,
+    partidoEquipo2?: TMongoID,
+};

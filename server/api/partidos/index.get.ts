@@ -1,11 +1,9 @@
-import jugadores_delete from "~/server/controllers/jugadores/jugadores_delete";
+import partidos_list from "~/server/controllers/partidos/partidos_list";
 import handleControllerError from "~/server/utils/handleControllerError";
 
 export default defineEventHandler(async (event) => {
-    const id = event.context.params?.id;
-
     try {
-        return await jugadores_delete(id)
+        return await partidos_list();
     } catch (error) {
         return handleControllerError(event, error);
     }

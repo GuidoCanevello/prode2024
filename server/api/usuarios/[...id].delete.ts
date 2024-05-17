@@ -1,4 +1,4 @@
-import { usuarios_delete } from "~/server/controllers/Usuario.controller";
+import usuarios_delete from "~/server/controllers/usuarios/usuarios_delete";
 import handleControllerError from "~/server/utils/handleControllerError";
 
 export default defineEventHandler(async (event) => {

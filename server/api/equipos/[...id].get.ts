@@ -1,4 +1,4 @@
-import { equipos_get } from "~/server/controllers/Equipo.controller";
+import equipos_get from "~/server/controllers/equipos/equipos_get";
 import handleControllerError from "~/server/utils/handleControllerError";
 
 export default defineEventHandler(async (event) => {
