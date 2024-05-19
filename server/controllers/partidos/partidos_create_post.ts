@@ -31,15 +31,14 @@ export default async function (data: IPartido) {
                 content: error,
             };
         });
-    return newUsuario;
-
-    //* Functions
-    function throwCustomError(error: any, numEquipo: string) {
-        if (Object.hasOwn(error, 'number')) {
-            throw {
-                number: error.number,
-                content: error.number == 400 ? `Id incorrecto para el Equipo ${numEquipo}` : `No se encuentra el Equipo ${numEquipo}`,
-            };
-        }
-    }
+    return newUsuario;    
 };
+
+function throwCustomError(error: any, numEquipo: string) {
+    if (Object.hasOwn(error, 'number')) {
+        throw {
+            number: error.number,
+            content: error.number == 400 ? `Id incorrecto para el Equipo ${numEquipo}` : `No se encuentra el Equipo ${numEquipo}`,
+        };
+    }
+}

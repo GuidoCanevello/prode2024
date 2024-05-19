@@ -1,4 +1,6 @@
 import { Partido } from "../../models/Partido.model";
+import actualizarPuntosFaseFinal from "./actualizarPuntaje/actualizarPuntosFaseFinal";
+import actualizarPuntosFaseGrupos from "./actualizarPuntaje/actualizarPuntosFaseGrupos";
 
 /**
  * Actualiza los datos de un Partido
@@ -26,6 +28,12 @@ export default async function (id: TMongoID, data: IPartido) {
                 };
             }
         });
+
+    // Si se modifican los goles, actualiza los puntos.
+    if (data.golesEquipo1 != undefined && data.golesEquipo2 != undefined) {
+        if (data.esEliminatoria) actualizarPuntosFaseFinal(id, data.golesEquipo1, data.golesEquipo2, data.penalesEquipo1, data.penalesEquipo2);
+        else actualizarPuntosFaseGrupos(id, data.golesEquipo1, data.golesEquipo2);
+    }
 
     if (query === null) {
         throw {
