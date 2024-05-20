@@ -29,6 +29,7 @@ export default async function (id: TMongoID, data: IPartido) {
             }
         });
 
+    // TODO test con Postman ambos
     // Si se modifican los goles, actualiza los puntos.
     if (data.golesEquipo1 != undefined && data.golesEquipo2 != undefined) {
         if (data.esEliminatoria) actualizarPuntosFaseFinal(id, data.golesEquipo1, data.golesEquipo2, data.penalesEquipo1, data.penalesEquipo2);

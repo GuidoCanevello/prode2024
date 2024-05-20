@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
     const isWithPassword = getQuery(event).isWithPassword;
 
     try {
-        if (isWithPassword != undefined && !isWithPassword) {
+        if (isWithPassword == undefined || isWithPassword != "true") {
             return await usuarios_get(id);
         }else {
             return await usuarios_get_with_password(id);

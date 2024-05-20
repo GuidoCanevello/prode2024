@@ -1,6 +1,6 @@
 import { Jugador } from "~/server/models/Jugador.model";
-import { usuarios_put } from "../usuarios/usuarios_put";
-import { usuarios_list } from "../usuarios/usuarios_list";
+import usuarios_put from "../usuarios/usuarios_put";
+import usuarios_list from "../usuarios/usuarios_list";
 
 /**
  * Actualiza los resultados de votacion de Mejores Jugadores
