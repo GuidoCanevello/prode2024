@@ -32,6 +32,10 @@ const JugadorSchema = new Schema({
         default: false,
     },
     equipo: { type: Schema.Types.ObjectId, ref: 'Equipo' },
+    isTest: {
+        type: Boolean,
+        default: false
+    }
 });
 
 export const Jugador = model("Jugador", JugadorSchema);

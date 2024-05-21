@@ -47,6 +47,10 @@ const PartidoSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Partido',
     },
+    isTest: {
+        type: Boolean,
+        default: false
+    }
 });
 
 export const Partido = model("Partido", PartidoSchema);

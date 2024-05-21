@@ -55,6 +55,10 @@ const UsuarioSchema = new Schema({
     prediccionMejorGoleador: {
         type: Schema.Types.ObjectId, ref: 'Jugador'
     },
+    isTest: {
+        type: Boolean,
+        default: false
+    }
 }, {
     timestamps: true
 });
