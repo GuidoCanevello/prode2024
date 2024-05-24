@@ -6,10 +6,8 @@ export default defineEventHandler(async (event) => {
     const isWithTest = getQuery(event).isWithTest;
     const isOnlyTest = getQuery(event).isOnlyTest;
 
-    // TODO test isTest
-
     try {
-        if (isOnlyTest == undefined || isOnlyTest == "true") {
+        if (isOnlyTest != undefined && isOnlyTest == "true") {
             return await equipos_list_test();
         } else {
             return await equipos_list(isWithTest == "true");

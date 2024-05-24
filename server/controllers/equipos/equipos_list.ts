@@ -7,7 +7,11 @@ import { Equipo } from "~/server/models/Equipo.model";
  */
 export default async function (isWithTest?: boolean) {
     // Por defecto no trae los de Test a menos que se especifique
-    const query = await Equipo.find({ isTest: isWithTest ?? false })
+    let findQuery = {};
+    if (isWithTest == undefined || !isWithTest) {
+        findQuery = { isTest: { $nin: [true] } }
+    }
+    const query = await Equipo.find(findQuery)
         .catch((error) => {
             throw {
                 number: 500,
