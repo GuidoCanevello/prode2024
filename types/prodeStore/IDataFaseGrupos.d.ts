@@ -1,13 +1,19 @@
 namespace NProdeStore {
-    interface IDataFaseGrupos {
-        nombre: TGrupos;
-        equipos: {
+    namespace FaseGrupos {
+        interface IData {
+            nombre: TGrupos,
+            equipos: IEquipo[],
+            partidos: IPartido[],
+        }
+
+        interface IEquipo {
             id: TMongoID,
             nombre: string,
             puntos: number,
             code: string,
-        }[];
-        partidos: {
+        }
+
+        interface IPartido {
             partidoId: TMongoID,
             equipo1: string,
             code1: string,
@@ -15,12 +21,13 @@ namespace NProdeStore {
             code2: string,
             tienePrediccion: boolean,
             prediccion?: {
+                isHabilitado: boolean,
                 golesEquipo1: number,
                 golesEquipo2: number,
             },
             golesEquipo1: number,
             golesEquipo2: number,
             fecha: Date,
-        }[]
+        }
     }
 }

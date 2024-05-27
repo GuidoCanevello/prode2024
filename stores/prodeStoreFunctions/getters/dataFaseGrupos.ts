@@ -1,6 +1,6 @@
 // TODO limpiar y comment
-export default function (state: NProdeStore.IProdeStoreState): NProdeStore.IDataFaseGrupos[] {
-    const dataGrupos: NProdeStore.IDataFaseGrupos[] = [];
+export default function (state: NProdeStore.IProdeStoreState): NProdeStore.FaseGrupos.IData[] {
+    const dataGrupos: NProdeStore.FaseGrupos.IData[] = [];
 
     const dataEquipos = state.equipos;
     const dataPartidos = state.partidos.filter(p => !p.esEliminatoria);
@@ -19,9 +19,6 @@ export default function (state: NProdeStore.IProdeStoreState): NProdeStore.IData
             code: equipo.code ?? "DEFAULT",
         }
 
-        // TODO test
-        // const grupoIndex = dataGrupos.findIndex(g => g.nombre === equipo.grupo);
-        // if (grupoIndex != -1) dataGrupos[grupoIndex].equipos.push(newEquipo);
         dataGrupos.find(g => g.nombre === equipo.grupo)?.equipos.push(newEquipo);
     });
 
@@ -37,30 +34,8 @@ export default function (state: NProdeStore.IProdeStoreState): NProdeStore.IData
 
         const fecha = new Date(partido.fecha ?? new Date());
 
-        // let newPartido = {
-        //     partidoId: partido._id,
-        //     equipo1: objEquipo1.nombre,
-        //     code1: objEquipo1.code,
-        //     equipo2: objEquipo2.nombre,
-        //     code2: objEquipo2.code,
-        //     tienePrediccion: false,
-        //     golesEquipo1: partido.golesEquipo1,
-        //     golesEquipo2: partido.golesEquipo2,
-        //     fecha,
-        // }
-
         const prediccion = dataPredicciones.find(prediccion => prediccion.partidoId == partido._id);
-        // if (prediccion != undefined) {
-        //     newPartido.tienePrediccion = true;
-        //     newPartido.prediccion = {
-        //         golesEquipo1: prediccion.golesEquipo1,
-        //         golesEquipo2: prediccion.golesEquipo2,
-        //     }
-        // }
 
-        // TODO test
-        // const grupoIndex = dataGrupos.findIndex(g => g.nombre === partido.grupo);
-        // if (grupoIndex != -1) dataGrupos[grupoIndex].partidos.push(newPartido);
         dataGrupos.find(g => g.nombre === partido.grupo)?.partidos.push({
             partidoId: partido._id,
             equipo1: objEquipo1.nombre ?? "DEFAULT",
@@ -69,6 +44,7 @@ export default function (state: NProdeStore.IProdeStoreState): NProdeStore.IData
             code2: objEquipo2.code ?? "DEFAULT",
             tienePrediccion: prediccion != undefined,
             prediccion: prediccion != undefined ? {
+                isHabilitado: fecha < new Date(),
                 golesEquipo1: prediccion.golesEquipo1 ?? 0,
                 golesEquipo2: prediccion.golesEquipo2 ?? 0,
             } : undefined,

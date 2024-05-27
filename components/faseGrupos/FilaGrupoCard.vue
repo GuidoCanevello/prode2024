@@ -15,8 +15,8 @@ const IS_SCREEN_BEYOND_MEDIUM = ref(true)
       <FaseGruposGrupoCard :nombre="grupo.nombre" :equipos="grupo.equipos" v-bind:partidos="grupo.partidos" />
     </v-col>
 
-    <v-col class="pl-0">
-      <carta-partidos :nombre="grupo.nombre" v-bind:partidos="grupo.partidos"
+    <v-col>
+      <FaseGruposPartidosCard :nombre="grupo.nombre" v-bind:partidos="grupo.partidos"
         @prediccion-actualizada="$emit('prediccion-actualizada')" />
     </v-col>
   </v-row>

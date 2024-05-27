@@ -37,7 +37,6 @@ export default async function (state: NProdeStore.IProdeStoreState) {
         state.equipos = equipos;
         state.jugadores = jugadores;
         state.hasInitialData = true;
-        console.log("get initial data", state.hasInitialData)
     } catch (error) {
         // dispatch(s'ABRIR_ERROR', error.response.data.message);
     } finally {

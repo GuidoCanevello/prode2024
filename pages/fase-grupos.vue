@@ -1,19 +1,20 @@
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 // TODO ver porque no actualiza cuando termina de traer
-const { isGettingInitialData, hasInitialData, dataFaseGrupos } = useProdeStore();
+
+const { isGettingInitialData, hasInitialData, dataFaseGrupos } = storeToRefs(useProdeStore());
 
 const showLoadingCard = computed(() => {
-  return isGettingInitialData && !hasInitialData;
+  return isGettingInitialData.value && !hasInitialData.value;
 })
 
 const showGrupoCard = computed(() => {
-  console.log("show Grupo", isGettingInitialData, hasInitialData)
-  return !isGettingInitialData && hasInitialData;
+  return !isGettingInitialData.value && hasInitialData.value;
 })
 </script>
 
 <template>
-  <v-container>
+  <v-container id="page-container">
     <v-row>
       <v-col>
         <v-card>
@@ -30,14 +31,16 @@ const showGrupoCard = computed(() => {
       </v-col>
     </v-row>
 
-    {{ hasInitialData }}
-
-    <div v-if="showGrupoCard" v-for="grupo in dataFaseGrupos">
-      <v-row>
-        <v-col>
-          <FaseGruposFilaGrupoCard v-bind:grupo="grupo" />
-        </v-col>
-      </v-row>
-    </div>
+    <template v-if="showGrupoCard" v-for="grupo in dataFaseGrupos">
+      <FaseGruposFilaGrupoCard v-bind:grupo="grupo" />
+    </template>
   </v-container>
 </template>
+
+<style scoped>
+:deep(.v-card) {
+  height: 100%;
+  display: flex !important;
+  flex-direction: column !important;
+}
+</style>
