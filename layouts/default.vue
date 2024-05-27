@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 
+const store = useProdeStore();
+
 interface ITabItem {
   title: string,
   value: string,
@@ -62,6 +64,8 @@ onNuxtReady(() => {
   if (useRuntimeConfig().isDevelopment = "true") {
     theme.global.name.value = "myDarkTheme";
   }
+
+  store.dispatchGetInitialData();
 })
 
 const checkPermissions = (item: ITabItem) => {

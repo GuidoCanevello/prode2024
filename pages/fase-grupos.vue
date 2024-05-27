@@ -1,4 +1,15 @@
 <script setup lang="ts">
+// TODO ver porque no actualiza cuando termina de traer
+const { isGettingInitialData, hasInitialData, dataFaseGrupos } = useProdeStore();
+
+const showLoadingCard = computed(() => {
+  return isGettingInitialData && !hasInitialData;
+})
+
+const showGrupoCard = computed(() => {
+  console.log("show Grupo", isGettingInitialData, hasInitialData)
+  return !isGettingInitialData && hasInitialData;
+})
 </script>
 
 <template>
@@ -13,10 +24,20 @@
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row v-if="showLoadingCard">
       <v-col>
-        <UnderConstructionCard />
+        <LoadingCard />
       </v-col>
     </v-row>
+
+    {{ hasInitialData }}
+
+    <div v-if="showGrupoCard" v-for="grupo in dataFaseGrupos">
+      <v-row>
+        <v-col>
+          <FaseGruposFilaGrupoCard v-bind:grupo="grupo" />
+        </v-col>
+      </v-row>
+    </div>
   </v-container>
 </template>

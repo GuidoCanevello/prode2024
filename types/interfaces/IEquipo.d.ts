@@ -3,5 +3,5 @@ interface IEquipo {
     nombre?: string,
     code?: string,
     puntos?: number,
-    grupo?: string,
+    grupo?: TGrupos,
 }
