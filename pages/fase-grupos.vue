@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-// TODO ver porque no actualiza cuando termina de traer
 
 const { isGettingInitialData, hasInitialData, dataFaseGrupos } = storeToRefs(useProdeStore());
 

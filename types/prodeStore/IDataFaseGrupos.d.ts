@@ -20,8 +20,8 @@ namespace NProdeStore {
             equipo2: string,
             code2: string,
             tienePrediccion: boolean,
+            isPrediccionHabilitado: boolean,
             prediccion?: {
-                isHabilitado: boolean,
                 golesEquipo1: number,
                 golesEquipo2: number,
             },

@@ -1,23 +1,23 @@
 <script setup lang="ts">
 const props = defineProps(["nombre", "equipos", "partidos"])
 
+const showDialogGrupoExpandido = ref(false)
+
 const onExpandirGrupo = () => {
-  // dialogGrupo = true;
-  console.log("Expandir Grupo")
+  showDialogGrupoExpandido.value = true;
 }
 </script>
 
 <template>
   <v-card outlined>
-    <!-- TODO add -->
-    <!-- <v-dialog v-model="dialogGrupo">
-      <carta-grupo-expandido
-        v-if="dialogGrupo"
+    <v-dialog v-model="showDialogGrupoExpandido">
+      <FaseGruposExpandirGrupoCard
+        v-if="showDialogGrupoExpandido"
         :nombre="nombre"
         :equipos="equipos"
         v-bind:partidos="partidos"
       />
-    </v-dialog> -->
+    </v-dialog>
 
     <v-card-title primary-title>
       <v-row>

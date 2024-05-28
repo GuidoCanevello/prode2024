@@ -1,4 +1,9 @@
-// TODO limpiar y comment
+/**
+ * Toma los datos de Equipos, Partidos y predicciones y les da el formato necesario para la pantalla de Fase de Grupos
+ * 
+ * @param state El state de la store
+ * @returns La data de fase de grupos formateada
+ */
 export default function (state: NProdeStore.IProdeStoreState): NProdeStore.FaseGrupos.IData[] {
     const dataGrupos: NProdeStore.FaseGrupos.IData[] = [];
 
@@ -43,8 +48,8 @@ export default function (state: NProdeStore.IProdeStoreState): NProdeStore.FaseG
             equipo2: objEquipo2.nombre ?? "DEFAULT",
             code2: objEquipo2.code ?? "DEFAULT",
             tienePrediccion: prediccion != undefined,
-            prediccion: prediccion != undefined ? {
-                isHabilitado: fecha < new Date(),
+            isPrediccionHabilitado: fecha > new Date(),
+            prediccion: prediccion != undefined ? {                
                 golesEquipo1: prediccion.golesEquipo1 ?? 0,
                 golesEquipo2: prediccion.golesEquipo2 ?? 0,
             } : undefined,

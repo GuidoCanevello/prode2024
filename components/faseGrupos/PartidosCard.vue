@@ -24,6 +24,7 @@ const dataPartidos = ref<{
   guion: string,
   golesEquipo1: number,
   golesEquipo2: number,
+  isPrediccionHabilitado: boolean,
   golesPrediccionEquipo1: number | undefined,
   golesPrediccionEquipo2: number | undefined,
   tienePrediccion: boolean,
@@ -46,6 +47,7 @@ onMounted(() => {
           : "N - N",
       golesEquipo1: partido.golesEquipo1,
       golesEquipo2: partido.golesEquipo2,
+      isPrediccionHabilitado: partido.isPrediccionHabilitado,
       golesPrediccionEquipo1: partido.tienePrediccion
         ? partido.prediccion?.golesEquipo1
         : undefined,
@@ -123,9 +125,10 @@ onMounted(() => {
             class: " d-none"
           }
         },
-      ]' :items="dataPartidos" item-key="id" hide-default-footer class="table-partidos" :sort-by="[{ key: 'fecha' }]">
+      ]' :items="dataPartidos" item-key="id" class="table-partidos" :sort-by="[{ key: 'fecha' }]" density="compact">
         <!-- density="compact" -->
         <!-- :item-class="fondoItem" -->
+        <!-- TODO add fondo item, cuando vaya a probar predicciones -->
 
         <template v-slot:[`item.equipo1`]="{ item }">
           <td style="width: 160px">
@@ -142,17 +145,17 @@ onMounted(() => {
 
         <template v-slot:[`item.golesPrediccionEquipo1`]="{ item }">
           <td class="px-0" style="width: 120px">
-            <v-text-field :outlined="item.isHabilitado" :filled="!item.isHabilitado" dense hide-details="auto"
-              :disabled="!item.isHabilitado" v-model="item.golesPrediccionEquipo1"
-              :placeholder="item.isHabilitado ? 'Ej: 0' : 'X'" />
+            <v-text-field :outlined="item.isPrediccionHabilitado" :filled="!item.isPrediccionHabilitado"
+              density="compact" hide-details="auto" :disabled="!item.isPrediccionHabilitado"
+              v-model="item.golesPrediccionEquipo1" :placeholder="item.isPrediccionHabilitado ? 'Ej: 0' : 'X'" />
           </td>
         </template>
 
         <template v-slot:[`item.golesPrediccionEquipo2`]="{ item }">
           <td class="px-0" style="width: 120px">
-            <v-text-field :outlined="item.isHabilitado" :filled="!item.isHabilitado" dense hide-details="auto"
-              class="input-goles-2" :disabled="!item.isHabilitado" v-model="item.golesPrediccionEquipo2"
-              :placeholder="item.isHabilitado ? 'Ej: 0' : 'X'" />
+            <v-text-field :outlined="item.isPrediccionHabilitado" :filled="!item.isPrediccionHabilitado"
+              density="compact" hide-details="auto" class="input-goles-2" :disabled="!item.isPrediccionHabilitado"
+              v-model="item.golesPrediccionEquipo2" :placeholder="item.isPrediccionHabilitado ? 'Ej: 0' : 'X'" />
           </td>
         </template>
 
@@ -174,3 +177,49 @@ onMounted(() => {
     </v-card-text>
   </v-card>
 </template>
+
+<style>
+.table-partidos {
+  .v-table__wrapper {
+    overflow: hidden;
+  }
+}
+</style>
+
+<style scoped>
+.fila-con-prediccion {
+  background-color: #e1f5fe;
+}
+
+.fila-con-prediccion-correcta {
+  background-color: #a5d6a7;
+}
+
+.fila-con-prediccion-acertada {
+  background-color: #80cbc4;
+}
+
+.fila-con-prediccion-erronea {
+  background-color: #ef9a9a;
+}
+
+.table-partidos .fila-con-prediccion:hover {
+  background-color: #b3e5fc !important;
+}
+
+.table-partidos .fila-con-prediccion-correcta:hover {
+  background-color: #66bb6a !important;
+}
+
+.table-partidos .fila-con-prediccion-acertada:hover {
+  background-color: #26a69a !important;
+}
+
+.table-partidos .fila-con-prediccion-erronea:hover {
+  background-color: #ef5350 !important;
+}
+
+.input-goles-2 input {
+  text-align: end;
+}
+</style>
