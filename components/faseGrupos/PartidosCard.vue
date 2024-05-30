@@ -91,6 +91,9 @@ onMounted(() => {
           align: "start",
           key: "equipo1",
           sortable: false,
+          cellProps: {
+            class: "columna-nombre-equipo"
+          }
         },
         {
           align: "center",
@@ -114,9 +117,11 @@ onMounted(() => {
           sortable: false,
           align: "end",
           value: "equipo2",
+          cellProps: {
+            class: "columna-nombre-equipo"
+          }
         },
         {
-          align: "end",
           value: "fecha",
           headerProps: {
             class: " d-none"
@@ -129,47 +134,44 @@ onMounted(() => {
         <!-- density="compact" -->
         <!-- :item-class="fondoItem" -->
         <!-- TODO add fondo item, cuando vaya a probar predicciones -->
+        <!-- TODO ajustar tamaños, tabla queda fea en pantalla completa -->
 
         <template v-slot:[`item.equipo1`]="{ item }">
-          <td style="width: 160px">
-            <v-row>
-              <v-col class="pr-0" cols="auto">
-                <BanderaImg :code="item.code1" />
-              </v-col>
-              <v-col>
-                {{ item.equipo1 }}
-              </v-col>
-            </v-row>
-          </td>
+          <v-row>
+            <v-col class="pr-0" cols="auto">
+              <BanderaImg :code="item.code1" />
+            </v-col>
+            <v-col>
+              {{ item.equipo1 }}
+            </v-col>
+          </v-row>
         </template>
 
         <template v-slot:[`item.golesPrediccionEquipo1`]="{ item }">
-          <td class="px-0" style="width: 120px">
-            <v-text-field :outlined="item.isPrediccionHabilitado" :filled="!item.isPrediccionHabilitado"
-              density="compact" hide-details="auto" :disabled="!item.isPrediccionHabilitado"
-              v-model="item.golesPrediccionEquipo1" :placeholder="item.isPrediccionHabilitado ? 'Ej: 0' : 'X'" />
-          </td>
+          <!-- <td class="px-0" style="width: 120px"> -->
+          <v-text-field :outlined="item.isPrediccionHabilitado" :filled="!item.isPrediccionHabilitado" density="compact"
+            hide-details="auto" :disabled="!item.isPrediccionHabilitado" v-model="item.golesPrediccionEquipo1"
+            :placeholder="item.isPrediccionHabilitado ? 'Ej: 0' : 'X'" />
+          <!-- </td> -->
         </template>
 
         <template v-slot:[`item.golesPrediccionEquipo2`]="{ item }">
-          <td class="px-0" style="width: 120px">
-            <v-text-field :outlined="item.isPrediccionHabilitado" :filled="!item.isPrediccionHabilitado"
-              density="compact" hide-details="auto" class="input-goles-2" :disabled="!item.isPrediccionHabilitado"
-              v-model="item.golesPrediccionEquipo2" :placeholder="item.isPrediccionHabilitado ? 'Ej: 0' : 'X'" />
-          </td>
+          <!-- <td class="px-0" style="width: 120px"> -->
+          <v-text-field :outlined="item.isPrediccionHabilitado" :filled="!item.isPrediccionHabilitado" density="compact"
+            hide-details="auto" class="input-goles-2" :disabled="!item.isPrediccionHabilitado"
+            v-model="item.golesPrediccionEquipo2" :placeholder="item.isPrediccionHabilitado ? 'Ej: 0' : 'X'" />
+          <!-- </td> -->
         </template>
 
         <template v-slot:[`item.equipo2`]="{ item }">
-          <td style="width: 160px">
-            <v-row>
-              <v-col style="text-align: end">
-                {{ item.equipo2 }}
-              </v-col>
-              <v-col class="pl-0" cols="auto" style="text-align: end">
-                <BanderaImg :code="item.code2" />
-              </v-col>
-            </v-row>
-          </td>
+          <v-row>
+            <v-col style="text-align: end">
+              {{ item.equipo2 }}
+            </v-col>
+            <v-col class="pl-0" cols="auto" style="text-align: end">
+              <BanderaImg :code="item.code2" />
+            </v-col>
+          </v-row>
         </template>
 
         <template #bottom />
@@ -178,10 +180,21 @@ onMounted(() => {
   </v-card>
 </template>
 
+
 <style>
 .table-partidos {
   .v-table__wrapper {
     overflow: hidden;
+  }
+}
+
+.table-partidos .columna-nombre-equipo {
+  width: 30%;
+}
+
+.table-partidos .input-goles-2 {
+  input {
+    text-align: end;
   }
 }
 </style>
@@ -217,9 +230,5 @@ onMounted(() => {
 
 .table-partidos .fila-con-prediccion-erronea:hover {
   background-color: #ef5350 !important;
-}
-
-.input-goles-2 input {
-  text-align: end;
 }
 </style>
