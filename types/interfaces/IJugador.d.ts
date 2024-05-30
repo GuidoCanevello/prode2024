@@ -8,4 +8,5 @@ interface IJugador {
     esMejorArquero?: boolean,
     esMejorGoleador?: boolean,
     equipo?: TMongoID,
+    isTest?: boolean,
 }

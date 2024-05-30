@@ -14,4 +14,5 @@ interface IPartido {
     identificadorEliminatorias?: string,
     partidoEquipo1?: TMongoID,
     partidoEquipo2?: TMongoID,
+    isTest?: boolean,
 };

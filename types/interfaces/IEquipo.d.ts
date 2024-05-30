@@ -4,4 +4,5 @@ interface IEquipo {
     code?: string,
     puntos?: number,
     grupo?: TGrupos,
+    isTest?: boolean,
 }

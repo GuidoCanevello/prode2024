@@ -10,4 +10,5 @@ interface IUsuario {
     prediccionMejorJugador?: TMongoID,
     prediccionMejorArquero?: TMongoID,
     prediccionMejorGoleador?: TMongoID,
+    isTest?: boolean,
 }
