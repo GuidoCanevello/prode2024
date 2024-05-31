@@ -61,7 +61,7 @@ const onChangeTheme = () => {
 
 onNuxtReady(() => {
   // REVIEW ver como voy a hacer si quiero que guarde la config de modo oscuro
-  if (useRuntimeConfig().isDevelopment = "true") {
+  if (useRuntimeConfig().public.isDevelopment == "true") {
     theme.global.name.value = "myDarkTheme";
   }
 

@@ -13,13 +13,25 @@ export default async function (state: NProdeStore.IProdeStoreState) {
         const usuario = (await $fetch("/api/usuarios/627af32ad506ba4e3c964f61")) as IUsuario;
 
         //* Partidos
-        const partidos = (await $fetch('/api/partidos')) as IPartido[];
+        const partidos = (await $fetch('/api/partidos', {
+            query: {
+                isOnlyTest: useRuntimeConfig().public.useTestData == "true"
+            }
+        })) as IPartido[];
 
         //* Equipos
-        const equipos = (await $fetch('/api/equipos')) as IEquipo[];
+        const equipos = (await $fetch('/api/equipos', {
+            query: {
+                isOnlyTest: useRuntimeConfig().public.useTestData == "true"
+            }
+        })) as IEquipo[];
 
         //* Jugadores
-        const jugadores = (await $fetch('/api/jugadores')) as IJugador[];
+        const jugadores = (await $fetch('/api/jugadores', {
+            query: {
+                isOnlyTest: useRuntimeConfig().public.useTestData == "true"
+            }
+        })) as IJugador[];
 
         //* Guardar Data
         state.usuarioId = usuario._id ?? "";
@@ -38,6 +50,7 @@ export default async function (state: NProdeStore.IProdeStoreState) {
         state.jugadores = jugadores;
         state.hasInitialData = true;
     } catch (error) {
+        console.log("error", error)
         // dispatch(s'ABRIR_ERROR', error.response.data.message);
     } finally {
         state.isGettingInitialData = false;

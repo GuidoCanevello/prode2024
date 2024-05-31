@@ -41,13 +41,10 @@ onMounted(() => {
       code1: partido.code1,
       equipo2: partido.equipo2,
       code2: partido.code2,
-      guion:
-        partido.golesEquipo1 != undefined && partido.golesEquipo2 != undefined
-          ? `${partido.golesEquipo1} - ${partido.golesEquipo2}`
-          : "N - N",
+      guion: partido.isDespuesPartido ? `${partido.golesEquipo1} - ${partido.golesEquipo2}` : "N - N",
       golesEquipo1: partido.golesEquipo1,
       golesEquipo2: partido.golesEquipo2,
-      isPrediccionHabilitado: partido.isPrediccionHabilitado,
+      isPrediccionHabilitado: !partido.isDespuesPartido,
       golesPrediccionEquipo1: partido.tienePrediccion
         ? partido.prediccion?.golesEquipo1
         : undefined,
@@ -134,7 +131,6 @@ onMounted(() => {
         <!-- density="compact" -->
         <!-- :item-class="fondoItem" -->
         <!-- TODO add fondo item, cuando vaya a probar predicciones -->
-        <!-- TODO ajustar tamaños, tabla queda fea en pantalla completa -->
 
         <template v-slot:[`item.equipo1`]="{ item }">
           <v-row>

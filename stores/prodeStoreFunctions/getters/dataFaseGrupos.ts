@@ -33,7 +33,7 @@ export default function (state: NProdeStore.IProdeStoreState): NProdeStore.FaseG
 
         if (objEquipo1 === undefined || objEquipo2 === undefined) {
             throw {
-                content: "Error con los datos del Servidor",
+                content: `Error con los datos del Servidor. 1: ${partido.equipo1}, 2: ${partido.equipo2}`,
             }
         }
 
@@ -48,7 +48,6 @@ export default function (state: NProdeStore.IProdeStoreState): NProdeStore.FaseG
             equipo2: objEquipo2.nombre ?? "DEFAULT",
             code2: objEquipo2.code ?? "DEFAULT",
             tienePrediccion: prediccion != undefined,
-            isPrediccionHabilitado: fecha > new Date(),
             prediccion: prediccion != undefined ? {                
                 golesEquipo1: prediccion.golesEquipo1 ?? 0,
                 golesEquipo2: prediccion.golesEquipo2 ?? 0,
@@ -56,6 +55,7 @@ export default function (state: NProdeStore.IProdeStoreState): NProdeStore.FaseG
             golesEquipo1: partido.golesEquipo1 ?? 0,
             golesEquipo2: partido.golesEquipo2 ?? 0,
             fecha,
+            isDespuesPartido: fecha < new Date(),
         });
     });
 

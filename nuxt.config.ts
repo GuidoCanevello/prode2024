@@ -11,8 +11,10 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    mongoURI: process.env.MONGODB_URI,
-    isDevelopment: process.env.IS_DEVELOPMENT,
+    public: {
+      isDevelopment: process.env.IS_DEVELOPMENT,
+      useTestData: process.env.USE_TEST_DATA,
+    }
   },
 
   hooks: {
