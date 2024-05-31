@@ -11,7 +11,6 @@ const showGrupoCard = computed(() => {
   return !isGettingInitialData.value && hasInitialData.value;
 })
 
-// TODO add Usuarios de Prueba
 // TODO add Horarios de Partidos
 // TODO add desplegable a Partidos con la fecha y hora
 </script>
