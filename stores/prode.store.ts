@@ -10,6 +10,7 @@ export const useProdeStore = defineStore('prodeStore', {
         usuarioImagenSrc: "",
         usuarioPuntos: 1,
 
+        usuarios: [],
         equipos: [],
         partidos: [],
         predicciones: [],
@@ -20,9 +21,13 @@ export const useProdeStore = defineStore('prodeStore', {
     }),
 
     getters: {
-        dataFaseGrupos(): NProdeStore.IDataFaseGrupos[] {
-            return getters.dataFaseGrupos(this)
+        dataFaseGrupos(): NProdeStore.FaseGrupos.IData[] {
+            return getters.dataFaseGrupos(this);
         },
+
+        dataRanking(): any[] {
+            return getters.dataRanking(this);
+        }
     },
 
     actions: {

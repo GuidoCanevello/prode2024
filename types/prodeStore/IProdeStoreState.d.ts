@@ -11,6 +11,7 @@ namespace NProdeStore {
         // prediccionMejorGoleador: null,
 
         //* Datos de Prode
+        usuarios: IUsuario[],
         equipos: IEquipo[];
         partidos: IPartido[];
         predicciones: IPrediccion[];

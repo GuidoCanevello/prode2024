@@ -4,7 +4,7 @@ import 'vuetify/styles'
 import { createVuetify, type ThemeDefinition } from 'vuetify';
 
 //* Colors Theme
-const myLightTheme: ThemeDefinition = {
+const light: ThemeDefinition = {
   dark: false,
   colors: {
     background: "#eeeeee",
@@ -19,10 +19,16 @@ const myLightTheme: ThemeDefinition = {
     info: '#1565C0',
     // success: '#ffffff',
     // warning: '#ffffff',
+
+    //* Para Data table
+    // TODO set colors
+    'data-table-first': '#03a9f4',
+    'data-table-second': '#03a9f4',
+    'data-table-third': '#03a9f4',
   }
 }
 
-const myDarkTheme: ThemeDefinition = {
+const dark: ThemeDefinition = {
   dark: true,
   colors: {
     background: "#212121",
@@ -37,6 +43,11 @@ const myDarkTheme: ThemeDefinition = {
     // info: '#ffffff',
     // success: '#ffffff',
     // warning: '#ffffff',
+
+    //* Para Data table
+    'data-table-first': '#03a9f4',
+    'data-table-second': '#03a9f4',
+    'data-table-third': '#03a9f4',
   }
 }
 
@@ -44,8 +55,8 @@ export default defineNuxtPlugin((app) => {
   const vuetify = createVuetify({
     ssr: true,
     theme: {
-      defaultTheme: 'myLightTheme',
-      themes: { myLightTheme, myDarkTheme }
+      defaultTheme: 'light',
+      themes: { light, dark }
     },
   })
   app.vueApp.use(vuetify)

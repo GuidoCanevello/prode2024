@@ -10,7 +10,14 @@ export default async function (state: NProdeStore.IProdeStoreState) {
         //     axiosRequest: async () =>
         //         await axios.get(`usuarios/${localStorage.getItem('prodeLoggedUserId')}`)
         // });
-        const usuario = (await $fetch("/api/usuarios/627af32ad506ba4e3c964f61")) as IUsuario;
+        const usuario = (await $fetch("/api/usuarios/665a1ee676822934e5550ec6")) as IUsuario;
+
+        //* Usuarios
+        const usuarios = (await $fetch('/api/usuarios', {
+            query: {
+                isOnlyTest: useRuntimeConfig().public.useTestData == "true"
+            }
+        })) as IUsuario[];
 
         //* Partidos
         const partidos = (await $fetch('/api/partidos', {
@@ -45,6 +52,7 @@ export default async function (state: NProdeStore.IProdeStoreState) {
 
         state.predicciones = usuario.predicciones ?? [];
 
+        state.usuarios = usuarios;
         state.partidos = partidos;
         state.equipos = equipos;
         state.jugadores = jugadores;

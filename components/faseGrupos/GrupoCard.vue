@@ -49,12 +49,15 @@ const onExpandirGrupo = () => {
           value: "puntos",
         },
       ]' :items="equipos" item-key="id" :mobile-breakpoint="0" :sort-by="[{ key: 'puntos', order: 'desc' }]">
+
         <template v-slot:[`item.bandera`]="{ item }">
           <td class="text-start" style="width: 30px">
             <BanderaImg :code="(item as any).code" />
           </td>
         </template>
+
         <template #bottom />
+        
       </v-data-table>
     </v-card-text>
   </v-card>

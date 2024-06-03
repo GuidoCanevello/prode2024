@@ -196,6 +196,7 @@ onMounted(() => {
 </style>
 
 <style scoped>
+ /* TODO imlpementar */
 .fila-con-prediccion {
   background-color: #e1f5fe;
 }

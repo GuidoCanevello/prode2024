@@ -56,13 +56,13 @@ const currentTab = ref();
 
 const theme = useTheme();
 const onChangeTheme = () => {
-  theme.global.name.value = theme.global.current.value.dark ? "myLightTheme" : "myDarkTheme";
+  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
 }
 
 onNuxtReady(() => {
   // REVIEW ver como voy a hacer si quiero que guarde la config de modo oscuro
   if (useRuntimeConfig().public.isDevelopment == "true") {
-    theme.global.name.value = "myDarkTheme";
+    theme.global.name.value = "dark";
   }
 
   store.dispatchGetInitialData();
