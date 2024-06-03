@@ -21,10 +21,12 @@ const light: ThemeDefinition = {
     // warning: '#ffffff',
 
     //* Para Data table
-    // TODO set colors
-    'data-table-first': '#03a9f4',
-    'data-table-second': '#03a9f4',
-    'data-table-third': '#03a9f4',
+    'data-table-first': '#fff176',
+    'data-table-first-hover': '#ffc107',
+    'data-table-second': '#b0bec5',
+    'data-table-second-hover': '#78909c',
+    'data-table-third': '#ffcc80',
+    'data-table-third-hover': '#ff9800',
   }
 }
 
@@ -45,9 +47,12 @@ const dark: ThemeDefinition = {
     // warning: '#ffffff',
 
     //* Para Data table
-    'data-table-first': '#03a9f4',
-    'data-table-second': '#03a9f4',
-    'data-table-third': '#03a9f4',
+    'data-table-first': '#f57c00',
+    'data-table-first-hover': '#ffa726',
+    'data-table-second': '#757575',
+    'data-table-second-hover': '#9e9e9e',
+    'data-table-third': '#ff5722',
+    'data-table-third-hover': '#ff8a65',
   }
 }
 

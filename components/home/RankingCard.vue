@@ -1,27 +1,28 @@
 <script setup lang="ts">
 const { dataRanking, isGettingInitialData, hasInitialData } = storeToRefs(useProdeStore());
 
+const page = ref(1);
+const itemsPerPage = ref(5);
+const iconSize = ref(32)
+
+const pageCount = computed(() => {
+  return Math.ceil(dataRanking.value.length / itemsPerPage.value);
+})
+
 const isLoadingUserData = computed(() => {
   return isGettingInitialData.value || !hasInitialData.value
 })
 
 function fondoItem(data: any) {
-  let aClass: string;
   switch (data.item.posicion) {
     case 1:
-      aClass = "fila-primero";
+      return { class: "fila-primero" }
     case 2:
-      aClass = "fila-segundo";
+      return { class: "fila-segundo" }
     case 3:
-      aClass = "fila-tercero";
-    default:
-      aClass = "";
+      return { class: "fila-tercero" }
   }
-
-  return { class: aClass }
 }
-
-const iconSize = ref(32)
 </script>
 
 <template>
@@ -56,9 +57,9 @@ const iconSize = ref(32)
         align: "end",
         value: "puntos",
         sortable: false,
-      }]' :items="dataRanking" item-key="id" :items-per-page="5" :loading="isLoadingUserData"
-        loading-text="Cargando Jugadores..." :sort-by="[{ key: 'posicion' }]" class="table-ranking"
-        :mobile-breakpoint="0" :row-props="fondoItem">
+      }]' :items="dataRanking" item-key="id" v-model:page="page" :items-per-page="itemsPerPage"
+        :loading="isLoadingUserData" loading-text="Cargando Jugadores..." :sort-by="[{ key: 'posicion' }]"
+        :mobile-breakpoint="0" class="table-ranking" :row-props="fondoItem">
         <!-- @click:row="handleSelectRow" -->
 
         <template v-slot:[`item.iconoJugador`]="{ item }">
@@ -71,7 +72,11 @@ const iconSize = ref(32)
           </v-avatar>
         </template>
 
-        <template #bottom />
+        <template v-slot:bottom>
+          <div class="text-center pt-2">
+            <v-pagination v-model="page" :length="pageCount"></v-pagination>
+          </div>
+        </template>
       </v-data-table>
     </v-card-text>
   </v-card>
@@ -80,30 +85,30 @@ const iconSize = ref(32)
 <style>
 .table-ranking {
   .fila-primero {
-    background-color: rgb(var(--v-theme-background));
+    background-color: rgb(var(--v-theme-data-table-first));
   }
 
   .fila-primero:hover {
     cursor: pointer;
-    background-color: #ffee58 !important;
+    background-color: rgb(var(--v-theme-data-table-first-hover)) !important;
   }
 
   .fila-segundo {
-    background-color: #cfd8dc;
+    background-color: rgb(var(--v-theme-data-table-second));
   }
 
   .fila-segundo:hover {
     cursor: pointer;
-    background-color: #90a4ae !important;
+    background-color: rgb(var(--v-theme-data-table-second-hover)) !important;
   }
 
   .fila-tercero {
-    background-color: #ffe0b2;
+    background-color: rgb(var(--v-theme-data-table-third));
   }
 
   .fila-tercero:hover {
     cursor: pointer;
-    background-color: #ffb74d !important;
+    background-color: rgb(var(--v-theme-data-table-third-hover)) !important;
   }
 
   /* TODO add hover a las que son de 4to para abajo */
