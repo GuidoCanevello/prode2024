@@ -57,7 +57,7 @@ Una vez anotados todos los pronósticos de un Grupo, presionar el boton de *Guar
 
 ### Para Fase Final - [Ir al Sitio](/fase-final)
 
-<!-- TODO escribir -->
+<!-- REVIEW escribir -->
 
 <br/>
 
@@ -75,8 +75,8 @@ Es posible actualizar los Jugadores luego de realizar un pronostico.
 ## Pronosticos
 
 - Las pronosticos se realizarán en dos etapas: antes y durante la fase de grupos, 
-<!-- TODO revisar y reescribir -->
+<!-- REVIEW revisar y reescribir -->
   y cuando se conozcan los cruces de octavos de final (hasta las 12:00 del 03/12/2022).
 - Justo antes del inicio de cada partido, la predicción correspondiente se cerrará.
-<!-- TODO revisar y reescribir -->
+<!-- REVIEW revisar y reescribir -->
 - En la segunda fase se predice **qué equipo pasa** (es decir, quien gana, independientemente del resultado).

@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 const props = defineProps(["grupo"])
 
-// TODO change when i add responsive
+// REVIEW change when i add responsive
 const IS_SCREEN_BEYOND_MEDIUM = ref(true)
 
 </script>

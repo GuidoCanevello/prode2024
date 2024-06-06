@@ -11,8 +11,7 @@ const showGrupoCard = computed(() => {
   return !isGettingInitialData.value && hasInitialData.value;
 })
 
-// TODO add Horarios de Partidos
-// TODO add desplegable a Partidos con la fecha y hora
+// REVIEW por ahi meter cada grupo en una pestaña distinta, asi tengo mas espacio en la pantalla para cada uno
 </script>
 
 <template>

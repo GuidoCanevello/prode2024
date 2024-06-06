@@ -5,7 +5,7 @@ export default async function (state: NProdeStore.IProdeStoreState) {
 
     try {
         //* Usuario
-        // TODO implement y ver si se queda aca o en otro store
+        // REVIEW implement y ver si se queda aca o en otro store
         // const usuario = await dispatch(s'DISPATCH_AXIOS_REQUEST', {
         //     axiosRequest: async () =>
         //         await axios.get(`usuarios/${localStorage.getItem('prodeLoggedUserId')}`)

@@ -69,7 +69,7 @@ onNuxtReady(() => {
 })
 
 const checkPermissions = (item: ITabItem) => {
-  // TODO - fix when i have a store with the User Name
+  // REVIEW - fix when i have a store with the User Name
   return true;
   // return (
   //   !item.isAdmin ||

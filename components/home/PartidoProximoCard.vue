@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 const fechaFormateada = computed(() => {
-  // TODO implement
+  // REVIEW implement
   // if (this.DATA_PROX_PARTIDO) {
   //     const fecha = this.DATA_PROX_PARTIDO.fecha;
   //     const nombreDia = obtenerNombreDia(fecha.getDay()),
@@ -15,7 +15,7 @@ const fechaFormateada = computed(() => {
 })
 
 const horaFormateada = computed(() => {
-  // TODO implement
+  // REVIEW implement
   //   if (this.DATA_PROX_PARTIDO) {
   //     const fecha = this.DATA_PROX_PARTIDO.fecha;
   //     const hora = addCero(fecha.getHours()),
@@ -37,7 +37,7 @@ const horaFormateada = computed(() => {
     </v-card-subtitle>
 
     <v-card-text>
-      <!-- TODO traer de viejo cuando tenga datos de los partidos -->
+      <!-- REVIEW traer de viejo cuando tenga datos de los partidos -->
       <under-construction-card />
     </v-card-text>
   </v-card>

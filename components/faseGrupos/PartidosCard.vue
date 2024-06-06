@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import darFormatoFecha from '../../utils/darFormatoFecha';
+
 const props = defineProps(["nombre", "partidos"]);
 
 //* Btn Update Predicciones
@@ -30,6 +32,8 @@ const dataPartidos = ref<{
   tienePrediccion: boolean,
   fecha: Date,
 }[]>([]);
+
+const expanded = ref([]);
 
 onMounted(() => {
   dataPartidos.value = [];
@@ -127,8 +131,8 @@ onMounted(() => {
             class: " d-none"
           }
         },
-      ]' :items="dataPartidos" item-key="id" class="table-partidos" :sort-by="[{ key: 'fecha' }]" density="compact">
-        <!-- density="compact" -->
+      ]' :items="dataPartidos" item-key="partidoId" item-value="partidoId" class="table-partidos" :sort-by="[{ key: 'fecha' }]"
+        density="compact" v-model:expanded="expanded" show-expand>
         <!-- :item-class="fondoItem" -->
         <!-- TODO add fondo item, cuando vaya a probar predicciones -->
 
@@ -170,6 +174,15 @@ onMounted(() => {
           </v-row>
         </template>
 
+
+        <template v-slot:expanded-row="{ columns, item }">
+          <tr>
+            <td :colspan="columns.length">
+              Fecha: {{ darFormatoFecha(item.fecha) }}
+            </td>
+          </tr>
+        </template>
+
         <template #bottom />
       </v-data-table>
     </v-card-text>
@@ -196,7 +209,7 @@ onMounted(() => {
 </style>
 
 <style scoped>
- /* TODO imlpementar */
+/* TODO imlpementar */
 .fila-con-prediccion {
   background-color: #e1f5fe;
 }

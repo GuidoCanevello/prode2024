@@ -208,7 +208,7 @@ onMounted(() => {
           ]' :items="dataPronosticos" item-key="id" class="table-pronosticos" :item-class="() => 'fila-prediccion'"
             :sort-by="[{ key: 'puntos', order: 'desc' }]" :sort-desc="false">
             <template v-slot:[`item.bandera`]="{ item }">
-              <!-- TODO ver cuando tenga responsive -->
+              <!-- REVIEW ver cuando tenga responsive -->
               <!-- :class="$vuetify.breakpoint.name != 'xs' ? 'text-start' : 'text-end'" -->
               <td class="text-start" style="width: 30px">
                 <BanderaImg :code="item.code" />
@@ -282,7 +282,7 @@ onMounted(() => {
             },
           ]' :items="dataReales" item-key="id" :sort-by="[{ key: 'puntos', order: 'desc' }]">
             <template v-slot:[`item.bandera`]="{ item }">
-              <!-- TODO ver cuando tenga responsive -->
+              <!-- REVIEW ver cuando tenga responsive -->
               <!-- :class="$vuetify.breakpoint.name != 'xs' ? 'text-start' : 'text-end'" -->
               <td class="text-start" style="width: 30px">
                 <BanderaImg :code="item.code" />
