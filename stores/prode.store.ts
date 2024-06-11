@@ -25,8 +25,12 @@ export const useProdeStore = defineStore('prodeStore', {
             return getters.dataFaseGrupos(this);
         },
 
-        dataRanking(): any[] {
+        dataRanking(): NProdeStore.Ranking.IData[] {
             return getters.dataRanking(this);
+        },
+
+        dataListado(): NProdeStore.Listado.IData[] {
+            return getters.dataListado(this);
         }
     },
 
