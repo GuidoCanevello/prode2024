@@ -18,7 +18,7 @@ const filtrarEquipo = (value: string, query: string, item: any) => {
   if (value != item.columns.descripcionPartido) return false;
 
   const descripcionPartido = value.toLocaleUpperCase();
-  const textoBusqueda = query.toLocaleUpperCase();
+  const textoBusqueda = query.toLocaleUpperCase().trim();
 
   return descripcionPartido != "" && textoBusqueda != "" && descripcionPartido.includes(textoBusqueda);
 }

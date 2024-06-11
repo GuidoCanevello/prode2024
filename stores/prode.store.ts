@@ -31,6 +31,10 @@ export const useProdeStore = defineStore('prodeStore', {
 
         dataListado(): NProdeStore.Listado.IData[] {
             return getters.dataListado(this);
+        },
+
+        dataProxPartido(): NProdeStore.ProxPartido.IData | undefined {
+            return getters.dataProxPartido(this);
         }
     },
 
