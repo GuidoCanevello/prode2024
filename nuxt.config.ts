@@ -21,6 +21,10 @@ export default defineNuxtConfig({
       IS_HOME_ENABLED: process.env.IS_HOME_ENABLED,
       IS_MEJORES_JUGADORES_ENABLED: process.env.IS_MEJORES_JUGADORES_ENABLED,
       IS_REGLAMENTO_ENABLED: process.env.IS_REGLAMENTO_ENABLED,
+
+      ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET,
+      REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET,
+      MASTER_TOKEN: process.env.MASTER_TOKEN,
     }
   },
 
