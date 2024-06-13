@@ -7,6 +7,6 @@ export default defineEventHandler(async (event) => {
     try {
         return await partidos_get(id)
     } catch (error) {
-        return handleControllerError(event, error);
+        handleControllerError(error)
     }
 })

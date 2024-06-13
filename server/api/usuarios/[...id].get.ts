@@ -13,6 +13,6 @@ export default defineEventHandler(async (event) => {
             return await usuarios_get_with_password(id);
         }
     } catch (error) {
-        return handleControllerError(event, error);
+        handleControllerError(error)
     }
 })

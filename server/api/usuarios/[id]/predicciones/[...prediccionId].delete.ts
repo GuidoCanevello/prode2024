@@ -9,6 +9,6 @@ export default defineEventHandler(async (event) => {
     try {
         return await predicciones_delete(id, prediccionId)
     } catch (error) {
-        return handleControllerError(event, error);
+        handleControllerError(error)
     }
 })

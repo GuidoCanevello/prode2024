@@ -20,6 +20,6 @@ export default defineEventHandler(async (event) => {
         setResponseStatus(event, 201);
         return response;
     } catch (error) {
-        return handleControllerError(event, error);
+        handleControllerError(error)
     }
 })

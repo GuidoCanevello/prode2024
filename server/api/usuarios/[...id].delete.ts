@@ -7,6 +7,6 @@ export default defineEventHandler(async (event) => {
     try {
         return await usuarios_delete(id)
     } catch (error) {
-        return handleControllerError(event, error);
+        handleControllerError(error)
     }
 })

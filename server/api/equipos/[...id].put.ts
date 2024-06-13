@@ -8,6 +8,6 @@ export default defineEventHandler(async (event) => {
     try {
         return await equipos_put(id, data)
     } catch (error) {
-        return handleControllerError(event, error);
+        handleControllerError(error)
     }
 })

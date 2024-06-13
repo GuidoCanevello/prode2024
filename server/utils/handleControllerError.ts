@@ -5,8 +5,9 @@
  * @param error The error
  * @returns The error message, if any
  */
-export default function (event: any, error: any): { message?: any } {
-    setResponseStatus(event, error.number ?? 500);
-
-    return { message: error.content != undefined ? error.content : error };
+export default function (error: any) {
+    throw createError({
+        statusCode: error.number ?? 500,
+        statusMessage: error.content != undefined ? error.content : error
+    });
 }

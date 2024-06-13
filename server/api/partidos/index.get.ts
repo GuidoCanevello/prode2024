@@ -13,6 +13,6 @@ export default defineEventHandler(async (event) => {
             return await partidos_list(isWithTest == "true");
         }
     } catch (error) {
-        return handleControllerError(event, error);
+        handleControllerError(error)
     }
 })
