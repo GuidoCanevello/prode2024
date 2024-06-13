@@ -12,8 +12,15 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      isDevelopment: process.env.IS_DEVELOPMENT,
-      useTestData: process.env.USE_TEST_DATA,
+      IS_DEVELOPMENT: process.env.IS_DEVELOPMENT,
+      USE_TEST_DATA: process.env.USE_TEST_DATA,
+
+      IS_BACKEND_ENABLED: process.env.IS_BACKEND_ENABLED,
+      IS_FASE_FINAL_ENABLED: process.env.IS_FASE_FINAL_ENABLED,
+      IS_FASE_GRUPOS_ENABLED: process.env.IS_FASE_GRUPOS_ENABLED,
+      IS_HOME_ENABLED: process.env.IS_HOME_ENABLED,
+      IS_MEJORES_JUGADORES_ENABLED: process.env.IS_MEJORES_JUGADORES_ENABLED,
+      IS_REGLAMENTO_ENABLED: process.env.IS_REGLAMENTO_ENABLED,
     }
   },
 

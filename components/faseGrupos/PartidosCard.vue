@@ -4,7 +4,7 @@ import darFormatoFecha from '../../utils/darFormatoFecha';
 const props = defineProps(["nombre", "partidos"]);
 
 //* Btn Update Predicciones
-const isLoadingUpdatePredicciones = computed(() => {
+const isLoadingUpdatePredicciones = computed(() => { 
   return false;
 })
 

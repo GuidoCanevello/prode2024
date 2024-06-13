@@ -9,6 +9,7 @@ interface ITabItem {
   value: string,
   icon: string,
   route: string,
+  enabled: boolean,
   isAdmin?: boolean
 }
 
@@ -18,36 +19,42 @@ const tabItems: ITabItem[] = [
     title: "Inicio",
     value: "tab-0",
     icon: "mdi-soccer-field",
+    enabled: useRuntimeConfig().public.IS_HOME_ENABLED == "true",
     route: "/",
   },
   {
     title: "Fase de Grupos",
     value: "tab-1",
     icon: "mdi-account-group-outline",
+    enabled: useRuntimeConfig().public.IS_FASE_GRUPOS_ENABLED == "true",
     route: "/fase-grupos",
   },
   {
     title: "Fase Final",
     value: "tab-2",
     icon: "mdi-tournament",
+    enabled: useRuntimeConfig().public.IS_FASE_FINAL_ENABLED == "true",
     route: "/fase-final",
   },
   {
     title: "Mejores Jugadores",
     value: "tab-3",
     icon: "mdi-soccer",
+    enabled: useRuntimeConfig().public.IS_MEJORES_JUGADORES_ENABLED == "true",
     route: "/mejores-jugadores",
   },
   {
     title: "Reglamento",
     value: "tab-4",
     icon: "mdi-book-open-page-variant-outline",
+    enabled: useRuntimeConfig().public.IS_REGLAMENTO_ENABLED == "true",
     route: "/reglamento",
   },
   {
     title: "Backend",
     value: "tab-5",
     icon: "mdi-shield-crown-outline",
+    enabled: useRuntimeConfig().public.IS_BACKEND_ENABLED == "true",
     route: "/backend",
     isAdmin: true,
   }]
@@ -61,7 +68,7 @@ const onChangeTheme = () => {
 
 onNuxtReady(() => {
   // REVIEW ver como voy a hacer si quiero que guarde la config de modo oscuro
-  if (useRuntimeConfig().public.isDevelopment == "true") {
+  if (useRuntimeConfig().public.IS_DEVELOPMENT == "true") {
     theme.global.name.value = "dark";
   }
 
@@ -94,7 +101,7 @@ const checkPermissions = (item: ITabItem) => {
         </v-row>
 
         <v-tabs v-model="currentTab" align-tabs="title">
-          <template v-for="item in tabItems">
+          <template v-for="item in tabItems.filter(i => i.enabled)">
             <v-tab :key="item.title" v-if="checkPermissions(item)" :value="item.value" :text="item.title"
               :prepend-icon="item.icon" :to="item.route" router>
               {{ item.title }}

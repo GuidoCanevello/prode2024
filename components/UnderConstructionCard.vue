@@ -5,7 +5,7 @@
 <template>
   <v-card>
     <v-container style="text-align: center">
-      <h2>Ups! Se encuentra en desarrollo por el momento</h2>
+      <h2>Se encuentra en desarrollo por el momento</h2>
     </v-container>
 
     <v-container>

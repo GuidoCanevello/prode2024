@@ -42,12 +42,12 @@ const handleIrAFaseFinal = () => {
         <v-spacer />
         <v-col cols="auto" style="text-align: end">
           <v-btn color="success" @click="handleIrAFaseGrupos" variant="outlined" prepend-icon="mdi-account-group-outline">
-            Fase de Grupos
+            Ver Fase de Grupos
           </v-btn>
         </v-col>
         <v-col cols="auto" class="pl-0" style="text-align: end">
           <v-btn color="success" @click="handleIrAFaseFinal" variant="outlined" prepend-icon="mdi-tournament">
-            Fase Final
+            Ver Fase Final
           </v-btn>
         </v-col>
         <!-- </template> -->

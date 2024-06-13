@@ -15,28 +15,28 @@ export default async function (state: NProdeStore.IProdeStoreState) {
         //* Usuarios
         const usuarios = (await $fetch('/api/usuarios', {
             query: {
-                isOnlyTest: useRuntimeConfig().public.useTestData == "true"
+                isOnlyTest: useRuntimeConfig().public.USE_TEST_DATA == "true"
             }
         })) as IUsuario[];
 
         //* Partidos
         const partidos = (await $fetch('/api/partidos', {
             query: {
-                isOnlyTest: useRuntimeConfig().public.useTestData == "true"
+                isOnlyTest: useRuntimeConfig().public.USE_TEST_DATA == "true"
             }
         })) as IPartido[];
 
         //* Equipos
         const equipos = (await $fetch('/api/equipos', {
             query: {
-                isOnlyTest: useRuntimeConfig().public.useTestData == "true"
+                isOnlyTest: useRuntimeConfig().public.USE_TEST_DATA == "true"
             }
         })) as IEquipo[];
 
         //* Jugadores
         const jugadores = (await $fetch('/api/jugadores', {
             query: {
-                isOnlyTest: useRuntimeConfig().public.useTestData == "true"
+                isOnlyTest: useRuntimeConfig().public.USE_TEST_DATA == "true"
             }
         })) as IJugador[];
 
