@@ -7,19 +7,20 @@ export default defineEventHandler(async (event) => {
 
     // Controlar que la password no sea vacia
     if (data.password == undefined) {
-        return handleControllerError(event, {
+        handleControllerError({
             number: 400,
             content: "Se requiere una Contraseña",
         });
+    } else {
+        try {
+            data.password = await bcrypt.hash(data.password, 10);
+
+            let response = await usuarios_create_post(data);
+            setResponseStatus(event, 201);
+            return response;
+        } catch (error) {
+            handleControllerError(error)
+        }
     }
 
-    try {
-        data.password = await bcrypt.hash(data.password, 10);
-
-        let response = await usuarios_create_post(data);
-        setResponseStatus(event, 201);
-        return response;
-    } catch (error) {
-        handleControllerError(error)
-    }
 })

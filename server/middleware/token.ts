@@ -5,7 +5,7 @@ import jsonwebtoken from 'jsonwebtoken';
  */
 export default defineEventHandler((event) => {
     // Check if the path doesn't need an access token
-    const nonSecurePaths = ['/login', '/token', '/logout']; // '/admin/test'
+    const nonSecurePaths = ['/login', '/token', '/logout']; // '/test'
     if (event._path != undefined && nonSecurePaths.some(p => `/api${p}` == event._path)) return;
 
     const authHeader = event.headers.get('authorization');
