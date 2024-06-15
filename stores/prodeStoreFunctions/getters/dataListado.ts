@@ -4,7 +4,7 @@
  * @param state El state de la store
  * @returns La data de partidos formateada
  */
-export default function (state: NProdeStore.IProdeStoreState): NProdeStore.Listado.IData[] {
+export default function (state: NProdeStore.IStoreState): NProdeStore.Listado.IData[] {
     const dataListado: NProdeStore.Listado.IData[] = [];
 
     const dataEquipos = state.equipos;

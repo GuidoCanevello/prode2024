@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { dataRanking, isGettingInitialData, hasInitialData } = storeToRefs(useProdeStore());
+const { dataRanking, isGettingData: isGettingInitialData, hasData: hasInitialData } = storeToRefs(useProdeStore());
 
 const page = ref(1);
 const itemsPerPage = ref(5);
@@ -58,7 +58,7 @@ function fondoItem(data: any) {
         value: "puntos",
         sortable: false,
       }]' :items="dataRanking" item-key="id" v-model:page="page" :items-per-page="itemsPerPage"
-        :loading="isLoadingUserData" loading-text="Cargando Jugadores..." :sort-by="[{ key: 'posicion' }]"
+        :loading="isLoadingUserData" loading-text="Cargando Usuarios..." :sort-by="[{ key: 'posicion' }]"
         :mobile-breakpoint="0" class="table-ranking" :row-props="fondoItem">
         <!-- @click:row="handleSelectRow" -->
 

@@ -1,5 +1,5 @@
-namespace NProdeStore {
-    interface IProdeStoreState {
+namespace NUserStore {
+    interface IStoreState {
         //* Datos de Usuario
         usuarioId: string,
         usuarioNombreCuenta: string,
@@ -10,15 +10,8 @@ namespace NProdeStore {
         // prediccionMejorArquero: null,
         // prediccionMejorGoleador: null,
 
-        //* Datos de Prode
-        usuarios: IUsuario[],
-        equipos: IEquipo[];
-        partidos: IPartido[];
-        predicciones: IPrediccion[];
-        jugadores: IJugador[],
-
         //* State Booleans
-        isGettingInitialData: boolean;
-        hasInitialData: boolean;
+        isGettingData: boolean;
+        hasData: boolean;
     }
 }

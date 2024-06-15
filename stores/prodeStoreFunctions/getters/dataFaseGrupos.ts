@@ -4,7 +4,7 @@
  * @param state El state de la store
  * @returns La data de fase de grupos formateada
  */
-export default function (state: NProdeStore.IProdeStoreState): NProdeStore.FaseGrupos.IData[] {
+export default function (state: NProdeStore.IStoreState): NProdeStore.FaseGrupos.IData[] {
     const dataGrupos: NProdeStore.FaseGrupos.IData[] = [];
 
     const dataEquipos = state.equipos;

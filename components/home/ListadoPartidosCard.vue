@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const router = useRouter()
-const { isGettingInitialData, hasInitialData, dataListado } = storeToRefs(useProdeStore());
+const { isGettingData: isGettingInitialData, hasData: hasInitialData, dataListado } = storeToRefs(useProdeStore());
 
 const page = ref(1);
 const itemsPerPage = ref(5);

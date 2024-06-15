@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// TODO permitir que vea datos de Equipos, Partidos y Jugadores pero no de Predicciones (asi permito que entren incluso sin estar logueado)
 </script>
 
 <template>

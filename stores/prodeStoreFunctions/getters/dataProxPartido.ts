@@ -4,7 +4,7 @@
  * @param state El state de la store
  * @returns La data del Partido
  */
-export default function (state: NProdeStore.IProdeStoreState): NProdeStore.ProxPartido.IData | undefined {
+export default function (state: NProdeStore.IStoreState): NProdeStore.ProxPartido.IData | undefined {
     const dataEquipos = state.equipos;
     const dataPredicciones = state.predicciones;
     const dataPartidos = state.partidos;

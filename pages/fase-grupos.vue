@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 
-const { isGettingInitialData, hasInitialData, dataFaseGrupos } = storeToRefs(useProdeStore());
+const { isGettingData: isGettingInitialData, hasData: hasInitialData, dataFaseGrupos } = storeToRefs(useProdeStore());
 
 const showLoadingCard = computed(() => {
   return isGettingInitialData.value && !hasInitialData.value;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const router = useRouter()
-const { isGettingInitialData, hasInitialData, dataProxPartido } = storeToRefs(useProdeStore());
+const { isGettingData: isGettingInitialData, hasData: hasInitialData, dataProxPartido } = storeToRefs(useProdeStore());
 
 const isLoadingProxPartido = computed(() => {
   return isGettingInitialData.value && !hasInitialData.value;

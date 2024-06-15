@@ -11,7 +11,7 @@ function addSorted(list: NProdeStore.Ranking.IData[], element: NProdeStore.Ranki
     }
 }
 
-export default function (state: NProdeStore.IProdeStoreState): NProdeStore.Ranking.IData[] {
+export default function (state: NProdeStore.IStoreState): NProdeStore.Ranking.IData[] {
     const dataRanking: NProdeStore.Ranking.IData[] = [];
 
     //* Agregar Usuarios ordenando segun "puntos"

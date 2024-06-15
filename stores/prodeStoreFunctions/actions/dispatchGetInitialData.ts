@@ -1,17 +1,9 @@
-export default async function (state: NProdeStore.IProdeStoreState) {
-    if (state.hasInitialData) return;
+export default async function (state: NProdeStore.IStoreState) {
+    if (state.hasData) return;
 
-    state.isGettingInitialData = true;
+    state.isGettingData = true;
 
     try {
-        //* Usuario
-        // REVIEW implement y ver si se queda aca o en otro store
-        // const usuario = await dispatch(s'DISPATCH_AXIOS_REQUEST', {
-        //     axiosRequest: async () =>
-        //         await axios.get(`usuarios/${localStorage.getItem('prodeLoggedUserId')}`)
-        // });
-        const usuario = (await $fetch("/api/usuarios/665a1ee676822934e5550ec6")) as IUsuario;
-
         //* Usuarios
         const usuarios = (await $fetch('/api/usuarios', {
             query: {
@@ -38,29 +30,17 @@ export default async function (state: NProdeStore.IProdeStoreState) {
             query: {
                 isOnlyTest: useRuntimeConfig().public.USE_TEST_DATA == "true"
             }
-        })) as IJugador[];
-
-        //* Guardar Data
-        state.usuarioId = usuario._id ?? "";
-        state.usuarioNombreCuenta = usuario.nombreCuenta ?? "DEFAULT";
-        state.usuarioNombreJugador = usuario.nombreJugador ?? "DEFAULT";
-        state.usuarioImagenSrc = usuario.imagenSrc ?? "DEFAULT";
-        state.usuarioPuntos = usuario.puntos ?? 0;
-        // state.d('SET_PREDICCION_MEJOR_JUGADOR', usuario.prediccionMejorJugador);
-        // state.d('SET_PREDICCION_MEJOR_ARQUERO', usuario.prediccionMejorArquero);
-        // state.d('SET_PREDICCION_MEJOR_GOLEADOR', usuario.prediccionMejorGoleador);
-
-        state.predicciones = usuario.predicciones ?? [];
+        })) as IJugador[];        
 
         state.usuarios = usuarios;
         state.partidos = partidos;
         state.equipos = equipos;
         state.jugadores = jugadores;
-        state.hasInitialData = true;
+        state.hasData = true;
     } catch (error) {
         console.log("error", error)
         // dispatch(s'ABRIR_ERROR', error.response.data.message);
     } finally {
-        state.isGettingInitialData = false;
+        state.isGettingData = false;
     }
 }
