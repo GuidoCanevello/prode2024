@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import darFormatoFecha from '../../utils/darFormatoFecha';
-
 const props = defineProps(["nombre", "partidos"]);
 
+const { isUserLogged } = storeToRefs(useUserStore());
+
 //* Btn Update Predicciones
-const isLoadingUpdatePredicciones = computed(() => { 
+const isLoadingUpdatePredicciones = computed(() => {
   return false;
 })
 
@@ -93,13 +94,19 @@ onMounted(() => {
           key: "equipo1",
           sortable: false,
           cellProps: {
-            class: "columna-nombre-equipo"
+            class: isUserLogged ? "columna-nombre-equipo-con-pred" : "columna-nombre-equipo-sin-pred"
           }
         },
         {
           align: "center",
           sortable: false,
           value: "golesPrediccionEquipo1",
+          headerProps: !isUserLogged ? {
+            class: " d-none"
+          } : undefined,
+          cellProps: !isUserLogged ? {
+            class: " d-none"
+          } : undefined,
         },
         {
           title: "Goles",
@@ -112,6 +119,12 @@ onMounted(() => {
           align: "center",
           sortable: false,
           value: "golesPrediccionEquipo2",
+          headerProps: !isUserLogged ? {
+            class: " d-none"
+          } : undefined,
+          cellProps: !isUserLogged ? {
+            class: " d-none"
+          } : undefined,
         },
         {
           title: "Equipo 2",
@@ -119,7 +132,7 @@ onMounted(() => {
           align: "end",
           value: "equipo2",
           cellProps: {
-            class: "columna-nombre-equipo"
+            class: isUserLogged ? "columna-nombre-equipo-con-pred" : "columna-nombre-equipo-sin-pred"
           }
         },
         {
@@ -131,8 +144,8 @@ onMounted(() => {
             class: " d-none"
           }
         },
-      ]' :items="dataPartidos" item-key="partidoId" item-value="partidoId" class="table-partidos" :sort-by="[{ key: 'fecha' }]"
-        density="compact" v-model:expanded="expanded" show-expand>
+      ]' :items="dataPartidos" item-key="partidoId" item-value="partidoId" class="table-partidos"
+        :sort-by="[{ key: 'fecha' }]" density="compact" v-model:expanded="expanded" show-expand>
         <!-- :item-class="fondoItem" -->
         <!-- TODO add fondo item, cuando vaya a probar predicciones -->
 
@@ -197,8 +210,12 @@ onMounted(() => {
   }
 }
 
-.table-partidos .columna-nombre-equipo {
+.table-partidos .columna-nombre-equipo-con-pred {
   width: 30%;
+}
+
+.table-partidos .columna-nombre-equipo-sin-pred {
+  width: 50%;
 }
 
 .table-partidos .input-goles-2 {

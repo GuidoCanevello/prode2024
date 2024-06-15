@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 // import getters from './prodeStoreFunctions/getters/index';
 // import actions from './prodeStoreFunctions/actions/index';
 
-export const userUserStore = defineStore('userStore', {
+export const useUserStore = defineStore('userStore', {
     state: (): NUserStore.IStoreState => ({
         usuarioId: "",
         usuarioNombreCuenta: "",
@@ -11,7 +11,8 @@ export const userUserStore = defineStore('userStore', {
         usuarioPuntos: 1,
 
         isGettingData: false,
-        hasData: false
+        hasData: false,
+        isUserLogged: false,
     }),
 
     getters: {

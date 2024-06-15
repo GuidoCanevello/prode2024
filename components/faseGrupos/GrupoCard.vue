@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const props = defineProps(["nombre", "equipos", "partidos"])
+defineProps(["nombre", "equipos", "partidos"]);
+
+const { isUserLogged } = storeToRefs(useUserStore());
 
 const showDialogGrupoExpandido = ref(false)
 
@@ -10,7 +12,7 @@ const onExpandirGrupo = () => {
 
 <template>
   <v-card outlined>
-    <v-dialog v-model="showDialogGrupoExpandido">
+    <v-dialog v-model="showDialogGrupoExpandido" :max-width="!isUserLogged ? 1000 : undefined">
       <FaseGruposExpandirGrupoCard
         v-if="showDialogGrupoExpandido"
         :nombre="nombre"

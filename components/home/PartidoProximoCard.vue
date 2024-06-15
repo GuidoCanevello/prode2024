@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const router = useRouter()
-const { isGettingData: isGettingInitialData, hasData: hasInitialData, dataProxPartido } = storeToRefs(useProdeStore());
+const { isGettingData, hasData, dataProxPartido } = storeToRefs(useProdeStore());
+const { isUserLogged } = storeToRefs(useUserStore());
 
 const isLoadingProxPartido = computed(() => {
-  return isGettingInitialData.value && !hasInitialData.value;
+  return isGettingData.value && !hasData.value;
 })
 
 const fechaFormateada = computed(() => {
@@ -101,16 +101,18 @@ const horaFormateada = computed(() => {
 
           <!-- <v-spacer v-if="IS_SCREEN_BEYOND_LARGE" /> -->
           <v-spacer></v-spacer>
+
         </v-row>
 
-        <v-row>
-          <v-col class="pt-0" style="text-align: center" cols="12">
-            <h3>Tu Pronostico:</h3>
-          </v-col>
-        </v-row>
-
-        <template v-if="dataProxPartido?.prediccion">
+        <template v-if="isUserLogged">
           <v-row>
+            <v-col class="pt-0" style="text-align: center" cols="12">
+              <h3>Tu Pronostico:</h3>
+            </v-col>
+          </v-row>
+
+          <!-- Si tiene Prediccion -->
+          <v-row v-if="dataProxPartido?.prediccion">
             <v-col class="pt-0" style="text-align: right">
               <h3>{{ dataProxPartido?.prediccion.golesEquipo1 }}</h3>
             </v-col>
@@ -121,13 +123,14 @@ const horaFormateada = computed(() => {
               <h3>{{ dataProxPartido?.prediccion.golesEquipo2 }}</h3>
             </v-col>
           </v-row>
-        </template>
 
-        <v-row v-else>
-          <v-col class="pt-0" style="text-align: center">
-            <p>Sin Pronostico</p>
-          </v-col>
-        </v-row>
+          <!-- Si todavia no la realizo -->
+          <v-row v-else>
+            <v-col class="pt-0" style="text-align: center">
+              <p>Sin Pronostico</p>
+            </v-col>
+          </v-row>
+        </template>
       </template>
     </v-card-text>
   </v-card>

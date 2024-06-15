@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const router = useRouter()
-const { isGettingData: isGettingInitialData, hasData: hasInitialData, dataListado } = storeToRefs(useProdeStore());
+const { isGettingData, hasData, dataListado } = storeToRefs(useProdeStore());
+const { isUserLogged } = storeToRefs(useUserStore());
 
 const page = ref(1);
 const itemsPerPage = ref(5);
@@ -11,7 +12,7 @@ const pageCount = computed(() => {
 const busqueda = ref("")
 
 const isLoadingListado = computed(() => {
-  return isGettingInitialData.value && !hasInitialData.value;
+  return isGettingData.value && !hasData.value;
 })
 
 const filtrarEquipo = (value: string, query: string, item: any) => {
@@ -68,6 +69,12 @@ const handleIrAFaseFinal = () => {
           title: "Pronostico",
           sortable: false,
           value: "descripcionPrediccion",
+          headerProps: !isUserLogged ? {
+            class: " d-none"
+          } : undefined,
+          cellProps: !isUserLogged ? {
+            class: " d-none"
+          } : undefined,
         },
         {
           title: "Grupo",
