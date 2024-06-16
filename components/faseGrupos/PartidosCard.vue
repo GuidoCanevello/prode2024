@@ -66,8 +66,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- <v-card outlined> -->
-  <v-card outlined style="height: 100%" class="d-flex flex-column">
+  <!-- <v-card variant="outlined"> -->
+  <v-card variant="outlined" style="height: 100%" class="d-flex flex-column">
     <v-card-title primary-title>
       <v-row>
         <v-col> Partidos de Grupo {{ nombre }}</v-col>
@@ -162,7 +162,7 @@ onMounted(() => {
 
         <template v-slot:[`item.golesPrediccionEquipo1`]="{ item }">
           <!-- <td class="px-0" style="width: 120px"> -->
-          <v-text-field :outlined="item.isPrediccionHabilitado" :filled="!item.isPrediccionHabilitado" density="compact"
+          <v-text-field :variant="outlined"="item.isPrediccionHabilitado" :filled="!item.isPrediccionHabilitado" density="compact"
             hide-details="auto" :disabled="!item.isPrediccionHabilitado" v-model="item.golesPrediccionEquipo1"
             :placeholder="item.isPrediccionHabilitado ? 'Ej: 0' : 'X'" />
           <!-- </td> -->
@@ -170,7 +170,7 @@ onMounted(() => {
 
         <template v-slot:[`item.golesPrediccionEquipo2`]="{ item }">
           <!-- <td class="px-0" style="width: 120px"> -->
-          <v-text-field :outlined="item.isPrediccionHabilitado" :filled="!item.isPrediccionHabilitado" density="compact"
+          <v-text-field :variant="outlined"="item.isPrediccionHabilitado" :filled="!item.isPrediccionHabilitado" density="compact"
             hide-details="auto" class="input-goles-2" :disabled="!item.isPrediccionHabilitado"
             v-model="item.golesPrediccionEquipo2" :placeholder="item.isPrediccionHabilitado ? 'Ej: 0' : 'X'" />
           <!-- </td> -->

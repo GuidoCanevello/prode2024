@@ -52,7 +52,7 @@ const horaFormateada = computed(() => {
           <v-col lg="11">
             <v-row>
               <v-col>
-                <!-- <v-card outlined :class="IS_SCREEN_BEYOND_MEDIUM
+                <!-- <v-card variant="outlined" :class="IS_SCREEN_BEYOND_MEDIUM
                   ? 'team-card-medium'
                   : 'team-card-small'
                   "> -->
@@ -77,7 +77,7 @@ const horaFormateada = computed(() => {
               </v-col>
 
               <v-col>
-                <!-- <v-card outlined :class="IS_SCREEN_BEYOND_MEDIUM
+                <!-- <v-card variant="outlined" :class="IS_SCREEN_BEYOND_MEDIUM
                   ? 'team-card-medium'
                   : 'team-card-small'
                   "> -->

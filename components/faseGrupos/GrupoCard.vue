@@ -11,7 +11,7 @@ const onExpandirGrupo = () => {
 </script>
 
 <template>
-  <v-card outlined>
+  <v-card variant="outlined">
     <v-dialog v-model="showDialogGrupoExpandido" :max-width="!isUserLogged ? 1000 : undefined">
       <FaseGruposExpandirGrupoCard
         v-if="showDialogGrupoExpandido"

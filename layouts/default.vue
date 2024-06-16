@@ -91,12 +91,18 @@ const checkPermissions = (item: ITabItem) => {
     <header>
       <v-card color="primary">
         <v-row>
+          <!-- Agrego una columna fija para acomodar el Titulo -->
+          <v-col cols="auto" style="width: 230px;" />
+
           <v-col>
             <h1 style="text-align: center;">Prode 2024</h1>
           </v-col>
 
-          <v-col sm="auto">
-            <v-btn color="success" @click="onChangeTheme">Change Theme</v-btn>
+          <!-- <v-btn color="success" @click="onChangeTheme">Change Theme</v-btn> -->
+          <v-col sm="auto" >
+            <v-container class="px-2 py-1">
+              <user-box />
+            </v-container>
           </v-col>
         </v-row>
 

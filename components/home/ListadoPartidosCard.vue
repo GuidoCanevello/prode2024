@@ -119,12 +119,12 @@ const handleIrAFaseFinal = () => {
     <!-- <v-card-subtitle v-if="!IS_SCREEN_BEYOND_MEDIUM">
       <v-row>
         <v-col cols="auto">
-          <v-btn text color="success" @click="handleIrAFaseGrupos" outlined>
+          <v-btn text color="success" @click="handleIrAFaseGrupos" variant="outlined">
             Fase de Grupos
           </v-btn>
         </v-col>
         <v-col cols="auto">
-          <v-btn text color="success" @click="handleIrAFaseFinal" outlined>
+          <v-btn text color="success" @click="handleIrAFaseFinal" variant="outlined">
             Fase Final
           </v-btn>
         </v-col>
