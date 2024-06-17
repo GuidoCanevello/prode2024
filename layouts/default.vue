@@ -92,14 +92,23 @@ const checkPermissions = (item: ITabItem) => {
       <v-card color="primary">
         <v-row>
           <!-- Agrego una columna fija para acomodar el Titulo -->
-          <v-col cols="auto" style="width: 230px;" />
+          <v-col cols="auto" style="width: 312px;" />
 
           <v-col>
             <h1 style="text-align: center;">Prode 2024</h1>
           </v-col>
 
-          <v-btn color="success" @click="onChangeTheme">Change Theme</v-btn>
-          <v-col sm="auto" >
+          <v-col class="pr-0" sm="auto">
+            <v-container class="px-2 py-1">
+              <v-card class="change-theme-card" variant="outlined" @click="onChangeTheme">
+                <v-avatar color="secondary">
+                  <v-icon>mdi-theme-light-dark</v-icon>
+                </v-avatar>
+              </v-card>
+            </v-container>
+          </v-col>
+
+          <v-col class="pl-0" sm="auto">
             <v-container class="px-2 py-1">
               <user-box />
             </v-container>
@@ -122,3 +131,12 @@ const checkPermissions = (item: ITabItem) => {
     </v-main>
   </v-app>
 </template>
+
+<style scoped>
+.change-theme-card {
+  height: 66px;
+  width: 66px;
+  padding: 12px;
+  border-color: rgb(var(--v-theme-primary-darken-1));
+}
+</style>

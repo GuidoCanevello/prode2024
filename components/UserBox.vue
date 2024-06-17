@@ -39,8 +39,6 @@ function handleLogin() {
         </v-container>
       </v-col>
 
-      <v-spacer />
-
       <v-col class="pl-0">
         <v-container class="py-3 pl-0">
           <v-list-item-title class="mb-0">
