@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BanderaImg from '../BanderaImg.vue';
-const { isUserLogged } = storeToRefs(useUserStore());
+const { isLogged } = storeToRefs(useAuthStore());
 
 const props = defineProps(["nombre", "equipos", "partidos"])
 
@@ -154,7 +154,7 @@ onMounted(() => {
 
     <v-card-text>
       <v-row>
-        <v-col v-if="isUserLogged" cols="12" lg="6">
+        <v-col v-if="isLogged" cols="12" lg="6">
           <h3 style="text-align: center">Resultados con Pronósticos</h3>
           <v-data-table :headers='[
             {
@@ -224,7 +224,7 @@ onMounted(() => {
           </v-data-table>
         </v-col>
 
-        <v-col cols="12" :lg="isUserLogged ? 6 : undefined">
+        <v-col cols="12" :lg="isLogged ? 6 : undefined">
           <h3 style="text-align: center">Resultados Reales</h3>
           <v-data-table :headers='[
             {

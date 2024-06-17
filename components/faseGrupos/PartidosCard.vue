@@ -2,7 +2,7 @@
 import darFormatoFecha from '../../utils/darFormatoFecha';
 const props = defineProps(["nombre", "partidos"]);
 
-const { isUserLogged } = storeToRefs(useUserStore());
+const { isLogged } = storeToRefs(useAuthStore());
 
 //* Btn Update Predicciones
 const isLoadingUpdatePredicciones = computed(() => {
@@ -66,8 +66,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- <v-card variant="outlined"> -->
-  <v-card variant="outlined" style="height: 100%" class="d-flex flex-column">
+  <v-card style="height: 100%" class="d-flex flex-column">
     <v-card-title primary-title>
       <v-row>
         <v-col> Partidos de Grupo {{ nombre }}</v-col>
@@ -94,17 +93,17 @@ onMounted(() => {
           key: "equipo1",
           sortable: false,
           cellProps: {
-            class: isUserLogged ? "columna-nombre-equipo-con-pred" : "columna-nombre-equipo-sin-pred"
+            class: isLogged ? "columna-nombre-equipo-con-pred" : "columna-nombre-equipo-sin-pred"
           }
         },
         {
           align: "center",
           sortable: false,
           value: "golesPrediccionEquipo1",
-          headerProps: !isUserLogged ? {
+          headerProps: !isLogged ? {
             class: " d-none"
           } : undefined,
-          cellProps: !isUserLogged ? {
+          cellProps: !isLogged ? {
             class: " d-none"
           } : undefined,
         },
@@ -119,10 +118,10 @@ onMounted(() => {
           align: "center",
           sortable: false,
           value: "golesPrediccionEquipo2",
-          headerProps: !isUserLogged ? {
+          headerProps: !isLogged ? {
             class: " d-none"
           } : undefined,
-          cellProps: !isUserLogged ? {
+          cellProps: !isLogged ? {
             class: " d-none"
           } : undefined,
         },
@@ -132,7 +131,7 @@ onMounted(() => {
           align: "end",
           value: "equipo2",
           cellProps: {
-            class: isUserLogged ? "columna-nombre-equipo-con-pred" : "columna-nombre-equipo-sin-pred"
+            class: isLogged ? "columna-nombre-equipo-con-pred" : "columna-nombre-equipo-sin-pred"
           }
         },
         {
@@ -162,7 +161,7 @@ onMounted(() => {
 
         <template v-slot:[`item.golesPrediccionEquipo1`]="{ item }">
           <!-- <td class="px-0" style="width: 120px"> -->
-          <v-text-field :variant="outlined"="item.isPrediccionHabilitado" :filled="!item.isPrediccionHabilitado" density="compact"
+          <v-text-field :variant="item.isPrediccionHabilitado ? 'outlined' : 'filled'" density="compact"
             hide-details="auto" :disabled="!item.isPrediccionHabilitado" v-model="item.golesPrediccionEquipo1"
             :placeholder="item.isPrediccionHabilitado ? 'Ej: 0' : 'X'" />
           <!-- </td> -->
@@ -170,7 +169,7 @@ onMounted(() => {
 
         <template v-slot:[`item.golesPrediccionEquipo2`]="{ item }">
           <!-- <td class="px-0" style="width: 120px"> -->
-          <v-text-field :variant="outlined"="item.isPrediccionHabilitado" :filled="!item.isPrediccionHabilitado" density="compact"
+          <v-text-field :variant="item.isPrediccionHabilitado ? 'outlined' : 'filled'" density="compact"
             hide-details="auto" class="input-goles-2" :disabled="!item.isPrediccionHabilitado"
             v-model="item.golesPrediccionEquipo2" :placeholder="item.isPrediccionHabilitado ? 'Ej: 0' : 'X'" />
           <!-- </td> -->

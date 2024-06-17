@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const router = useRouter()
 const { isGettingData, hasData, dataListado } = storeToRefs(useProdeStore());
-const { isUserLogged } = storeToRefs(useUserStore());
+const { isLogged } = storeToRefs(useAuthStore());
 
 const page = ref(1);
 const itemsPerPage = ref(5);
@@ -69,10 +69,10 @@ const handleIrAFaseFinal = () => {
           title: "Pronostico",
           sortable: false,
           value: "descripcionPrediccion",
-          headerProps: !isUserLogged ? {
+          headerProps: !isLogged ? {
             class: " d-none"
           } : undefined,
-          cellProps: !isUserLogged ? {
+          cellProps: !isLogged ? {
             class: " d-none"
           } : undefined,
         },

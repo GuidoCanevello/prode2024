@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { isGettingData, hasData, dataProxPartido } = storeToRefs(useProdeStore());
-const { isUserLogged } = storeToRefs(useUserStore());
+const { isLogged } = storeToRefs(useAuthStore());
 
 const isLoadingProxPartido = computed(() => {
   return isGettingData.value && !hasData.value;
@@ -104,7 +104,7 @@ const horaFormateada = computed(() => {
 
         </v-row>
 
-        <template v-if="isUserLogged">
+        <template v-if="isLogged">
           <v-row>
             <v-col class="pt-0" style="text-align: center" cols="12">
               <h3>Tu Pronostico:</h3>

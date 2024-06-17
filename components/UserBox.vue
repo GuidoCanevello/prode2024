@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const { usuarioNombreCuenta, usuarioPuntos, usuarioImagenSrc, hasData, isUserLogged } = storeToRefs(useUserStore());
+const { usuarioNombreCuenta, usuarioPuntos, usuarioImagenSrc, hasData } = storeToRefs(useUserStore());
+const { isLogged } = storeToRefs(useAuthStore());
 
 const showUserConfig = ref(false);
 function handleUserConfig() {
@@ -13,7 +14,7 @@ function handleLogin() {
 </script>
 
 <template>
-  <v-card v-if="isUserLogged" :loading="!hasData" class="user-box-card" variant="outlined">
+  <v-card v-if="isLogged" :loading="!hasData" class="user-box-card" variant="outlined">
     <template v-if="showUserConfig">
       <v-dialog v-model="showUserConfig" width="500">
         <!-- <dialogo-user-data @cerrar="showConfig = false" /> -->
@@ -56,8 +57,7 @@ function handleLogin() {
   <v-card v-else @click="handleLogin" class="user-box-card" variant="outlined">
     <template v-if="showLogin">
       <v-dialog v-model="showLogin" width="500">
-        <!-- <dialogo-user-data @cerrar="showConfig = false" /> -->
-        Dialogo Login
+        <login-card @onClose="showLogin = false"/>
       </v-dialog>
     </template>
 

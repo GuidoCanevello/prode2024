@@ -13,6 +13,5 @@ namespace NUserStore {
         //* State Booleans
         isGettingData: boolean;
         hasData: boolean;
-        isUserLogged: boolean;
     }
 }

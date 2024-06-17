@@ -12,32 +12,17 @@ export const useUserStore = defineStore('userStore', {
 
         isGettingData: false,
         hasData: false,
-        isUserLogged: false,
     }),
 
     getters: {
-        // dataFaseGrupos(): NProdeStore.FaseGrupos.IData[] {
-        //     return getters.dataFaseGrupos(this);
-        // },
 
-        // dataRanking(): NProdeStore.Ranking.IData[] {
-        //     return getters.dataRanking(this);
-        // },
-
-        // dataListado(): NProdeStore.Listado.IData[] {
-        //     return getters.dataListado(this);
-        // },
-
-        // dataProxPartido(): NProdeStore.ProxPartido.IData | undefined {
-        //     return getters.dataProxPartido(this);
-        // }
     },
 
     actions: {
         async dispatchGetInitialData() {
             this.isGettingData = true;
 
-            const usuario = (await $fetch("/api/usuarios/665a1ee676822934e5550ec6")) as IUsuario;
+            const usuario = (await $fetchWithAuth(`/api/usuarios/${useAuthStore().userId}`)) as IUsuario;
 
             //* Guardar Data
             this.usuarioId = usuario._id ?? "";
