@@ -38,6 +38,7 @@ const onExpandirGrupo = () => {
           align: "start",
           sortable: false,
           value: "bandera",
+          width: "30px"
         },
         {
           title: "Nombre",
