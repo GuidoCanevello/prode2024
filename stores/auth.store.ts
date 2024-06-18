@@ -27,7 +27,7 @@ export const useAuthStore = defineStore('authStore', {
             this.isDoingLogin = true
 
             // If the user was Logged, log him out and back in to clean refresh tokens
-            let oldRefreshToken = localStorage.getItem('prodeRefreshToken');
+            const oldRefreshToken = localStorage.getItem('prodeRefreshToken');
             if (oldRefreshToken != undefined) await $fetch("/api/logout", { method: 'delete', body: { token: localStorage.getItem('prodeRefreshToken') } });
 
             try {
@@ -43,7 +43,7 @@ export const useAuthStore = defineStore('authStore', {
 
                 this.isLogged = true
             } catch (error: any) {
-                switch (error.response?.status) {
+                switch (error.statusCode) {
                     case 404:
                         throw { nombreError: true }
                     case 401:
@@ -57,5 +57,25 @@ export const useAuthStore = defineStore('authStore', {
                 this.isDoingLogin = false
             }
         },
+
+        async dispatchRefreshToken() {
+            try {
+                const refreshToken = localStorage.getItem('prodeRefreshToken');
+                const response = await $fetch("/api/token", { method: "post", body: { token: refreshToken } }) as { accessToken: string };
+
+                localStorage.setItem('prodeAccessToken', response.accessToken);
+                this.accessToken = response.accessToken;
+                this.isLogged = true;
+            } catch (error: any) {
+                switch (error.statusCode) {
+                    case 403:
+                    case 401:
+                        this.isLogged = false;
+                        break;
+                    default:
+                        throw error;
+                }
+            }
+        }
     }
 });
