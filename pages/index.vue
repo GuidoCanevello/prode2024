@@ -24,9 +24,9 @@
           <HomeRankingCard />
         </v-container>
 
-        <!-- <v-container>
+        <v-container>
           <HomeNovedadesCard />
-        </v-container> -->
+        </v-container>
       </v-col>
     </v-row>
   </v-container>

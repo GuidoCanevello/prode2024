@@ -14,8 +14,6 @@ export default defineEventHandler((event) => {
     if (token != useRuntimeConfig().public.MASTER_TOKEN)
         jsonwebtoken.verify(token, useRuntimeConfig().public.ACCESS_TOKEN_SECRET, (err, user) => {
             if (err) throw createError({ statusCode: 403 });
-            // req.user = user;
-            // next();
         })
 })
 
