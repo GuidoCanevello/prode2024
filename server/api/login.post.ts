@@ -17,8 +17,6 @@ export default defineEventHandler(async (event) => {
             }
 
             const accessToken = generateAccessToken(user);
-
-            // TODO ver si implementar para que haya solo un refresh x user
             const refreshToken = generateRefreshToken(user);
             await refresh_token_post(refreshToken);
 

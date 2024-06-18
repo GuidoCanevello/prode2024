@@ -61,7 +61,6 @@ export default async function () {
             }, { new: true }).exec()
                 .catch((error) => {
                     if (error.name === "CastError") {
-                        // REVIEW Cambiar error, da cuando un valor de data esta mal tamb
                         throw {
                             number: 400,
                             content: "Id incorrecto",

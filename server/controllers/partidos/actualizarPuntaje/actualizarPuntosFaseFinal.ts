@@ -17,7 +17,8 @@ const VALOR_PREDICCION_CORRECTA = 2;
  * @param penalesEquipo2 (Opcional) Los Penales anotados por el Equipo 2
  */
 export default async function (partidoId: TMongoID, golesEquipo1: number, golesEquipo2: number, penalesEquipo1?: number, penalesEquipo2?: number) {
-    // REVIEW Confirmar con los pibes si van a predecir solo la fase sobre la que estan (OCtavos, Cuartos, etc.) o todo el camino
+    // TODO Confirmar con los pibes si van a predecir solo la fase sobre la que estan (OCtavos, Cuartos, etc.) o todo el camino
+    // TODO ya esta confirmado, ahora tengo q armarlo
     const esVictoriaEquipo1 = golesEquipo1 > golesEquipo2 ||
         (golesEquipo1 == golesEquipo2 &&
             penalesEquipo1 != undefined &&

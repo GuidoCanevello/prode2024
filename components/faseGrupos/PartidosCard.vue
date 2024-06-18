@@ -37,7 +37,6 @@ const verificarGoles = (gol1: number, gol2: number) => {
 };
 
 const onUpdatePredicciones = async () => {
-  // TODO test
   showAlert.value = false;
 
   let isActualizado = false;

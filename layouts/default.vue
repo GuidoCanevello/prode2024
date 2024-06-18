@@ -76,12 +76,10 @@ onNuxtReady(() => {
 })
 
 const checkPermissions = (item: ITabItem) => {
-  // REVIEW - fix when i have a store with the User Name
-  return true;
-  // return (
-  //   !item.isAdmin ||
-  //   (item.isAdmin && this.USUARIO_NOMBRE_CUENTA === "ADMIN")
-  // );
+  return (
+    !item.isAdmin ||
+    (item.isAdmin && useUserStore().usuarioNombreCuenta === "ADMIN")
+  );
 };
 
 </script>
