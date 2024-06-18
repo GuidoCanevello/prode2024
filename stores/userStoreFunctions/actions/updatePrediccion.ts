@@ -6,15 +6,15 @@
  * @param golesEquipo2 Goles para el equipo 2
  */
 export default async function (state: NUserStore.IStoreState, partidoId: TMongoID, golesEquipo1: number, golesEquipo2: number) {
-    try {
-        const prediccion = useProdeStore().predicciones.find(p => p.partidoId == partidoId);
-        const body: IPrediccion = { partidoId, golesEquipo1, golesEquipo2 }
+    const prediccion = useProdeStore().predicciones.find(p => p.partidoId == partidoId);
+    const body: IPrediccion = { partidoId, golesEquipo1, golesEquipo2 }
 
+    try {
         //* Si existe, lo actualizo sino, lo creo
         const updPrediccion = await $fetchWithAuth(
             prediccion != undefined ?
-            `/api/usuarios/${state.usuarioId}/predicciones/${prediccion?._id}` :
-            `/api/usuarios/${state.usuarioId}/predicciones`,
+                `/api/usuarios/${state.usuarioId}/predicciones/${prediccion?._id}` :
+                `/api/usuarios/${state.usuarioId}/predicciones`,
             { method: prediccion != undefined ? "put" : "post", body }
         ) as IPrediccion
 

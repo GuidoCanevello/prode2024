@@ -37,6 +37,24 @@ export const useProdeStore = defineStore('prodeStore', {
             await actions.dispatchGetInitialData(this);
         },
 
+        async dispatchCreateUsuario(nombreCuenta: string, password: string) {
+            const body: IUsuario = {
+                nombreCuenta,
+                nombreJugador: nombreCuenta,
+                password,
+                isTest: useRuntimeConfig().public.USE_TEST_DATA == "true"
+            }
+            try {
+                const usuario = await $fetchWithAuth('/api/usuarios', { method: "post", body }) as IUsuario;
+
+                if (usuario != undefined) this.usuarios.push(usuario);
+
+                return usuario;
+            } catch (error) {
+                console.log("error", error);
+            }
+        },
+
         updateUsuario(updUsuario: IUsuario) {
             const indexUsuario = this.usuarios.findIndex(u => u._id == updUsuario._id);
 

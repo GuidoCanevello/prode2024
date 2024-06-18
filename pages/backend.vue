@@ -15,7 +15,7 @@
 
     <v-row>
       <v-col>
-        <UnderConstructionCard />
+        <backend-create-user-card />
       </v-col>
     </v-row>
   </v-container>
