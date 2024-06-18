@@ -14,28 +14,23 @@ function handleLogin() {
 </script>
 
 <template>
-  <v-card v-if="isLogged" :loading="!hasData" class="user-box-card" variant="outlined">
+  <v-card v-if="isLogged" :loading="!hasData" class="user-box-card" variant="outlined" @click="handleUserConfig">
     <template v-if="showUserConfig">
       <v-dialog v-model="showUserConfig" width="500">
-        <!-- <dialogo-user-data @cerrar="showConfig = false" /> -->
+        <user-options-card @onClose="showUserConfig = false" />
       </v-dialog>
     </template>
 
     <v-row>
       <v-col sm="auto" style="text-align: center">
-        <v-container class="pa-3" @click="handleUserConfig">
-          <v-badge bordered overlap style="cursor: pointer">
-            <template v-if="hasData" v-slot:badge>
-              <v-icon class="custom-icon">mdi-pencil</v-icon>
-            </template>
+        <v-container class="pa-3">
             <v-avatar v-if="usuarioImagenSrc">
-              <img :src="usuarioImagenSrc" alt="perfil" />
+              <v-img :src="usuarioImagenSrc" alt="img" />
             </v-avatar>
 
             <v-avatar v-else color="blue lighten-1">
               {{ usuarioNombreCuenta.substring(0, 1) }}
             </v-avatar>
-          </v-badge>
         </v-container>
       </v-col>
 

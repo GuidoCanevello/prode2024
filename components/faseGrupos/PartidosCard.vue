@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import darFormatoFecha from '../../utils/darFormatoFecha';
 const props = defineProps(["nombre", "partidos"]);
+const emit = defineEmits(['onPrediccionActualizada'])
 
 const { isLogged } = storeToRefs(useAuthStore());
+const { predicciones } = useProdeStore();
 
 //* Btn Update Predicciones
-const isLoadingUpdatePredicciones = computed(() => {
-  return false;
-})
-
-const onUpdatePredicciones = () => {
-  // TODO Implement
-  console.log("update predicciones")
-}
+const isLoadingUpdatePredicciones = ref(false);
 
 //* Alert
 const showAlert = ref(false)
@@ -36,17 +31,62 @@ const dataPartidos = ref<{
 
 const expanded = ref([]);
 
-onMounted(() => {
+const verificarGoles = (gol1: number, gol2: number) => {
+  if (gol1 === undefined || gol2 === undefined) return true;
+  else return !isNaN(gol1) && !isNaN(gol2);
+};
+
+const onUpdatePredicciones = async () => {
+  // TODO test
+  showAlert.value = false;
+
+  let isActualizado = false;
+  let hayError = dataPartidos.value.some(
+    (p) =>
+      p.golesPrediccionEquipo1 != undefined &&
+      p.golesPrediccionEquipo2 != undefined &&
+      !verificarGoles(p.golesPrediccionEquipo1, p.golesPrediccionEquipo2)
+  );
+
+  if (!hayError) {
+    isLoadingUpdatePredicciones.value = true;
+
+    for (const p of dataPartidos.value) {
+      if (p.golesPrediccionEquipo1 != undefined && p.golesPrediccionEquipo2 != undefined) {
+        if (!p.tienePrediccion) {
+          await useUserStore().updatePrediccion(p.partidoId, p.golesPrediccionEquipo1, p.golesPrediccionEquipo2);
+          p.tienePrediccion = true;
+          isActualizado = true;
+        } else if (p.tienePrediccion &&
+          (predicciones.find((p) => p.partidoId === p.partidoId)?.golesEquipo1 != p.golesPrediccionEquipo1 ||
+            predicciones.find((p) => p.partidoId === p.partidoId)?.golesEquipo2 != p.golesPrediccionEquipo2)
+        ) {
+
+          await useUserStore().updatePrediccion(p.partidoId, p.golesPrediccionEquipo1, p.golesPrediccionEquipo2);
+          isActualizado = true;
+        }
+      }
+
+      if (isActualizado) emit("onPrediccionActualizada");
+
+      isLoadingUpdatePredicciones.value = false;
+    }
+  } else {
+    showAlert.value = true;
+  }
+};
+
+function setDataPartidos() {
   dataPartidos.value = [];
 
   props.partidos.forEach((partido: NProdeStore.FaseGrupos.IPartido) => {
-    let newPartido = {
+    dataPartidos.value.push({
       partidoId: partido.partidoId,
       equipo1: partido.equipo1,
       code1: partido.code1,
       equipo2: partido.equipo2,
       code2: partido.code2,
-      guion: partido.isDespuesPartido ? `${partido.golesEquipo1} - ${partido.golesEquipo2}` : "N - N",
+      guion: partido.isDespuesPartido ? `${partido.golesEquipo1} - ${partido.golesEquipo2}` : " - ",
       golesEquipo1: partido.golesEquipo1,
       golesEquipo2: partido.golesEquipo2,
       isPrediccionHabilitado: !partido.isDespuesPartido,
@@ -58,11 +98,12 @@ onMounted(() => {
         : undefined,
       tienePrediccion: partido.tienePrediccion,
       fecha: partido.fecha,
-    };
-
-    dataPartidos.value.push(newPartido);
+    });
   })
-});
+}
+
+onMounted(setDataPartidos);
+onUpdated(setDataPartidos);
 </script>
 
 <template>
@@ -163,7 +204,7 @@ onMounted(() => {
           <!-- <td class="px-0" style="width: 120px"> -->
           <v-text-field :variant="item.isPrediccionHabilitado ? 'outlined' : 'filled'" density="compact"
             hide-details="auto" :disabled="!item.isPrediccionHabilitado" v-model="item.golesPrediccionEquipo1"
-            :placeholder="item.isPrediccionHabilitado ? 'Ej: 0' : 'X'" />
+            :placeholder="item.isPrediccionHabilitado ? 'Sin Prediccion' : 'X'" />
           <!-- </td> -->
         </template>
 
@@ -171,7 +212,7 @@ onMounted(() => {
           <!-- <td class="px-0" style="width: 120px"> -->
           <v-text-field :variant="item.isPrediccionHabilitado ? 'outlined' : 'filled'" density="compact"
             hide-details="auto" class="input-goles-2" :disabled="!item.isPrediccionHabilitado"
-            v-model="item.golesPrediccionEquipo2" :placeholder="item.isPrediccionHabilitado ? 'Ej: 0' : 'X'" />
+            v-model="item.golesPrediccionEquipo2" :placeholder="item.isPrediccionHabilitado ? 'Sin Prediccion' : 'X'" />
           <!-- </td> -->
         </template>
 
@@ -210,7 +251,7 @@ onMounted(() => {
 }
 
 .table-partidos .columna-nombre-equipo-con-pred {
-  width: 30%;
+  width: 25%;
 }
 
 .table-partidos .columna-nombre-equipo-sin-pred {

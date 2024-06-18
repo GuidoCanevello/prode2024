@@ -22,7 +22,6 @@ function handleSubmit() {
         useAuthStore()
             .dispatchLogin(userName.value, userPassword.value,)
             .then((e) => {
-                console.log("Then")
                 useUserStore().dispatchGetInitialData();
                 emit('onClose')
             })

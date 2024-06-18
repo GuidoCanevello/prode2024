@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 interface IAuthStoreState {
     accessToken: string;
     refreshToken: string;
-    userId: string;
+    userId: TMongoID;
 
     isDoingLogin: boolean;
     isLogged: boolean;
@@ -24,7 +24,6 @@ export const useAuthStore = defineStore('authStore', {
 
     actions: {
         async dispatchLogin(username: string, password: string) {
-            console.log("sale")
             this.isDoingLogin = true
 
             // If the user was Logged, log him out and back in to clean refresh tokens
@@ -33,8 +32,6 @@ export const useAuthStore = defineStore('authStore', {
 
             try {
                 const response: any = await $fetch("/api/login", { method: 'post', body: { username, password } });
-
-                console.log("response", response)
 
                 localStorage.setItem('prodeAccessToken', response.accessToken);
                 this.accessToken = response.accessToken;
@@ -57,7 +54,6 @@ export const useAuthStore = defineStore('authStore', {
                         break;
                 }
             } finally {
-                console.log("sale")
                 this.isDoingLogin = false
             }
         },

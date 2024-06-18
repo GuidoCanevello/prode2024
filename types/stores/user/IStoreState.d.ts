@@ -1,7 +1,7 @@
 namespace NUserStore {
     interface IStoreState {
         //* Datos de Usuario
-        usuarioId: string,
+        usuarioId: TMongoID,
         usuarioNombreCuenta: string,
         usuarioNombreJugador: string,
         usuarioImagenSrc: string,

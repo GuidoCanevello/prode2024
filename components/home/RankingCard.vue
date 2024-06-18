@@ -64,7 +64,7 @@ function fondoItem(data: any) {
 
         <template v-slot:[`item.iconoJugador`]="{ item }">
           <v-avatar v-if="item.iconoJugador != ''" :size="iconSize">
-            <img :src="item.iconoJugador" />
+            <v-img :src="item.iconoJugador" />
           </v-avatar>
 
           <v-avatar v-else color="blue lighten-1" :size="iconSize">

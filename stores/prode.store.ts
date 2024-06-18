@@ -33,8 +33,14 @@ export const useProdeStore = defineStore('prodeStore', {
     },
 
     actions: {
-        dispatchGetInitialData() {
-            actions.dispatchGetInitialData(this);
+        async dispatchGetInitialData() {
+            await actions.dispatchGetInitialData(this);
         },
+
+        updateUsuario(updUsuario: IUsuario) {
+            const indexUsuario = this.usuarios.findIndex(u => u._id == updUsuario._id);
+
+            if (indexUsuario != -1) this.usuarios.splice(indexUsuario, 1, updUsuario);
+        }
     }
 })

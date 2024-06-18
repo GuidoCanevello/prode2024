@@ -1,3 +1,5 @@
+//* Adds token auth to the header
+
 export function $fetchWithAuth<T>(
     request: Parameters<typeof $fetch<T>>[0],
     opts?: Parameters<typeof $fetch<T>>[1],

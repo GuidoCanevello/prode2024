@@ -41,12 +41,14 @@ const handleIrAFaseFinal = () => {
 
         <!-- <template v-if="IS_SCREEN_BEYOND_MEDIUM"> -->
         <v-spacer />
-        <v-col cols="auto" style="text-align: end">
+
+        <v-col cols="auto" class="mt-1" style="text-align: end">
           <v-btn color="success" @click="handleIrAFaseGrupos" variant="outlined" prepend-icon="mdi-account-group-outline">
             Ver Fase de Grupos
           </v-btn>
         </v-col>
-        <v-col cols="auto" class="pl-0" style="text-align: end">
+
+        <v-col cols="auto" class="mt-1 pl-0" style="text-align: end">
           <v-btn color="success" @click="handleIrAFaseFinal" variant="outlined" prepend-icon="mdi-tournament">
             Ver Fase Final
           </v-btn>
