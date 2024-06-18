@@ -1,0 +1,22 @@
+<script setup lang="ts">
+</script>
+
+<template>
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-card>
+          <v-container grid-list-xs>
+            <h1>Backend</h1>
+          </v-container>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <backend-create-user-card />
+      </v-col>
+    </v-row>
+  </v-container>
+</template>

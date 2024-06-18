@@ -1,0 +1,1 @@
+type TGrupos = "A" | "B" | "C" | "D";

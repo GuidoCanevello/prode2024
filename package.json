@@ -2,6 +2,7 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
+  "version": "0.1.0",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -11,7 +12,10 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
+    "@nuxt/content": "^2.12.1",
     "@pinia/nuxt": "^0.5.1",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.3",
     "nuxt": "^3.11.2",
     "nuxt-server-utils": "^0.0.7",
@@ -21,6 +25,8 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.0.3",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.6",
     "vite-plugin-vuetify": "^2.0.3",
     "vuetify": "^3.6.3"
   }

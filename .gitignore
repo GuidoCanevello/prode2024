@@ -18,6 +18,7 @@ logs
 .fleet
 .idea
 .guia-para-deploy.txt
+.data-usuarios.txt
 
 # Local env files
 .env

@@ -19,6 +19,10 @@ const EquipoSchema = new Schema({
         type: String,
         trim: true,
     },
+    isTest: {
+        type: Boolean,
+        default: false
+    }
 });
 
 export const Equipo = model("Equipo", EquipoSchema);
