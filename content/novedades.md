@@ -1,3 +1,10 @@
+## 18 de Junio - 19.00hs
+
+<br/>
+
+- Se arregla error que desconectaba al Usuario por tiempo sin actividad.
+- Se agrega carta de Novedades.
+
 ## 18 de Junio - 17.00hs
 
 <br/>
