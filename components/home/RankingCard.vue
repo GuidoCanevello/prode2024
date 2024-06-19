@@ -30,7 +30,6 @@ const selectedUserNombreCuenta = ref(null);
 const showProfile = ref(false);
 
 function handleClickRow(event: any, row: any) {
-  console.log(row.item.nombreCuenta)
   selectedUserNombreCuenta.value = row.item.nombreCuenta
   showProfile.value = true
 }
