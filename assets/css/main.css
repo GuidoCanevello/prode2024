@@ -13,3 +13,11 @@
         max-width: 100%;
     }
 }
+
+thead {
+    .v-data-table-header__content {
+        .v-input {
+            display: none;
+        }
+    }
+}

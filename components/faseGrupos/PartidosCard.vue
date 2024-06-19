@@ -112,7 +112,7 @@ onUpdated(setDataPartidos);
   <v-card style="height: 100%" class="d-flex flex-column">
     <v-card-title primary-title>
       <v-row>
-        <v-col> Partidos de Grupo {{ nombre }}</v-col>
+        <v-col>Partidos</v-col>
         <v-col style="text-align: end">
           <v-btn color="success" :loading="isLoadingUpdatePredicciones" :disabled="isLoadingUpdatePredicciones"
             @click="onUpdatePredicciones">
@@ -205,6 +205,8 @@ onUpdated(setDataPartidos);
         <!-- :item-class="fondoItem" -->
         <!-- TODO add fondo item, cuando vaya a probar predicciones -->
 
+        <!-- <template #top /> -->
+
         <template v-slot:[`item.equipo1`]="{ item }">
           <v-row>
             <v-col class="pr-0" cols="auto">
@@ -241,7 +243,7 @@ onUpdated(setDataPartidos);
 
 
         <template v-slot:expanded-row="{ columns, item }">
-          <tr v-if="xs">
+          <tr v-if="xs && isLogged">
             <td :colspan="columns.length">
               <v-row>
                 <v-col>
