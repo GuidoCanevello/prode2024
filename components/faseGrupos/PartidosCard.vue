@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { useDisplay } from 'vuetify';
 import darFormatoFecha from '../../utils/darFormatoFecha';
+
 const props = defineProps(["nombre", "partidos"]);
 const emit = defineEmits(['onPrediccionActualizada'])
 
 const { isLogged } = storeToRefs(useAuthStore());
 const { predicciones } = useProdeStore();
+const { xs, sm, smAndUp } = useDisplay();
 
 //* Btn Update Predicciones
 const isLoadingUpdatePredicciones = ref(false);
@@ -140,12 +143,16 @@ onUpdated(setDataPartidos);
           align: "center",
           sortable: false,
           value: "golesPrediccionEquipo1",
-          headerProps: !isLogged ? {
+          headerProps: !isLogged || xs ? {
             class: " d-none"
-          } : undefined,
-          cellProps: !isLogged ? {
+          } : {
+            class: " px-0"
+          },
+          cellProps: !isLogged || xs ? {
             class: " d-none"
-          } : undefined,
+          } : {
+            class: " px-0"
+          },
         },
         {
           title: "Goles",
@@ -153,17 +160,27 @@ onUpdated(setDataPartidos);
           value: "guion",
           sortable: false,
           width: "1%",
+          headerProps: {
+            class: " px-0"
+          },
+          cellProps: {
+            class: " px-0"
+          }
         },
         {
           align: "center",
           sortable: false,
           value: "golesPrediccionEquipo2",
-          headerProps: !isLogged ? {
+          headerProps: !isLogged || xs ? {
             class: " d-none"
-          } : undefined,
-          cellProps: !isLogged ? {
+          } : {
+            class: " px-0"
+          },
+          cellProps: !isLogged || xs ? {
             class: " d-none"
-          } : undefined,
+          } : {
+            class: " px-0"
+          },
         },
         {
           title: "Equipo 2",
@@ -184,7 +201,7 @@ onUpdated(setDataPartidos);
           }
         },
       ]' :items="dataPartidos" item-key="partidoId" item-value="partidoId" class="table-partidos"
-        :sort-by="[{ key: 'fecha' }]" density="compact" v-model:expanded="expanded" show-expand>
+        :sort-by="[{ key: 'fecha' }]" density="compact" v-model:expanded="expanded" show-expand mobile-breakpoint="xs">
         <!-- :item-class="fondoItem" -->
         <!-- TODO add fondo item, cuando vaya a probar predicciones -->
 
@@ -193,31 +210,27 @@ onUpdated(setDataPartidos);
             <v-col class="pr-0" cols="auto">
               <BanderaImg :code="item.code1" />
             </v-col>
-            <v-col>
+            <v-col :class="sm ? 'pr-0' : ''">
               {{ item.equipo1 }}
             </v-col>
           </v-row>
         </template>
 
-        <template v-slot:[`item.golesPrediccionEquipo1`]="{ item }">
-          <!-- <td class="px-0" style="width: 120px"> -->
-          <v-text-field :variant="item.isPrediccionHabilitado ? 'outlined' : 'filled'" density="compact"
-            hide-details="auto" :disabled="!item.isPrediccionHabilitado" v-model="item.golesPrediccionEquipo1"
-            :placeholder="item.isPrediccionHabilitado ? 'Sin Prediccion' : 'X'" />
-          <!-- </td> -->
+        <template v-if="smAndUp" v-slot:[`item.golesPrediccionEquipo1`]="{ item }">
+          <v-text-field v-model="item.golesPrediccionEquipo1"
+            :variant="item.isPrediccionHabilitado ? 'outlined' : 'filled'" density="compact" hide-details="auto"
+            :disabled="!item.isPrediccionHabilitado" :placeholder="item.isPrediccionHabilitado ? '-' : 'X'" />
         </template>
 
-        <template v-slot:[`item.golesPrediccionEquipo2`]="{ item }">
-          <!-- <td class="px-0" style="width: 120px"> -->
-          <v-text-field :variant="item.isPrediccionHabilitado ? 'outlined' : 'filled'" density="compact"
-            hide-details="auto" class="input-goles-2" :disabled="!item.isPrediccionHabilitado"
-            v-model="item.golesPrediccionEquipo2" :placeholder="item.isPrediccionHabilitado ? 'Sin Prediccion' : 'X'" />
-          <!-- </td> -->
+        <template v-if="smAndUp" v-slot:[`item.golesPrediccionEquipo2`]="{ item }">
+          <v-text-field v-model="item.golesPrediccionEquipo2" class="input-goles-2"
+            :variant="item.isPrediccionHabilitado ? 'outlined' : 'filled'" density="compact" hide-details="auto"
+            :disabled="!item.isPrediccionHabilitado" :placeholder="item.isPrediccionHabilitado ? '-' : 'X'" />
         </template>
 
         <template v-slot:[`item.equipo2`]="{ item }">
           <v-row>
-            <v-col style="text-align: end">
+            <v-col :class="sm ? 'pl-0' : ''" style="text-align: end">
               {{ item.equipo2 }}
             </v-col>
             <v-col class="pl-0" cols="auto" style="text-align: end">
@@ -228,6 +241,30 @@ onUpdated(setDataPartidos);
 
 
         <template v-slot:expanded-row="{ columns, item }">
+          <tr v-if="xs">
+            <td :colspan="columns.length">
+              <v-row>
+                <v-col>
+                  <v-text-field v-model="item.golesPrediccionEquipo1"
+                    :variant="item.isPrediccionHabilitado ? 'outlined' : 'filled'" density="compact" hide-details="auto"
+                    :disabled="!item.isPrediccionHabilitado" :placeholder="item.isPrediccionHabilitado ? '-' : 'X'" />
+                </v-col>
+
+                <v-col cols="auto"> - </v-col>
+
+                <v-col>
+                  <v-text-field v-model="item.golesPrediccionEquipo2" class="input-goles-2"
+                    :variant="item.isPrediccionHabilitado ? 'outlined' : 'filled'" density="compact" hide-details="auto"
+                    :disabled="!item.isPrediccionHabilitado" :placeholder="item.isPrediccionHabilitado ? '-' : 'X'" />
+                </v-col>
+
+                <v-col cols="auto" style="width: 40px;">
+
+                </v-col>
+              </v-row>
+            </td>
+          </tr>
+
           <tr>
             <td :colspan="columns.length">
               Fecha: {{ darFormatoFecha(item.fecha) }}
@@ -242,27 +279,7 @@ onUpdated(setDataPartidos);
 </template>
 
 
-<style>
-.table-partidos {
-  .v-table__wrapper {
-    overflow: hidden;
-  }
-}
-
-.table-partidos .columna-nombre-equipo-con-pred {
-  width: 25%;
-}
-
-.table-partidos .columna-nombre-equipo-sin-pred {
-  width: 50%;
-}
-
-.table-partidos .input-goles-2 {
-  input {
-    text-align: end;
-  }
-}
-</style>
+<style src="@/assets/css/fase-grupos.css"></style>
 
 <style scoped>
 /* TODO imlpementar */

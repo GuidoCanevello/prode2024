@@ -11,11 +11,11 @@ const IS_SCREEN_BEYOND_MEDIUM = ref(true)
 <template>
   <!-- Screen size >= Medium -->
   <v-row v-if="IS_SCREEN_BEYOND_MEDIUM">
-    <v-col sm="4">
+    <v-col cols="12" md="4">
       <FaseGruposGrupoCard :nombre="grupo.nombre" :equipos="grupo.equipos" v-bind:partidos="grupo.partidos" />
     </v-col>
 
-    <v-col>
+    <v-col cols="12" md="8">
       <FaseGruposPartidosCard :nombre="grupo.nombre" v-bind:partidos="grupo.partidos"
         @prediccion-actualizada="$emit('prediccion-actualizada')" />
     </v-col>
