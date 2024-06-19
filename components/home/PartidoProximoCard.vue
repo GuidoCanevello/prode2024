@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useDisplay } from 'vuetify';
+
 const { isGettingData, hasData, dataProxPartido } = storeToRefs(useProdeStore());
 const { isLogged } = storeToRefs(useAuthStore());
+const { lgAndUp, width } = useDisplay();
 
 const isLoadingProxPartido = computed(() => {
   return isGettingData.value && !hasData.value;
@@ -45,63 +48,46 @@ const horaFormateada = computed(() => {
 
       <template v-else>
         <v-row>
-          <!-- REVIEW implement responsive -->
-          <!-- <v-spacer v-if="IS_SCREEN_BEYOND_LARGE" /> -->
-          <v-spacer></v-spacer>
+          <v-spacer v-if="lgAndUp" />
 
           <v-col lg="11">
             <v-row>
-              <v-col>
-                <!-- <v-card variant="outlined" :class="IS_SCREEN_BEYOND_MEDIUM
-                  ? 'team-card-medium'
-                  : 'team-card-small'
-                  "> -->
-                <v-card variant="outlined" class="team-card-medium">
-                  <v-container class="pa-0" fill-height fluid>
-                    <v-row align="center">
-                      <!-- <v-col :class="IS_SCREEN_BEYOND_SMALL ? '' : 'pr-0'" style="text-align: right" cols="auto"
-                        align-self="center"> -->
-                      <v-col style="text-align: right" cols="auto" align-self="center">
-                        <BanderaImg :code="dataProxPartido?.code1" />
-                      </v-col>
-                      <v-col style="text-align: left">
-                        <h2>{{ dataProxPartido?.equipo1 }}</h2>
-                      </v-col>
-                    </v-row>
-                  </v-container>
+              <v-col class="equipo-col equipo1-col" :cols="width < 520 ? 12 : ''">
+                <v-card variant="outlined">
+                  <v-row>
+                    <v-col class="bandera-col" cols="auto" align-self="center">
+                      <BanderaImg :code="dataProxPartido?.code1" />
+                    </v-col>
+
+                    <v-col class="nombre-col" align-self="center">
+                      <h2>{{ dataProxPartido?.equipo1 }}</h2>
+                    </v-col>
+                  </v-row>
                 </v-card>
               </v-col>
 
-              <v-col class="px-0" style="text-align: center" cols="auto" align-self="center">
+              <v-col class="px-0" style="text-align: center" :cols="width < 520 ? 12 : 'auto'" align-self="center">
                 <h3>vs.</h3>
               </v-col>
 
-              <v-col>
-                <!-- <v-card variant="outlined" :class="IS_SCREEN_BEYOND_MEDIUM
-                  ? 'team-card-medium'
-                  : 'team-card-small'
-                  "> -->
-                <v-card variant="outlined" class="team-card-medium">
-                  <v-container class="pa-0" fill-height fluid>
-                    <v-row align="center">
-                      <v-col style="text-align: right">
-                        <h2>{{ dataProxPartido?.equipo2 }}</h2>
-                      </v-col>
-                      <!-- <v-col :class="IS_SCREEN_BEYOND_SMALL ? '' : 'pl-0'" style="text-align: left" cols="auto"
-                        align-self="center"> -->
-                      <v-col style="text-align: left" cols="auto" align-self="center">
-                        <BanderaImg :code="dataProxPartido?.code2" />
-                      </v-col>
-                    </v-row>
-                  </v-container>
+              <v-col class="equipo-col equipo2-col" :cols="width < 520 ? 12 : ''">
+                <v-card variant="outlined">
+                  <v-row>
+                    <v-col class="nombre-col" align-self="center">
+                      <!-- <h2>{{ dataProxPartido?.equipo2 }}</h2> -->
+                      <h2>Estados Unidos</h2>
+                    </v-col>
+
+                    <v-col class="bandera-col" cols="auto" align-self="center">
+                      <BanderaImg :code="dataProxPartido?.code2" />
+                    </v-col>
+                  </v-row>
                 </v-card>
               </v-col>
             </v-row>
           </v-col>
 
-          <!-- <v-spacer v-if="IS_SCREEN_BEYOND_LARGE" /> -->
-          <v-spacer></v-spacer>
-
+          <v-spacer v-if="lgAndUp" />
         </v-row>
 
         <template v-if="isLogged">
@@ -137,14 +123,55 @@ const horaFormateada = computed(() => {
 </template>
 
 <style scoped>
-.team-card-small {
-  padding: 4px;
-  height: 100%;
+.equipo-col {
+  .v-card {
+    height: 100%;
+  }
+
+  @media (max-width: 1280px) {
+    .v-card {
+      padding: 4px;
+      height: 100%;
+    }
+  }
+
+  .v-row {
+    margin: 0px;
+    height: 100%;
+  }
 }
 
-.team-card-medium {
-  padding-block: 8px;
-  padding-inline: 16px;
-  height: 100%;
+.equipo1-col {
+  .bandera-col {
+    text-align: right;
+  }
+
+  @media (max-width: 1280px) {
+    .bandera-col {
+      padding-right: 0px;
+      padding-left: 4px;
+    }
+  }
+
+  .nombre-col {
+    text-align: left;
+  }
+}
+
+.equipo2-col {
+  .bandera-col {
+    text-align: left;
+  }
+
+  @media (max-width: 1280px) {
+    .bandera-col {
+      padding-left: 0px;
+      padding-right: 4px;
+    }
+  }
+
+  .nombre-col {
+    text-align: right;
+  }
 }
 </style>

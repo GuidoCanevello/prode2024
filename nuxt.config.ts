@@ -42,7 +42,8 @@ export default defineNuxtConfig({
 
   css: [
     'vuetify/styles', // vuetify ships precompiled css, no need to import sass  
-    '@/assets/css/main.css'
+    '@/assets/css/main.css',
+    '@/assets/css/fase-grupos.css',
   ],
 
   content: {

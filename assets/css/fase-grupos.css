@@ -1,0 +1,41 @@
+.table-partidos {
+    .v-table__wrapper {
+        overflow: hidden;
+    }
+
+    .input-goles-2 {
+        input {
+            text-align: end;
+        }
+    }
+
+    .columna-nombre-equipo-con-pred {
+        width: 25%;
+    }
+
+    .columna-nombre-equipo-sin-pred {
+        width: 50%;
+    }
+
+    .v-col {
+        align-self: center;
+    }
+
+    .v-text-field {
+        padding-inline: 0px;
+    }
+
+    @media (max-width: 600px) {
+        .columna-nombre-equipo-con-pred {
+            width: auto;
+        }
+
+        .columna-nombre-equipo-sin-pred {
+            width: auto;
+        }
+
+        .v-col {
+            padding-inline: 8px;
+        }
+    }
+}
