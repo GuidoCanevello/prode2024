@@ -278,7 +278,6 @@ onUpdated(setDataPartidos);
   </v-card>
 </template>
 
-
 <style src="@/assets/css/fase-grupos.css"></style>
 
 <style scoped>

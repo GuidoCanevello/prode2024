@@ -1,9 +1,10 @@
-## 19 de Junio - HORAAAAAA
+## 19 de Junio - 17.00hs
 
 <br/>
 
 - Corregir visualización desde celular para pantalla de Inicio.
-- 
+- Corregir visualización desde celular para pantalla de Fase de Grupos.
+- Agregar pestañas por Grupo en Fase de Grupos.
 
 <br/>
 <br/>
