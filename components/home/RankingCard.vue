@@ -76,8 +76,7 @@ function handleClickRow(event: any, row: any) {
         sortable: false,
       }]' :items="dataRanking" item-key="id" v-model:page="page" :items-per-page="itemsPerPage"
         :loading="isLoadingUserData" loading-text="Cargando Usuarios..." :sort-by="[{ key: 'posicion' }]"
-        :mobile-breakpoint="0" class="table-ranking" :row-props="fondoItem" @click:row="handleClickRow">
-        <!-- @click:row="handleSelectRow" -->
+        mobile-breakpoint="sm" class="table-ranking" :row-props="fondoItem" @click:row="handleClickRow">
 
         <template v-slot:[`item.iconoJugador`]="{ item }">
           <v-avatar v-if="item.iconoJugador != ''" :size="iconSize">
@@ -132,7 +131,5 @@ function handleClickRow(event: any, row: any) {
     cursor: pointer;
     background-color: rgb(var(--v-theme-data-table-fourth-hover)) !important;
   }
-
-  /* TODO add hover a las que son de 4to para abajo */
 }
 </style>

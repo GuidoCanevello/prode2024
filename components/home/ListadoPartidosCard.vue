@@ -1,7 +1,9 @@
 <script setup lang="ts">
-const router = useRouter()
+import { useDisplay } from 'vuetify';
+
 const { isGettingData, hasData, dataListado } = storeToRefs(useProdeStore());
 const { isLogged } = storeToRefs(useAuthStore());
+const { lgAndUp } = useDisplay();
 
 const page = ref(1);
 const itemsPerPage = ref(5);
@@ -23,14 +25,6 @@ const filtrarEquipo = (value: string, query: string, item: any) => {
 
   return descripcionPartido != "" && textoBusqueda != "" && descripcionPartido.includes(textoBusqueda);
 }
-
-const handleIrAFaseGrupos = () => {
-  router.push('/fase-grupos')
-}
-
-const handleIrAFaseFinal = () => {
-  router.push('/fase-final')
-}
 </script>
 
 <template>
@@ -38,22 +32,6 @@ const handleIrAFaseFinal = () => {
     <v-card-title primary-title style="word-break: break-word;">
       <v-row class="pb-2">
         <v-col cols="auto"> Listado de Partidos </v-col>
-
-        <!-- <template v-if="IS_SCREEN_BEYOND_MEDIUM"> -->
-        <v-spacer />
-
-        <v-col cols="auto" class="mt-1" style="text-align: end">
-          <v-btn color="success" @click="handleIrAFaseGrupos" variant="outlined" prepend-icon="mdi-account-group-outline">
-            Ver Fase de Grupos
-          </v-btn>
-        </v-col>
-
-        <v-col cols="auto" class="mt-1 pl-0" style="text-align: end">
-          <v-btn color="success" @click="handleIrAFaseFinal" variant="outlined" prepend-icon="mdi-tournament">
-            Ver Fase Final
-          </v-btn>
-        </v-col>
-        <!-- </template> -->
       </v-row>
     </v-card-title>
 
@@ -64,8 +42,7 @@ const handleIrAFaseFinal = () => {
           align: "start",
           sortable: false,
           value: "descripcionPartido",
-          // width: "250px",
-          minWidth: "250px",
+          minWidth: lgAndUp ? "250px" : "",
         },
         {
           title: "Pronostico",
@@ -95,10 +72,9 @@ const handleIrAFaseFinal = () => {
         },
       ]' :items="dataListado" item-key="id" v-model:page="page" :items-per-page="itemsPerPage" :search="busqueda"
         :loading="isLoadingListado" density="compact" :custom-filter="filtrarEquipo" loading-text="Cargando Partidos..."
-        class="table-partidos" :sort-by="[{ key: 'fecha' }]">
+        class="table-partidos" :sort-by="[{ key: 'fecha' }]" mobile-breakpoint="md">
         <!-- :item-class="fondoItem" -->
         <!-- TODO add fondo-Item cuando tenga predicciones -->
-        <!-- :items-per-page="IS_SCREEN_BEYOND_MEDIUM ? 15 : 5" -->
         <!-- REVIEW add responsive -->
 
         <template v-slot:top>
@@ -117,21 +93,6 @@ const handleIrAFaseFinal = () => {
         </template>
       </v-data-table>
     </v-card-text>
-
-    <!-- <v-card-subtitle v-if="!IS_SCREEN_BEYOND_MEDIUM">
-      <v-row>
-        <v-col cols="auto">
-          <v-btn text color="success" @click="handleIrAFaseGrupos" variant="outlined">
-            Fase de Grupos
-          </v-btn>
-        </v-col>
-        <v-col cols="auto">
-          <v-btn text color="success" @click="handleIrAFaseFinal" variant="outlined">
-            Fase Final
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-card-subtitle> -->
   </v-card>
 </template>
 

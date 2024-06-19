@@ -1,7 +1,5 @@
 import { defineStore } from 'pinia';
 import updatePrediccion from './userStoreFunctions/actions/updatePrediccion';
-// import getters from './prodeStoreFunctions/getters/index';
-// import actions from './prodeStoreFunctions/actions/index';
 
 export const useUserStore = defineStore('userStore', {
     state: (): NUserStore.IStoreState => ({

@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useTheme } from 'vuetify';
+import { useDisplay, useTheme } from 'vuetify';
 
 const store = useProdeStore();
+const { mdAndUp } = useDisplay();
 
 interface ITabItem {
   title: string,
@@ -90,13 +91,13 @@ const checkPermissions = (item: ITabItem) => {
       <v-card color="primary">
         <v-row>
           <!-- Agrego una columna fija para acomodar el Titulo -->
-          <v-col cols="auto" style="width: 312px;" />
+          <v-col v-if="mdAndUp" cols="auto" style="width: 312px;" />
 
-          <v-col>
-            <h1 style="text-align: center;">Prode 2024</h1>
+          <v-col class="titulo-col">
+            <h1>Prode 2024</h1>
           </v-col>
 
-          <v-col class="pr-0" sm="auto">
+          <v-col class="pr-0" cols="auto">
             <v-container class="px-2 py-1">
               <v-card class="change-theme-card" variant="outlined" @click="onChangeTheme">
                 <v-avatar color="secondary">
@@ -106,7 +107,7 @@ const checkPermissions = (item: ITabItem) => {
             </v-container>
           </v-col>
 
-          <v-col class="pl-0" sm="auto">
+          <v-col class="pl-0" cols="auto">
             <v-container class="px-2 py-1">
               <user-box />
             </v-container>
@@ -136,5 +137,16 @@ const checkPermissions = (item: ITabItem) => {
   width: 66px;
   padding: 12px;
   border-color: rgb(var(--v-theme-primary-darken-1));
+}
+
+.titulo-col {
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .titulo-col {
+    text-align: left;
+    padding-left: 24px;
+  }
 }
 </style>
