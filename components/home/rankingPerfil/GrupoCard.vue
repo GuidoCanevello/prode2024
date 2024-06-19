@@ -56,7 +56,7 @@ const partidos = computed(() => {
               }
             },
           ]' :items="partidos" item-key="partidoId" item-value="partidoId" class="table-partidos"
-            :sort-by="[{ key: 'fecha' }]" density="compact">
+            :sort-by="[{ key: 'fecha' }]" density="compact" mobile-breakpoint="sm">
             <!-- :item-class="fondoItem" -->
             <!-- TODO add fondo item, cuando vaya a probar predicciones -->
 

@@ -1,3 +1,13 @@
+## 19 de Junio - HORAAAAAA
+
+<br/>
+
+- Corregir visualización desde celular para pantalla de Inicio.
+- 
+
+<br/>
+<br/>
+
 ## 19 de Junio - 01.00hs
 
 <br/>
