@@ -21,12 +21,27 @@ function fondoItem(data: any) {
       return { class: "fila-segundo" }
     case 3:
       return { class: "fila-tercero" }
+    default:
+      return { class: "fila-cuarto" }
   }
+}
+
+const selectedUserNombreCuenta = ref(null);
+const showProfile = ref(false);
+
+function handleClickRow(event: any, row: any) {
+  console.log(row.item.nombreCuenta)
+  selectedUserNombreCuenta.value = row.item.nombreCuenta
+  showProfile.value = true
 }
 </script>
 
 <template>
   <v-card>
+    <v-dialog v-if="selectedUserNombreCuenta != null" v-model="showProfile" width="1000px" @click:outside="selectedUserNombreCuenta = null">
+      <home-ranking-perfil-card :nombreCuenta="selectedUserNombreCuenta" />
+    </v-dialog>
+    
     <v-card-title primary-title style="word-break: break-word;"> Ranking </v-card-title>
 
     <v-card-text>
@@ -59,7 +74,7 @@ function fondoItem(data: any) {
         sortable: false,
       }]' :items="dataRanking" item-key="id" v-model:page="page" :items-per-page="itemsPerPage"
         :loading="isLoadingUserData" loading-text="Cargando Usuarios..." :sort-by="[{ key: 'posicion' }]"
-        :mobile-breakpoint="0" class="table-ranking" :row-props="fondoItem">
+        :mobile-breakpoint="0" class="table-ranking" :row-props="fondoItem" @click:row="handleClickRow">
         <!-- @click:row="handleSelectRow" -->
 
         <template v-slot:[`item.iconoJugador`]="{ item }">
@@ -111,10 +126,11 @@ function fondoItem(data: any) {
     background-color: rgb(var(--v-theme-data-table-third-hover)) !important;
   }
 
-  /* TODO add hover a las que son de 4to para abajo */
-}
+  .fila-cuarto:hover {
+    cursor: pointer;
+    background-color: rgb(var(--v-theme-data-table-fourth-hover)) !important;
+  }
 
-.table-ranking:hover {
-  cursor: pointer;
+  /* TODO add hover a las que son de 4to para abajo */
 }
 </style>

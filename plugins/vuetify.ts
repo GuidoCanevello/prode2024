@@ -27,6 +27,7 @@ const light: ThemeDefinition = {
     'data-table-second-hover': '#78909c',
     'data-table-third': '#ffcc80',
     'data-table-third-hover': '#ff9800',
+    'data-table-fourth-hover': '#b2ebf2',
   }
 }
 
@@ -53,6 +54,7 @@ const dark: ThemeDefinition = {
     'data-table-second-hover': '#9e9e9e',
     'data-table-third': '#ff5722',
     'data-table-third-hover': '#ff8a65',
+    'data-table-fourth-hover': '#455a64',
   }
 }
 
