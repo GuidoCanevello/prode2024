@@ -3,7 +3,7 @@ const { dataRanking, isGettingData: isGettingInitialData, hasData: hasInitialDat
 
 const page = ref(1);
 const itemsPerPage = ref(5);
-const iconSize = ref(32)
+const iconSize = ref(32);
 
 const pageCount = computed(() => {
   return Math.ceil(dataRanking.value.length / itemsPerPage.value);
@@ -14,6 +14,8 @@ const isLoadingUserData = computed(() => {
 })
 
 function fondoItem(data: any) {
+  if (data.item.puntos == 0) return { class: "fila-cuarto" };
+
   switch (data.item.posicion) {
     case 1:
       return { class: "fila-primero" }
@@ -37,10 +39,11 @@ function handleClickRow(event: any, row: any) {
 
 <template>
   <v-card>
-    <v-dialog v-if="selectedUserNombreCuenta != null" v-model="showProfile" width="1000px" @click:outside="selectedUserNombreCuenta = null">
+    <v-dialog v-if="selectedUserNombreCuenta != null" v-model="showProfile" width="1000px"
+      @click:outside="selectedUserNombreCuenta = null">
       <home-ranking-perfil-card :nombreCuenta="selectedUserNombreCuenta" />
     </v-dialog>
-    
+
     <v-card-title primary-title style="word-break: break-word;"> Ranking </v-card-title>
 
     <v-card-text>

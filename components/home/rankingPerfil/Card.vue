@@ -3,20 +3,30 @@ const { nombreCuenta } = defineProps(["nombreCuenta"])
 
 const { hasData, usuarios } = storeToRefs(useProdeStore());
 
+const iconSize = ref(64);
+
 const tab = ref("");
 
 const currentUsuario = computed(() => {
     return usuarios.value.find(u => u.nombreCuenta == nombreCuenta);
 })
-
-const isMounted = ref(false);
 </script>
 
 <template>
     <v-card v-if="currentUsuario != undefined">
         <v-card-title>
-            <v-container>
+            <v-container class="pb-0">
                 <v-row>
+                    <v-col cols="auto">
+                        <v-avatar v-if="currentUsuario.imagenSrc != undefined" :size="iconSize">
+                            <v-img :src="currentUsuario.imagenSrc" />
+                        </v-avatar>
+                            
+                        <v-avatar v-else color="blue lighten-1" :size="iconSize">
+                            {{ (currentUsuario.nombreJugador ?? (currentUsuario.nombreCuenta ?? "")).substring(0, 1) }}
+                        </v-avatar>
+                    </v-col>
+
                     <v-col cols="auto">
                         <b>Datos del Usuario:</b> {{ currentUsuario.nombreJugador }}
                     </v-col>
