@@ -1,9 +1,21 @@
+## 19 de Junio - 01.00hs
+
+<br/>
+
+- Permitir ver Predicciones de otros Usuarios a traves de la tabla de Ranking.
+
+<br/>
+<br/>
+
 ## 18 de Junio - 19.00hs
 
 <br/>
 
 - Se arregla error que desconectaba al Usuario por tiempo sin actividad.
 - Se agrega carta de Novedades.
+
+<br/>
+<br/>
 
 ## 18 de Junio - 17.00hs
 

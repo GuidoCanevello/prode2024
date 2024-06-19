@@ -17,7 +17,7 @@ function handleLogin() {
   <v-card v-if="isLogged" :loading="!hasData" class="user-box-card" variant="outlined" @click="handleUserConfig">
     <template v-if="showUserConfig">
       <v-dialog v-model="showUserConfig" width="500">
-        <user-options-card @onClose="showUserConfig = false" />
+        <user-data-card @onClose="showUserConfig = false" />
       </v-dialog>
     </template>
 
