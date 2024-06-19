@@ -241,7 +241,7 @@ onUpdated(setDataPartidos);
 
 
         <template v-slot:expanded-row="{ columns, item }">
-          <tr v-if="xs">
+          <tr v-if="xs && isLogged">
             <td :colspan="columns.length">
               <v-row>
                 <v-col>
