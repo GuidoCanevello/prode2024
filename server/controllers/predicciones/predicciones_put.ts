@@ -8,12 +8,7 @@ import { Usuario } from "../../models/Usuario.model";
  * @param data Los datos actualizados de la Prediccion (no es necesario que vengan todos, solo los que se van a actualizar)
  */
 export default async function (usuarioId: TMongoID, prediccionId: TMongoID, data: IPrediccion) {
-    if (data.partidoId) {
-        throw {
-            number: 403,
-            content: "No se puede modificar el partido",
-        };
-    }
+    data.partidoId = undefined;
 
     const usuario = await Usuario.findById(usuarioId).exec()
         .catch((error) => {

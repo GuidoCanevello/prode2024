@@ -2,7 +2,6 @@
 const emit = defineEmits(['onClose'])
 
 const { isGettingData } = storeToRefs(useUserStore());
-const { isLogged } = storeToRefs(useAuthStore());
 
 const isValid = ref(true);
 const form = ref<any>(null);
@@ -97,5 +96,11 @@ function resetValidacion() {
     width: 30rem;
     flex-direction: column;
     align-content: center;
+}
+
+@media (max-width: 600px) {
+    .main-card {
+        width: auto;
+    }
 }
 </style>

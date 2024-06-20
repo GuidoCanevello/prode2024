@@ -74,8 +74,7 @@ const horaFormateada = computed(() => {
                 <v-card variant="outlined">
                   <v-row>
                     <v-col class="nombre-col" align-self="center">
-                      <!-- <h2>{{ dataProxPartido?.equipo2 }}</h2> -->
-                      <h2>Estados Unidos</h2>
+                      <h2>{{ dataProxPartido?.equipo2 }}</h2>
                     </v-col>
 
                     <v-col class="bandera-col" cols="auto" align-self="center">
