@@ -91,7 +91,7 @@ const checkPermissions = (item: ITabItem) => {
       <v-card color="primary" rounded="0">
         <v-row>
           <!-- Agrego una columna fija para acomodar el Titulo -->
-          <v-col v-if="mdAndUp" cols="auto" style="width: 312px;" />
+          <v-col v-if="mdAndUp" cols="auto" style="width: 352px;" />
 
           <v-col class="titulo-col">
             <h1>Prode 2024</h1>

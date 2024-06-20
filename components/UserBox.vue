@@ -83,7 +83,7 @@ function handleLogin() {
 
 .user-box-card {
   height: 66px;
-  width: 190px;
+  width: 230px;
   background-color: rgb(var(--v-theme-primary));
 }
 
