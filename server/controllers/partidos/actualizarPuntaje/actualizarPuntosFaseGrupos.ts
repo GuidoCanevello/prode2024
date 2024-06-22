@@ -14,11 +14,13 @@ import equipos_put from "../../equipos/equipos_put";
  * @param golesEquipo2 Los Goles del Equipo 2
  */
 export default async function actualizarPuntosFaseGrupos(partidoId: TMongoID, golesEquipo1: number, golesEquipo2: number) {
+    const partido = await partidos_get(partidoId);
+
     // Obtener Usuario
-    const usuarios = await usuarios_list();
+    const usuarios = await usuarios_list(partido.isTest);
     for (const usuario of usuarios) {
         // Obtener index prediccion
-        const prediccionIndex = usuario.predicciones.findIndex(p => p.partidoId == partidoId);
+        const prediccionIndex = usuario.predicciones.findIndex(p => p.partidoId == partidoId.toString());
 
         if (prediccionIndex != -1) {
             // Obtener puntos correspondientes al resultado
@@ -42,13 +44,14 @@ export default async function actualizarPuntosFaseGrupos(partidoId: TMongoID, go
             );
             userPuntos += puntos;
 
+            console.log("updatePts", userPuntos)
+
             // Editar total de puntos del usuario
             await usuarios_put(usuario._id, { puntos: userPuntos })
         }
     }
 
     // Actualizar los puntos de los Equipos en el Grupo
-    const partido = await partidos_get(partidoId);
     await actualizarPuntosEquipo(partido.equipo1);
     await actualizarPuntosEquipo(partido.equipo2);
 }

@@ -14,6 +14,8 @@ export default async function (id: TMongoID, data: IPartido) {
     if (data.equipo1 == "") data.equipo1 = undefined;
     if (data.equipo2 == "") data.equipo2 = undefined;
 
+    if (data.golesEquipo1 != undefined && data.golesEquipo2 != undefined) data.seRealizo = true;
+
     const query = await Partido.findOneAndUpdate({ _id: id }, data, { new: true }).exec()
         .catch((error) => {
             if (error.name === "CastError") {
@@ -23,9 +25,7 @@ export default async function (id: TMongoID, data: IPartido) {
                     content: "Id incorrecto",
                 };
             } else {
-                throw {
-                    content: error,
-                };
+                throw { content: error };
             }
         });
 

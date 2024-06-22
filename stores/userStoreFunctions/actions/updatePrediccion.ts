@@ -6,7 +6,7 @@
  * @param golesEquipo2 Goles para el equipo 2
  */
 export default async function (state: NUserStore.IStoreState, partidoId: TMongoID, golesEquipo1: number, golesEquipo2: number) {
-    const prediccion = useProdeStore().predicciones.find(p => p.partidoId == partidoId);
+    const prediccion = useProdeStore().predicciones.find(p => p.partidoId.toString());
     const body: IPrediccion = { partidoId, golesEquipo1, golesEquipo2 }
 
     try {
