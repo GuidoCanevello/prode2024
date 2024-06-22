@@ -62,6 +62,36 @@ function setDataPartidos() {
 onMounted(setDataPartidos);
 onUpdated(setDataPartidos);
 
+function fondoItem(data: any) {
+  // Si tiene Prediccion
+  if (data.item.tienePrediccion) {
+    // Si ya ocurrio el Partido y los goles se cargaron
+    if (new Date(data.item.fecha) < new Date() && data.item.golesEquipo1 != undefined && data.item.golesEquipo2 != undefined) {
+      // Si acerto la prediccion exactamente
+      if (
+        data.item.golesEquipo1 == data.item.golesPrediccionEquipo1 &&
+        data.item.golesEquipo2 == data.item.golesPrediccionEquipo2
+      )
+        return { class: "fila-con-prediccion-correcta" };
+
+      // Si acerto el resultado (pero no los goles)
+      else if (
+        toResultado(data.item.golesPrediccionEquipo1, data.item.golesPrediccionEquipo2) ==
+        toResultado(data.item.golesEquipo1, data.item.golesEquipo2)
+      )
+        return { class: "fila-con-prediccion-acertada" };
+
+      // Si se equivoco
+      else return { class: "fila-con-prediccion-erronea" };
+    } else {
+
+      return { class: "fila-con-prediccion" };
+    }
+  } else {
+    return "";
+  }
+}
+
 const onUpdatePredicciones = async () => {
   showAlert.value = false;
   let isActualizado = false;
@@ -196,12 +226,8 @@ const onUpdatePredicciones = async () => {
           }
         },
       ]' :items="dataPartidos" item-key="partidoId" item-value="partidoId" class="table-partidos"
-        :sort-by="[{ key: 'fecha' }]" density="compact" v-model:expanded="expanded" show-expand mobile-breakpoint="xs">
-        <!-- :item-class="fondoItem" -->
-        <!-- TODO add fondo item, cuando vaya a probar predicciones -->
-
-        <!-- <template #top /> -->
-
+        :row-props="fondoItem" :sort-by="[{ key: 'fecha' }]" density="compact" v-model:expanded="expanded" show-expand
+        mobile-breakpoint="xs">
         <template v-slot:[`item.equipo1`]="{ item }">
           <v-row>
             <v-col class="pr-0" cols="auto">
@@ -276,38 +302,4 @@ const onUpdatePredicciones = async () => {
 </template>
 
 <style src="@/assets/css/fase-grupos.css"></style>
-
-<style scoped>
-/* TODO imlpementar */
-.fila-con-prediccion {
-  background-color: #e1f5fe;
-}
-
-.fila-con-prediccion-correcta {
-  background-color: #a5d6a7;
-}
-
-.fila-con-prediccion-acertada {
-  background-color: #80cbc4;
-}
-
-.fila-con-prediccion-erronea {
-  background-color: #ef9a9a;
-}
-
-.table-partidos .fila-con-prediccion:hover {
-  background-color: #b3e5fc !important;
-}
-
-.table-partidos .fila-con-prediccion-correcta:hover {
-  background-color: #66bb6a !important;
-}
-
-.table-partidos .fila-con-prediccion-acertada:hover {
-  background-color: #26a69a !important;
-}
-
-.table-partidos .fila-con-prediccion-erronea:hover {
-  background-color: #ef5350 !important;
-}
-</style>
+<style src="@/assets/css/tabla-predicciones.css"></style>

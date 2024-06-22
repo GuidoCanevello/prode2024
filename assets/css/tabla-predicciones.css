@@ -1,0 +1,29 @@
+.table-partidos {
+    .fila-con-prediccion-correcta {
+        background-color: rgb(var(--v-theme-data-predict-very-correct));
+    }
+
+    .fila-con-prediccion-acertada {
+        background-color: rgb(var(--v-theme-data-predict-correct));
+    }
+
+    .fila-con-prediccion-erronea {
+        background-color: rgb(var(--v-theme-data-predict-wrong));
+    }
+
+    .fila-con-prediccion:hover {
+        background-color: rgb(var(--v-theme-data-predict-hover)) !important;
+    }
+
+    .fila-con-prediccion-correcta:hover {
+        background-color: rgb(var(--v-theme-data-predict-very-correct-hover)) !important;
+    }
+
+    .fila-con-prediccion-acertada:hover {
+        background-color: rgb(var(--v-theme-data-predict-correct-hover)) !important;
+    }
+
+    .fila-con-prediccion-erronea:hover {
+        background-color: rgb(var(--v-theme-data-predict-wrong-hover)) !important;
+    }
+}

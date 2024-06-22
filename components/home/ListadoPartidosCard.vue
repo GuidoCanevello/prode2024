@@ -17,6 +17,36 @@ const isLoadingListado = computed(() => {
   return isGettingData.value && !hasData.value;
 })
 
+function fondoItem(data: any) {
+  // Si tiene Prediccion
+  if (data.item.tienePrediccion) {
+    // Si ya ocurrio el Partido y los goles se cargaron
+    if (new Date(data.item.fecha) < new Date() && data.item.golesEquipo1 != undefined && data.item.golesEquipo2 != undefined) {
+      // Si acerto la prediccion exactamente
+      if (
+        data.item.golesEquipo1 == data.item.prediccion.golesEquipo1 &&
+        data.item.golesEquipo2 == data.item.prediccion.golesEquipo2
+      )
+        return { class: "fila-con-prediccion-correcta" };
+
+      // Si acerto el resultado (pero no los goles)
+      else if (
+        toResultado(data.item.prediccion.golesEquipo1, data.item.prediccion.golesEquipo2) ==
+        toResultado(data.item.golesEquipo1, data.item.golesEquipo2)
+      )
+        return { class: "fila-con-prediccion-acertada" };
+
+      // Si se equivoco
+      else return { class: "fila-con-prediccion-erronea" };
+    } else {
+
+      return { class: "fila-con-prediccion" };
+    }
+  } else {
+    return "";
+  }
+}
+
 const filtrarEquipo = (value: string, query: string, item: any) => {
   if (value != item.columns.descripcionPartido) return false;
 
@@ -72,10 +102,7 @@ const filtrarEquipo = (value: string, query: string, item: any) => {
         },
       ]' :items="dataListado" item-key="id" v-model:page="page" :items-per-page="itemsPerPage" :search="busqueda"
         :loading="isLoadingListado" density="compact" :custom-filter="filtrarEquipo" loading-text="Cargando Partidos..."
-        class="table-partidos" :sort-by="[{ key: 'fecha' }]" mobile-breakpoint="md">
-        <!-- :item-class="fondoItem" -->
-        <!-- TODO add fondo-Item cuando tenga predicciones -->
-        <!-- REVIEW add responsive -->
+        class="table-partidos" :row-props="fondoItem" :sort-by="[{ key: 'fecha' }]" mobile-breakpoint="md">
 
         <template v-slot:top>
           <v-text-field v-model="busqueda" label="Buscar por Equipo" class="mx-4" />
@@ -96,37 +123,4 @@ const filtrarEquipo = (value: string, query: string, item: any) => {
   </v-card>
 </template>
 
-<style>
-/* TODO generalizar  */
-.fila-con-prediccion {
-  background-color: #e1f5fe;
-}
-
-.fila-con-prediccion-correcta {
-  background-color: #a5d6a7;
-}
-
-.fila-con-prediccion-acertada {
-  background-color: #80cbc4;
-}
-
-.fila-con-prediccion-erronea {
-  background-color: #ef9a9a;
-}
-
-.table-partidos .fila-con-prediccion:hover {
-  background-color: #b3e5fc !important;
-}
-
-.table-partidos .fila-con-prediccion-correcta:hover {
-  background-color: #66bb6a !important;
-}
-
-.table-partidos .fila-con-prediccion-acertada:hover {
-  background-color: #26a69a !important;
-}
-
-.table-partidos .fila-con-prediccion-erronea:hover {
-  background-color: #ef5350 !important;
-}
-</style>
+<style src="@/assets/css/tabla-predicciones.css"></style>
