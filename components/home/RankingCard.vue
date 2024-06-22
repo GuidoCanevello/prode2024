@@ -101,35 +101,35 @@ function handleClickRow(event: any, row: any) {
 <style>
 .table-ranking {
   .fila-primero {
-    background-color: rgb(var(--v-theme-data-table-first));
+    background-color: rgb(var(--v-theme-data-ranking-first));
   }
 
   .fila-primero:hover {
     cursor: pointer;
-    background-color: rgb(var(--v-theme-data-table-first-hover)) !important;
+    background-color: rgb(var(--v-theme-data-ranking-first-hover)) !important;
   }
 
   .fila-segundo {
-    background-color: rgb(var(--v-theme-data-table-second));
+    background-color: rgb(var(--v-theme-data-ranking-second));
   }
 
   .fila-segundo:hover {
     cursor: pointer;
-    background-color: rgb(var(--v-theme-data-table-second-hover)) !important;
+    background-color: rgb(var(--v-theme-data-ranking-second-hover)) !important;
   }
 
   .fila-tercero {
-    background-color: rgb(var(--v-theme-data-table-third));
+    background-color: rgb(var(--v-theme-data-ranking-third));
   }
 
   .fila-tercero:hover {
     cursor: pointer;
-    background-color: rgb(var(--v-theme-data-table-third-hover)) !important;
+    background-color: rgb(var(--v-theme-data-ranking-third-hover)) !important;
   }
 
   .fila-cuarto:hover {
     cursor: pointer;
-    background-color: rgb(var(--v-theme-data-table-fourth-hover)) !important;
+    background-color: rgb(var(--v-theme-data-ranking-fourth-hover)) !important;
   }
 }
 </style>

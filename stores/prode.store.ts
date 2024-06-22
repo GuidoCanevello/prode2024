@@ -55,10 +55,27 @@ export const useProdeStore = defineStore('prodeStore', {
             }
         },
 
+        async dispatchUpdateResultadoPartido(partidoId: string, golesEquipo1: number, golesEquipo2: number) {
+            const body: IPartido = { golesEquipo1, golesEquipo2 }
+            try {
+                const partido = await $fetchWithAuth(`/api/partidos/${partidoId}`, { method: "put", body }) as IPartido;
+
+                if (partido != undefined) this.partidos.splice(this.partidos.findIndex(p => p._id == partido._id), 1, partido);
+
+                return partido;
+            } catch (error) {
+                console.log("error", error);
+            }
+        },
+
         updateUsuario(updUsuario: IUsuario) {
             const indexUsuario = this.usuarios.findIndex(u => u._id == updUsuario._id);
 
             if (indexUsuario != -1) this.usuarios.splice(indexUsuario, 1, updUsuario);
+        },
+
+        removePredicciones() {
+            this.predicciones = [];
         }
     }
 })

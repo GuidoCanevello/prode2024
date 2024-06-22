@@ -70,10 +70,17 @@ const onChangeTheme = () => {
   localStorage.setItem('prodeChosenTheme', newTheme);
 }
 
-onNuxtReady(() => {
+onNuxtReady(async () => {
   theme.global.name.value = localStorage.getItem('prodeChosenTheme') ?? "light";
 
-  store.dispatchGetInitialData();
+  await store.dispatchGetInitialData();
+
+  const authStore = useAuthStore();
+  if (authStore.hasSavedLogin)
+    await authStore.dispatchLogin(
+      localStorage.getItem('prodeLoginDataU') ?? "",
+      localStorage.getItem('prodeLoginDataP') ?? ""
+    );
 })
 
 const checkPermissions = (item: ITabItem) => {
@@ -127,6 +134,8 @@ const checkPermissions = (item: ITabItem) => {
 
     <v-main id="main-app">
       <slot />
+
+      <correct-update-snackbar />
     </v-main>
   </v-app>
 </template>

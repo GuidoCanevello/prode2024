@@ -30,7 +30,7 @@ export default async function (partidoId: TMongoID, golesEquipo1: number, golesE
 
     for (const usuario of usuarios) {
         // Obtener index prediccion
-        const prediccionIndex = usuario.predicciones.findIndex(p => p.partidoId == partidoId);
+        const prediccionIndex = usuario.predicciones.findIndex(p => p.partidoId == partidoId.toString());
 
         if (prediccionIndex != -1) {
             // Obtener puntos correspondientes al resultado

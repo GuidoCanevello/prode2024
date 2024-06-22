@@ -20,14 +20,23 @@ const light: ThemeDefinition = {
     // success: '#ffffff',
     // warning: '#ffffff',
 
-    //* Para Data table
-    'data-table-first': '#fff176',
-    'data-table-first-hover': '#ffc107',
-    'data-table-second': '#b0bec5',
-    'data-table-second-hover': '#78909c',
-    'data-table-third': '#ffcc80',
-    'data-table-third-hover': '#ff9800',
-    'data-table-fourth-hover': '#b2ebf2',
+    //* Para Ranking table
+    'data-ranking-first': '#fff176',
+    'data-ranking-first-hover': '#ffc107',
+    'data-ranking-second': '#b0bec5',
+    'data-ranking-second-hover': '#78909c',
+    'data-ranking-third': '#ffcc80',
+    'data-ranking-third-hover': '#ff9800',
+    'data-ranking-fourth-hover': '#b2ebf2',
+
+    //* Para Predicciones table
+    'data-predict-correct': '#80cbc4',
+    'data-predict-correct-hover': '#26a69a',
+    'data-predict-wrong': '#ef9a9a',
+    'data-predict-wrong-hover': '#ef5350',
+    'data-predict-very-correct': '#a5d6a7',
+    'data-predict-very-correct-hover': '#66bb6a',
+    'data-predict-hover': '#b2ebf2',
   }
 }
 
@@ -47,14 +56,23 @@ const dark: ThemeDefinition = {
     // success: '#ffffff',
     // warning: '#ffffff',
 
-    //* Para Data table
-    'data-table-first': '#f57c00',
-    'data-table-first-hover': '#ffa726',
-    'data-table-second': '#757575',
-    'data-table-second-hover': '#9e9e9e',
-    'data-table-third': '#ff5722',
-    'data-table-third-hover': '#ff8a65',
-    'data-table-fourth-hover': '#455a64',
+    //* Para Ranking table
+    'data-ranking-first': '#f57c00',
+    'data-ranking-first-hover': '#ffa726',
+    'data-ranking-second': '#757575',
+    'data-ranking-second-hover': '#9e9e9e',
+    'data-ranking-third': '#ff5722',
+    'data-ranking-third-hover': '#ff8a65',
+    'data-ranking-fourth-hover': '#455a64',
+
+    //* Para Predicciones table
+    'data-predict-correct': '#006064',
+    'data-predict-correct-hover': '#0097a7',
+    'data-predict-wrong': '#c62828',
+    'data-predict-wrong-hover': '#f44336',
+    'data-predict-very-correct': '#1b5e20',
+    'data-predict-very-correct-hover': '#388e3c',
+    'data-predict-hover': '#455a64',
   }
 }
 

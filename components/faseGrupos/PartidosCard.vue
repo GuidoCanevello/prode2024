@@ -13,7 +13,7 @@ const { xs, sm, smAndUp } = useDisplay();
 const isLoadingUpdatePredicciones = ref(false);
 
 //* Alert
-const showAlert = ref(false)
+const showAlert = ref(false);
 
 //* Data Table
 const dataPartidos = ref<{
@@ -26,57 +26,13 @@ const dataPartidos = ref<{
   golesEquipo1: number,
   golesEquipo2: number,
   isPrediccionHabilitado: boolean,
-  golesPrediccionEquipo1: number | undefined,
-  golesPrediccionEquipo2: number | undefined,
+  golesPrediccionEquipo1: number | string | undefined,
+  golesPrediccionEquipo2: number | string | undefined,
   tienePrediccion: boolean,
   fecha: Date,
 }[]>([]);
 
 const expanded = ref([]);
-
-const verificarGoles = (gol1: number, gol2: number) => {
-  if (gol1 === undefined || gol2 === undefined) return true;
-  else return !isNaN(gol1) && !isNaN(gol2);
-};
-
-const onUpdatePredicciones = async () => {
-  showAlert.value = false;
-
-  let isActualizado = false;
-  let hayError = dataPartidos.value.some(
-    (p) =>
-      p.golesPrediccionEquipo1 != undefined &&
-      p.golesPrediccionEquipo2 != undefined &&
-      !verificarGoles(p.golesPrediccionEquipo1, p.golesPrediccionEquipo2)
-  );
-
-  if (!hayError) {
-    isLoadingUpdatePredicciones.value = true;
-
-    for (const p of dataPartidos.value) {
-      if (p.golesPrediccionEquipo1 != undefined && p.golesPrediccionEquipo2 != undefined) {
-        if (!p.tienePrediccion) {
-          await useUserStore().updatePrediccion(p.partidoId, p.golesPrediccionEquipo1, p.golesPrediccionEquipo2);
-          p.tienePrediccion = true;
-          isActualizado = true;
-        } else if (p.tienePrediccion &&
-          (predicciones.find((p) => p.partidoId === p.partidoId)?.golesEquipo1 != p.golesPrediccionEquipo1 ||
-            predicciones.find((p) => p.partidoId === p.partidoId)?.golesEquipo2 != p.golesPrediccionEquipo2)
-        ) {
-
-          await useUserStore().updatePrediccion(p.partidoId, p.golesPrediccionEquipo1, p.golesPrediccionEquipo2);
-          isActualizado = true;
-        }
-      }
-
-      if (isActualizado) emit("onPrediccionActualizada");
-
-      isLoadingUpdatePredicciones.value = false;
-    }
-  } else {
-    showAlert.value = true;
-  }
-};
 
 function setDataPartidos() {
   dataPartidos.value = [];
@@ -103,9 +59,78 @@ function setDataPartidos() {
     });
   })
 }
-
 onMounted(setDataPartidos);
 onUpdated(setDataPartidos);
+
+function fondoItem(data: any) {
+  // Si tiene Prediccion
+  if (data.item.tienePrediccion) {
+    // Si ya ocurrio el Partido y los goles se cargaron
+    if (new Date(data.item.fecha) < new Date() && data.item.golesEquipo1 != undefined && data.item.golesEquipo2 != undefined) {
+      // Si acerto la prediccion exactamente
+      if (
+        data.item.golesEquipo1 == data.item.golesPrediccionEquipo1 &&
+        data.item.golesEquipo2 == data.item.golesPrediccionEquipo2
+      )
+        return { class: "fila-con-prediccion-correcta" };
+
+      // Si acerto el resultado (pero no los goles)
+      else if (
+        toResultado(data.item.golesPrediccionEquipo1, data.item.golesPrediccionEquipo2) ==
+        toResultado(data.item.golesEquipo1, data.item.golesEquipo2)
+      )
+        return { class: "fila-con-prediccion-acertada" };
+
+      // Si se equivoco
+      else return { class: "fila-con-prediccion-erronea" };
+    } else {
+
+      return { class: "fila-con-prediccion" };
+    }
+  } else {
+    return "";
+  }
+}
+
+const onUpdatePredicciones = async () => {
+  showAlert.value = false;
+  let isActualizado = false;
+
+  // Valido que ambos sean sin completar o ambos un valor numerico
+  const hayError = dataPartidos.value.some(
+    (p) => (
+      !(
+        ((p.golesPrediccionEquipo1 == undefined || p.golesPrediccionEquipo1 == "") &&
+          (p.golesPrediccionEquipo2 == undefined || p.golesPrediccionEquipo2 == "")) ||
+        (!isNaN((p.golesPrediccionEquipo1 as number)) && !isNaN((p.golesPrediccionEquipo2 as number)))
+      )));
+
+  if (!hayError) {
+    isLoadingUpdatePredicciones.value = true;
+
+    for (const partido of dataPartidos.value.filter(dataP => dataP.isPrediccionHabilitado)) {
+      if (partido.golesPrediccionEquipo1 != undefined && partido.golesPrediccionEquipo2 != undefined) {
+        // Si no tiene Prediccion hecha o tiene y cambiaron los valores, la crea
+        if (!partido.tienePrediccion ||
+          predicciones.find((p) => p.partidoId === partido.partidoId)?.golesEquipo1 != partido.golesPrediccionEquipo1 ||
+          predicciones.find((p) => p.partidoId === partido.partidoId)?.golesEquipo2 != partido.golesPrediccionEquipo2) {
+
+          await useUserStore().updatePrediccion(partido.partidoId, partido.golesPrediccionEquipo1, partido.golesPrediccionEquipo2);
+          partido.tienePrediccion = true;
+          isActualizado = true;
+        }
+      }
+
+      if (isActualizado) emit("onPrediccionActualizada");
+
+      isLoadingUpdatePredicciones.value = false;
+    }
+
+    useVisualStore().doShowSnackbar();
+  } else {
+    showAlert.value = true;
+  }
+};
 </script>
 
 <template>
@@ -201,12 +226,8 @@ onUpdated(setDataPartidos);
           }
         },
       ]' :items="dataPartidos" item-key="partidoId" item-value="partidoId" class="table-partidos"
-        :sort-by="[{ key: 'fecha' }]" density="compact" v-model:expanded="expanded" show-expand mobile-breakpoint="xs">
-        <!-- :item-class="fondoItem" -->
-        <!-- TODO add fondo item, cuando vaya a probar predicciones -->
-
-        <!-- <template #top /> -->
-
+        :row-props="fondoItem" :sort-by="[{ key: 'fecha' }]" density="compact" v-model:expanded="expanded" show-expand
+        mobile-breakpoint="xs">
         <template v-slot:[`item.equipo1`]="{ item }">
           <v-row>
             <v-col class="pr-0" cols="auto">
@@ -280,39 +301,9 @@ onUpdated(setDataPartidos);
   </v-card>
 </template>
 
-<style src="@/assets/css/fase-grupos.css"></style>
-
-<style scoped>
-/* TODO imlpementar */
-.fila-con-prediccion {
-  background-color: #e1f5fe;
-}
-
-.fila-con-prediccion-correcta {
-  background-color: #a5d6a7;
-}
-
-.fila-con-prediccion-acertada {
-  background-color: #80cbc4;
-}
-
-.fila-con-prediccion-erronea {
-  background-color: #ef9a9a;
-}
-
-.table-partidos .fila-con-prediccion:hover {
-  background-color: #b3e5fc !important;
-}
-
-.table-partidos .fila-con-prediccion-correcta:hover {
-  background-color: #66bb6a !important;
-}
-
-.table-partidos .fila-con-prediccion-acertada:hover {
-  background-color: #26a69a !important;
-}
-
-.table-partidos .fila-con-prediccion-erronea:hover {
-  background-color: #ef5350 !important;
-}
+<style lang="css">
+@import url('@/assets/css/fase-grupos.css');
+</style>
+<style lang="css">
+@import url('@/assets/css/tabla-predicciones.css');
 </style>

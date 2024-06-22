@@ -16,12 +16,13 @@ const passwordRules = ref([(value: any) => !!value || "Debe ingresar una Contras
 const isPasswordError = ref(false);
 const msgPasswordError = ref("");
 
+const isSaveLogin = ref(false);
+
 function handleSubmit() {
     if (form.value?.validate()) {
         useAuthStore()
-            .dispatchLogin(userName.value, userPassword.value,)
+            .dispatchLogin(userName.value, userPassword.value, isSaveLogin.value)
             .then((e) => {
-                useUserStore().dispatchGetInitialData();
                 emit('onClose')
             })
             .catch((e) => {
@@ -64,6 +65,8 @@ function resetValidacion() {
                     <v-text-field v-model="userPassword" label="Contraseña" type="password" prepend-icon="mdi-lock"
                         variant="outlined" required :rules="passwordRules" :error="isPasswordError"
                         :error-messages="msgPasswordError" :disabled="isGettingData" @focus="resetValidacion" />
+
+                    <v-checkbox v-model="isSaveLogin" label="Mantener la cuenta iniciada" />
                 </v-card-text>
 
                 <v-card-actions>

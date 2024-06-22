@@ -1,3 +1,14 @@
+## 22 de Junio - 03.00hs
+
+<br/>
+
+- Agregar colores segun Predicciones realizadas a tablas de Predicciones.
+- Permitir guardar datos del Usuario para ingresar automaticamente.
+- Agregar mensaje de notificación cuando se guardan cambios en Prediccion y Datos del Usuario.
+
+<br/>
+<br/>
+
 ## 19 de Junio - 17.00hs
 
 <br/>

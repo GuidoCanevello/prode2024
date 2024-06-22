@@ -17,9 +17,45 @@ const partidos = computed(() => {
       resultado: partido.seRealizo ? `${partido.golesEquipo1} - ${partido.golesEquipo2}` : "-",
       prediccion: prediccion != undefined ? `${prediccion.golesEquipo1} - ${prediccion.golesEquipo2}` : "Sin Predicción",
       fecha: partido.fecha,
+      
+      golesEquipo1: partido.golesEquipo1,
+      golesEquipo2: partido.golesEquipo2,
+      tienePrediccion: prediccion != undefined,
+      golesPrediccionEquipo1: prediccion?.golesEquipo1,
+      golesPrediccionEquipo2: prediccion?.golesEquipo2,
     }
   })
 })
+
+function fondoItem(data: any) {
+  // Si tiene Prediccion
+  if (data.item.tienePrediccion) {
+    // Si ya ocurrio el Partido y los goles se cargaron
+    if (new Date(data.item.fecha) < new Date() && data.item.golesEquipo1 != undefined && data.item.golesEquipo2 != undefined) {
+      // Si acerto la prediccion exactamente
+      if (
+        data.item.golesEquipo1 == data.item.golesPrediccionEquipo1 &&
+        data.item.golesEquipo2 == data.item.golesPrediccionEquipo2
+      )
+        return { class: "fila-con-prediccion-correcta" };
+
+      // Si acerto el resultado (pero no los goles)
+      else if (
+        toResultado(data.item.golesPrediccionEquipo1, data.item.golesPrediccionEquipo2) ==
+        toResultado(data.item.golesEquipo1, data.item.golesEquipo2)
+      )
+        return { class: "fila-con-prediccion-acertada" };
+
+      // Si se equivoco
+      else return { class: "fila-con-prediccion-erronea" };
+    } else {
+
+      return { class: "fila-con-prediccion" };
+    }
+  } else {
+    return "";
+  }
+}
 </script>
 
 <template>
@@ -56,9 +92,7 @@ const partidos = computed(() => {
               }
             },
           ]' :items="partidos" item-key="partidoId" item-value="partidoId" class="table-partidos"
-            :sort-by="[{ key: 'fecha' }]" density="compact" mobile-breakpoint="sm">
-            <!-- :item-class="fondoItem" -->
-            <!-- TODO add fondo item, cuando vaya a probar predicciones -->
+            :row-props="fondoItem" :sort-by="[{ key: 'fecha' }]" density="compact" mobile-breakpoint="sm">
 
             <template #bottom />
           </v-data-table>
@@ -67,3 +101,7 @@ const partidos = computed(() => {
     </v-container>
   </v-card>
 </template>
+
+<style lang="css">
+@import url('@/assets/css/tabla-predicciones.css');
+</style>
