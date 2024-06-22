@@ -11,7 +11,7 @@ const labelEquipo1 = computed(() => {
 
   if (selectedPartido.value == "") return "equipo 1";
 
-  return partidos.find(p => p.partidoId == selectedPartido.value.substring(selectedPartido.value.lastIndexOf('-pid:') + 6))?.equipo1;
+  return partidos.find(p => p.partidoId == getSelectedPartidoId())?.equipo1;
 });
 
 const golesEquipo2 = ref(0);
@@ -20,12 +20,20 @@ const labelEquipo2 = computed(() => {
 
   if (selectedPartido.value == "") return "equipo 2";
 
-  return partidos.find(p => p.partidoId == selectedPartido.value.substring(selectedPartido.value.lastIndexOf('-pid:') + 6))?.equipo2;
+  return partidos.find(p => p.partidoId == getSelectedPartidoId())?.equipo2;
 });
 
 const isLoadingChanges = ref(false);
 function handleGuardar() {
-  // TODO implement
+  isLoadingChanges.value = true;
+  useProdeStore().dispatchUpdateResultadoPartido(getSelectedPartidoId(), golesEquipo1.value, golesEquipo2.value)
+    .finally(() => {
+      isLoadingChanges.value = false;
+    });
+}
+
+function getSelectedPartidoId() {
+  return selectedPartido.value.substring(selectedPartido.value.lastIndexOf('-pid:') + 6);
 }
 </script>
 
