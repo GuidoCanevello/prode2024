@@ -15,7 +15,13 @@
 
     <v-row>
       <v-col>
-        <backend-create-user-card />
+        <v-container class="ml-0 px-0">
+          <backend-create-user-card />
+        </v-container>
+
+        <v-container class="ml-0 px-0">
+          <backend-set-score-card />
+        </v-container>
       </v-col>
     </v-row>
   </v-container>

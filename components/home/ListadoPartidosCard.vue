@@ -3,7 +3,7 @@ import { useDisplay } from 'vuetify';
 
 const { isGettingData, hasData, dataListado } = storeToRefs(useProdeStore());
 const { isLogged } = storeToRefs(useAuthStore());
-const { smAndDown, lgAndUp } = useDisplay();
+const { lgAndUp } = useDisplay();
 
 const page = ref(1);
 const itemsPerPage = ref(5);
