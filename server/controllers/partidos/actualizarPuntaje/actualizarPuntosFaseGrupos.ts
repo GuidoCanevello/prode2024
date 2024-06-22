@@ -44,8 +44,6 @@ export default async function actualizarPuntosFaseGrupos(partidoId: TMongoID, go
             );
             userPuntos += puntos;
 
-            console.log("updatePts", userPuntos)
-
             // Editar total de puntos del usuario
             await usuarios_put(usuario._id, { puntos: userPuntos })
         }

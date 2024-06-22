@@ -23,6 +23,7 @@ function handleGuardar() {
       .updateDatosUsuario(internalPlayerName.value, internalImagenSrc.value)
       .finally(() => {
         isLoadingChanges.value = false;
+        useVisualStore().doShowSnackbar();
         emit('onClose');
       });
   } else {
