@@ -301,5 +301,9 @@ const onUpdatePredicciones = async () => {
   </v-card>
 </template>
 
-<style src="@/assets/css/fase-grupos.css"></style>
-<style src="@/assets/css/tabla-predicciones.css"></style>
+<style lang="css">
+@import url('@/assets/css/fase-grupos.css');
+</style>
+<style lang="css">
+@import url('@/assets/css/tabla-predicciones.css');
+</style>

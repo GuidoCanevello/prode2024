@@ -123,4 +123,6 @@ const filtrarEquipo = (value: string, query: string, item: any) => {
   </v-card>
 </template>
 
-<style src="@/assets/css/tabla-predicciones.css"></style>
+<style lang="css">
+@import url('@/assets/css/tabla-predicciones.css');
+</style>
