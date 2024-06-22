@@ -74,6 +74,13 @@ onNuxtReady(() => {
   theme.global.name.value = localStorage.getItem('prodeChosenTheme') ?? "light";
 
   store.dispatchGetInitialData();
+
+  const authStore = useAuthStore();
+  if (authStore.hasSavedLogin)
+    authStore.dispatchLogin(
+      localStorage.getItem('prodeLoginDataU') ?? "",
+      localStorage.getItem('prodeLoginDataP') ?? ""
+    );
 })
 
 const checkPermissions = (item: ITabItem) => {

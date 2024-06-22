@@ -7,22 +7,22 @@ const { smAndUp } = useDisplay();
 
 const showUserConfig = ref(false);
 function handleUserConfig() {
+  showLogin.value = false;
   showUserConfig.value = true;
 };
 
 const showLogin = ref(false);
 function handleLogin() {
+  showUserConfig.value = false;
   showLogin.value = true;
 };
 </script>
 
 <template>
   <v-card v-if="isLogged" :loading="!hasData" class="user-box-card" variant="outlined" @click="handleUserConfig">
-    <template v-if="showUserConfig">
-      <v-dialog v-model="showUserConfig" width="500">
-        <user-data-card @onClose="showUserConfig = false" />
-      </v-dialog>
-    </template>
+    <v-dialog v-model="showUserConfig" width="500">
+      <user-data-card @onClose="showUserConfig = false" />
+    </v-dialog>
 
     <v-row>
       <v-col sm="auto" style="text-align: center">
@@ -51,11 +51,9 @@ function handleLogin() {
   </v-card>
 
   <v-card v-else @click="handleLogin" class="user-box-card" variant="outlined">
-    <template v-if="showLogin">
-      <v-dialog v-model="showLogin" width="500">
-        <login-card @onClose="showLogin = false" />
-      </v-dialog>
-    </template>
+    <v-dialog v-model="showLogin" width="500">
+      <login-card @onClose="showLogin = false" />
+    </v-dialog>
 
     <v-row>
       <v-col sm="auto" style="text-align: center">

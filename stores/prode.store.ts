@@ -59,6 +59,10 @@ export const useProdeStore = defineStore('prodeStore', {
             const indexUsuario = this.usuarios.findIndex(u => u._id == updUsuario._id);
 
             if (indexUsuario != -1) this.usuarios.splice(indexUsuario, 1, updUsuario);
+        },
+
+        removePredicciones() {
+            this.predicciones = [];
         }
     }
 })

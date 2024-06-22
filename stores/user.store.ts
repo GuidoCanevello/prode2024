@@ -7,7 +7,7 @@ export const useUserStore = defineStore('userStore', {
         usuarioNombreCuenta: "",
         usuarioNombreJugador: "",
         usuarioImagenSrc: "",
-        usuarioPuntos: 1,
+        usuarioPuntos: 0,
 
         isGettingData: false,
         hasData: false,
@@ -57,6 +57,18 @@ export const useUserStore = defineStore('userStore', {
         async updatePrediccion(partidoId: TMongoID, golesEquipo1: number, golesEquipo2: number) {
             await updatePrediccion(this, partidoId, golesEquipo1, golesEquipo2);
         },
+
+        removeUserData() {
+            this.usuarioId = "";
+            this.usuarioNombreCuenta = "";
+            this.usuarioNombreJugador = "";
+            this.usuarioImagenSrc = "";
+            this.usuarioPuntos = 0;
+
+            this.hasData = false;
+
+            useProdeStore().removePredicciones();
+        }
     }
 })
 

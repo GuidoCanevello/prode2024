@@ -31,7 +31,12 @@ function handleGuardar() {
 }
 
 function handleLogout() {
-  // TODO implement
+  isLoadingChanges.value = true;
+  useAuthStore().dispatchLogout().then(() => {
+    isLoadingChanges.value = false;
+    emit('onClose');
+  });
+
 }
 </script>
 
@@ -96,11 +101,11 @@ function handleLogout() {
 
       <v-card-actions>
         <v-row>
-          <!-- <v-col class="ml-2" cols="auto">
+          <v-col class="ml-2" cols="auto">
           <v-btn color="warn" variant="outlined" @click="handleLogout" :loading="isLoadingChanges">
             Cerrar Sesion
           </v-btn>
-        </v-col> -->
+        </v-col>
 
           <v-spacer />
 
