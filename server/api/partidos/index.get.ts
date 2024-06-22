@@ -8,9 +8,11 @@ export default defineEventHandler(async (event) => {
 
     try {
         if (isOnlyTest != undefined && isOnlyTest == "true") {
-            return await partidos_list_test();
+            const response = await partidos_list_test();
+            return response
         } else {
-            return await partidos_list(isWithTest == "true");
+            const response = await partidos_list(isWithTest == "true");
+            return response
         }
     } catch (error) {
         handleControllerError(error)
