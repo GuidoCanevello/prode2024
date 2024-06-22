@@ -7,7 +7,8 @@ export default defineEventHandler(async (event) => {
     const prediccionId = event.context.params?.prediccionId;
 
     try {
-        return await predicciones_delete(id, prediccionId)
+        const response = await predicciones_delete(id, prediccionId)
+        return response
     } catch (error) {
         handleControllerError(error)
     }

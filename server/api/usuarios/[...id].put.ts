@@ -9,7 +9,8 @@ export default defineEventHandler(async (event) => {
     if (data.password != undefined) data.password = await bcrypt.hash(data.password, 10);
 
     try {
-        return await usuarios_put(id, data)
+        const response = await usuarios_put(id, data)
+        return response
     } catch (error) {
         handleControllerError(error)
     }

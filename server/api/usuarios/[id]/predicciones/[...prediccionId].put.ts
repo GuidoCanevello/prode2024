@@ -7,7 +7,8 @@ export default defineEventHandler(async (event) => {
     const data = await readBody(event) as IPrediccion;
 
     try {
-        return await predicciones_put(id, prediccionId, data)
+        const response = await predicciones_put(id, prediccionId, data)
+        return response
     } catch (error) {
         handleControllerError(error)
     }

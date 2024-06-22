@@ -5,7 +5,8 @@ export default defineEventHandler(async (event) => {
     const id = event.context.params?.id;
 
     try {
-        return await usuarios_delete(id)
+        const response = await usuarios_delete(id)
+        return response
     } catch (error) {
         handleControllerError(error)
     }

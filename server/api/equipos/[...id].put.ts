@@ -6,7 +6,8 @@ export default defineEventHandler(async (event) => {
     const data = await readBody(event) as IEquipo;
 
     try {
-        return await equipos_put(id, data)
+        const response = await equipos_put(id, data)
+        return response
     } catch (error) {
         handleControllerError(error)
     }

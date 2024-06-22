@@ -6,7 +6,8 @@ export default defineEventHandler(async (event) => {
     const data = await readBody(event) as IPartido;
 
     try {
-        return await partidos_put(id, data)
+        const response = await partidos_put(id, data)
+        return response;
     } catch (error) {
         handleControllerError(error)
     }

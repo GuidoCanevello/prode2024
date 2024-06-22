@@ -8,7 +8,8 @@ export default defineEventHandler(async (event) => {
     // REVIEW Add actualizar puntos jugadores_actualizar_mejores
 
     try {
-        return await jugadores_put(id, data)
+        const response =  await jugadores_put(id, data)
+        return response
     } catch (error) {
         handleControllerError(error)
     }

@@ -8,9 +8,11 @@ export default defineEventHandler(async (event) => {
 
     try {
         if (isWithPassword == undefined || isWithPassword != "true") {
-            return await usuarios_get(id);
+            const response = await usuarios_get(id);
+            return response
         }else {
-            return await usuarios_get_with_password(id);
+            const response = await usuarios_get_with_password(id);
+            return response
         }
     } catch (error) {
         handleControllerError(error)
