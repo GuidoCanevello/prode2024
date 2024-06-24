@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { nombreCuenta, nombreGrupo } = defineProps(["nombreCuenta", "nombreGrupo"]);
 const store = useProdeStore();
+const { isAdmin } = storeToRefs(useUserStore());
 
 const partidos = computed(() => {
   const partidos = store.partidos.filter(p => p.grupo == nombreGrupo);
@@ -17,12 +18,14 @@ const partidos = computed(() => {
       resultado: partido.seRealizo ? `${partido.golesEquipo1} - ${partido.golesEquipo2}` : "-",
       prediccion: prediccion != undefined ? `${prediccion.golesEquipo1} - ${prediccion.golesEquipo2}` : "Sin Predicción",
       fecha: partido.fecha,
-      
+
       golesEquipo1: partido.golesEquipo1,
       golesEquipo2: partido.golesEquipo2,
       tienePrediccion: prediccion != undefined,
       golesPrediccionEquipo1: prediccion?.golesEquipo1,
       golesPrediccionEquipo2: prediccion?.golesEquipo2,
+
+      prediccionPuntos: isAdmin.value ? (prediccion?.puntos ?? "-") : undefined,
     }
   })
 })
@@ -81,6 +84,18 @@ function fondoItem(data: any) {
               align: "start",
               value: "prediccion",
               sortable: false,
+            },
+            {
+              title: "Puntos",
+              align: "start",
+              value: "prediccionPuntos",
+              sortable: false,
+              headerProps: !isAdmin ? {
+                class: " d-none"
+              } : undefined,
+              cellProps: !isAdmin ? {
+                class: " d-none"
+              } : undefined
             },
             {
               value: "fecha",

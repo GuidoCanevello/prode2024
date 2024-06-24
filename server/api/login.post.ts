@@ -7,6 +7,8 @@ import generateRefreshToken from '../utils/generateRefreshToken';
 export default defineEventHandler(async (event) => {
     const data = await readBody(event);
 
+    console.log("llega Login")
+
     try {
         const userWithPass = await usuarios_get_by_name_with_password(data.username);
 
@@ -29,6 +31,7 @@ export default defineEventHandler(async (event) => {
             });
         }
     } catch (error) {
+        console.log("llega Error", error)
         handleControllerError(error);
     }
 });

@@ -2,6 +2,7 @@
 const { nombreCuenta } = defineProps(["nombreCuenta"])
 
 const { hasData, usuarios } = storeToRefs(useProdeStore());
+const { isAdmin } = storeToRefs(useUserStore());
 
 const iconSize = ref(64);
 
@@ -21,14 +22,24 @@ const currentUsuario = computed(() => {
                         <v-avatar v-if="currentUsuario.imagenSrc != undefined" :size="iconSize">
                             <v-img :src="currentUsuario.imagenSrc" />
                         </v-avatar>
-                            
+
                         <v-avatar v-else color="blue lighten-1" :size="iconSize">
                             {{ (currentUsuario.nombreJugador ?? (currentUsuario.nombreCuenta ?? "")).substring(0, 1) }}
                         </v-avatar>
                     </v-col>
 
                     <v-col cols="auto">
-                        <b>Datos del Usuario:</b> {{ currentUsuario.nombreJugador }}
+                        <v-row>
+                            <v-col>
+                                <b>Datos del Usuario:</b> {{ currentUsuario.nombreJugador }}
+                            </v-col>
+                        </v-row>
+
+                        <v-row v-if="isAdmin">
+                            <v-col>
+                                <b>Nombre de Cuenta:</b> {{ currentUsuario.nombreCuenta }}
+                            </v-col>
+                        </v-row>
                     </v-col>
 
                     <v-spacer />
