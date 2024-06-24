@@ -86,7 +86,7 @@ onNuxtReady(async () => {
 const checkPermissions = (item: ITabItem) => {
   return (
     !item.isAdmin ||
-    (item.isAdmin && useUserStore().usuarioNombreCuenta === "ADMIN")
+    (item.isAdmin && useUserStore().isAdmin)
   );
 };
 

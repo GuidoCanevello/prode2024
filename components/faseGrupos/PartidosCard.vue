@@ -149,7 +149,7 @@ const onUpdatePredicciones = async () => {
 
     <v-spacer />
 
-    <v-card-text>
+    <v-card-text :class="smAndUp ? '' : 'px-2'">
       <v-alert type="error" v-model="showAlert">
         Solo se permiten Numeros
       </v-alert>

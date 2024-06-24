@@ -14,7 +14,9 @@ export const useUserStore = defineStore('userStore', {
     }),
 
     getters: {
-
+        isAdmin(): boolean {
+            return this.usuarioNombreCuenta == "ADMIN";
+        }
     },
 
     actions: {
