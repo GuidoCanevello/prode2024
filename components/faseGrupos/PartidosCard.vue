@@ -268,7 +268,7 @@ const onUpdatePredicciones = async () => {
             <td :colspan="columns.length">
               <v-row>
                 <v-col>
-                  <v-text-field v-model="item.golesPrediccionEquipo1"
+                  <v-text-field v-model="item.golesPrediccionEquipo1" type="number"
                     :variant="item.isPrediccionHabilitado ? 'outlined' : 'filled'" density="compact" hide-details="auto"
                     :disabled="!item.isPrediccionHabilitado" :placeholder="item.isPrediccionHabilitado ? '-' : 'X'" />
                 </v-col>
@@ -276,7 +276,7 @@ const onUpdatePredicciones = async () => {
                 <v-col cols="auto"> - </v-col>
 
                 <v-col>
-                  <v-text-field v-model="item.golesPrediccionEquipo2" class="input-goles-2"
+                  <v-text-field v-model="item.golesPrediccionEquipo2" class="input-goles-2" type="number"
                     :variant="item.isPrediccionHabilitado ? 'outlined' : 'filled'" density="compact" hide-details="auto"
                     :disabled="!item.isPrediccionHabilitado" :placeholder="item.isPrediccionHabilitado ? '-' : 'X'" />
                 </v-col>
