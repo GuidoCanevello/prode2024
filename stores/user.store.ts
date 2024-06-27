@@ -23,7 +23,7 @@ export const useUserStore = defineStore('userStore', {
         async dispatchGetInitialData() {
             this.isGettingData = true;
 
-            const usuario = (await $fetchWithAuth(`/api/usuarios/${useAuthStore().userId}`)) as IUsuario;
+            const usuario = await $fetchWithAuth(`/api/usuarios/${useAuthStore().userId}`) as IUsuario;
 
             updateUsuarioState(this, usuario);
 

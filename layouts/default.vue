@@ -11,7 +11,8 @@ interface ITabItem {
   icon: string,
   route: string,
   enabled: boolean,
-  isAdmin?: boolean
+  isAdmin?: boolean,
+  isForLogged?: boolean
 }
 
 const tabItems: ITabItem[] = [
@@ -45,15 +46,23 @@ const tabItems: ITabItem[] = [
     route: "/mejores-jugadores",
   },
   {
-    title: "Reglamento",
+    title: "Chat",
     value: "tab-4",
+    icon: "mdi-message-text",
+    enabled: useRuntimeConfig().public.IS_CHAT_ENABLED == "true",
+    route: "/chat",
+
+  },
+  {
+    title: "Reglamento",
+    value: "tab-5",
     icon: "mdi-book-open-page-variant-outline",
     enabled: useRuntimeConfig().public.IS_REGLAMENTO_ENABLED == "true",
     route: "/reglamento",
   },
   {
     title: "Backend",
-    value: "tab-5",
+    value: "tab-6",
     icon: "mdi-shield-crown-outline",
     enabled: useRuntimeConfig().public.IS_BACKEND_ENABLED == "true",
     route: "/backend",

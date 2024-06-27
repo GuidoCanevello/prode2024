@@ -37,6 +37,21 @@ const light: ThemeDefinition = {
     'data-predict-very-correct': '#a5d6a7',
     'data-predict-very-correct-hover': '#66bb6a',
     'data-predict-hover': '#b2ebf2',
+
+    //* Para Chat
+    'chat-card-1': '#b2ebf2',
+    'chat-card-2': '#b2ebf2',
+    'chat-card-3': '#b2ebf2',
+    'chat-card-4': '#b2ebf2',
+    'chat-card-5': '#b2ebf2',
+    'chat-card-6': '#b2ebf2',
+    'chat-card-7': '#b2ebf2',
+    'chat-card-8': '#b2ebf2',
+    'chat-card-9': '#b2ebf2',
+    'chat-card-10': '#b2ebf2',
+    'chat-card-11': '#b2ebf2',
+    'chat-card-12': '#b2ebf2',
+    'chat-card-13': '#b2ebf2',
   }
 }
 
