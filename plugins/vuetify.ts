@@ -39,6 +39,8 @@ const light: ThemeDefinition = {
     'data-predict-hover': '#b2ebf2',
 
     //* Para Chat
+    'chat-card-user': '#b2ebf2',
+
     'chat-card-1': '#b2ebf2',
     'chat-card-2': '#b2ebf2',
     'chat-card-3': '#b2ebf2',
@@ -51,7 +53,6 @@ const light: ThemeDefinition = {
     'chat-card-10': '#b2ebf2',
     'chat-card-11': '#b2ebf2',
     'chat-card-12': '#b2ebf2',
-    'chat-card-13': '#b2ebf2',
   }
 }
 
@@ -88,6 +89,22 @@ const dark: ThemeDefinition = {
     'data-predict-very-correct': '#1b5e20',
     'data-predict-very-correct-hover': '#388e3c',
     'data-predict-hover': '#455a64',
+
+    //* Para Chat
+    'chat-card-user': '#b2ebf2',
+
+    'chat-card-1': '#b2ebf2',
+    'chat-card-2': '#b2ebf2',
+    'chat-card-3': '#b2ebf2',
+    'chat-card-4': '#b2ebf2',
+    'chat-card-5': '#b2ebf2',
+    'chat-card-6': '#b2ebf2',
+    'chat-card-7': '#b2ebf2',
+    'chat-card-8': '#b2ebf2',
+    'chat-card-9': '#b2ebf2',
+    'chat-card-10': '#b2ebf2',
+    'chat-card-11': '#b2ebf2',
+    'chat-card-12': '#b2ebf2',
   }
 }
 

@@ -12,6 +12,7 @@ namespace NChatStore {
         }[];
 
         //* State Booleans
+        isSendingMessage: boolean;
         isGettingData: boolean;
         hasData: boolean;
     }
