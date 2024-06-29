@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { formatoCompleto } from '~/utils/fecha';
+
 const partidosAutocomplete = computed(() => {
   const partidos = useProdeStore().dataListado.filter(p => p.fecha < new Date());
-  return partidos.map(p => `${p.equipo1} vs. ${p.equipo2} - ${darFormatoFecha(p.fecha)} -pid: ${p.partidoId}`)
+  return partidos.map(p => `${p.equipo1} vs. ${p.equipo2} - ${formatoCompleto(p.fecha)} -pid: ${p.partidoId}`)
 })
 const selectedPartido = ref("");
 

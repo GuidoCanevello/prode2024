@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { formatoHora } from '../../utils/fecha';
+
 const props = defineProps(["mensaje"]);
 
 const isMensajeUsuario = ref(false);
@@ -26,10 +28,9 @@ function setData() {
 
 <template>
   <v-row>
-    <!-- <v-spacer v-if="isMensajeUsuario" /> -->
+    <v-spacer v-if="isMensajeUsuario" />
 
-    <!-- v-if="!isMensajeUsuario" -->
-    <v-col class="avatar-col" cols="auto">
+    <v-col v-if="!isMensajeUsuario" class="avatar-col" cols="auto">
       <v-avatar v-if="usuarioImagenSrc">
         <v-img :src="usuarioImagenSrc" alt="img" />
       </v-avatar>
@@ -41,11 +42,11 @@ function setData() {
 
     <v-col class="text-col" cols="auto">
       <v-card :style="`background-color: rgb(var(--v-theme-${color})) !important;`">
-        <!-- {{ darFormatoFecha(new Date(mensaje.fecha ?? "")) }} - {{ mensaje.usuarioId }} - {{ mensaje.texto }} -->
-        <v-card-title>
+        <v-card-title v-if="!isMensajeUsuario">
           <b>{{ userName }}</b>
         </v-card-title>
-        {{ props.mensaje.texto }}
+        <p :style="`text-align: ${isMensajeUsuario ? 'end' : 'start'};`">{{ props.mensaje.texto }}</p>
+        <p class="hora-p" :style="`text-align: ${isMensajeUsuario ? 'start' : 'end'};`">{{ formatoHora(new Date(props.mensaje.fecha)) }}</p>
       </v-card>
     </v-col>
 
@@ -65,6 +66,11 @@ function setData() {
   .v-card-title {
     padding: 0px;
     font-size: 1rem;
+  }
+
+  .hora-p {
+    font-size: 0.7rem;
+    opacity: 0.6;
   }
 }
 

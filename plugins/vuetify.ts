@@ -39,20 +39,20 @@ const light: ThemeDefinition = {
     'data-predict-hover': '#b2ebf2',
 
     //* Para Chat
-    'chat-card-user': '#b2ebf2',
+    'chat-card-user': '#fff59d',
 
-    'chat-card-1': '#b2ebf2',
-    'chat-card-2': '#b2ebf2',
-    'chat-card-3': '#b2ebf2',
-    'chat-card-4': '#b2ebf2',
-    'chat-card-5': '#b2ebf2',
-    'chat-card-6': '#b2ebf2',
-    'chat-card-7': '#b2ebf2',
-    'chat-card-8': '#b2ebf2',
-    'chat-card-9': '#b2ebf2',
-    'chat-card-10': '#b2ebf2',
-    'chat-card-11': '#b2ebf2',
-    'chat-card-12': '#b2ebf2',
+    'chat-card-1': '#90a4ae',
+    'chat-card-2': '#f8bbd0',
+    'chat-card-3': '#ce93d8',
+    'chat-card-4': '#9575cd',
+    'chat-card-5': '#42a5f5',
+    'chat-card-6': '#80cbc4',
+    'chat-card-7': '#66bb6a',
+    'chat-card-8': '#c5e1a5',
+    'chat-card-9': '#d4e157',
+    'chat-card-10': '#f5f5f5',
+    'chat-card-11': '#a1887f',
+    'chat-card-12': '#ff8a65',
   }
 }
 
@@ -91,20 +91,20 @@ const dark: ThemeDefinition = {
     'data-predict-hover': '#455a64',
 
     //* Para Chat
-    'chat-card-user': '#1a237e',
+    'chat-card-user': '#f57f17',
 
-    'chat-card-1': '#6a1b9a',
-    'chat-card-2': '#6a1b9a',
-    'chat-card-3': '#6a1b9a',
-    'chat-card-4': '#6a1b9a',
-    'chat-card-5': '#6a1b9a',
-    'chat-card-6': '#6a1b9a',
+    'chat-card-1': '#c62828',
+    'chat-card-2': '#ad1457',
+    'chat-card-3': '#7e57c2',
+    'chat-card-4': '#1565c0',
+    'chat-card-5': '#00838f',
+    'chat-card-6': '#212121',
     'chat-card-7': '#6a1b9a',
-    'chat-card-8': '#6a1b9a',
-    'chat-card-9': '#6a1b9a',
-    'chat-card-10': '#6a1b9a',
-    'chat-card-11': '#6a1b9a',
-    'chat-card-12': '#6a1b9a',
+    'chat-card-8': '#4e342e',
+    'chat-card-9': '#616161',
+    'chat-card-10': '#558b2f',
+    'chat-card-11': '#9e9d24',
+    'chat-card-12': '#00695c',
   }
 }
 
