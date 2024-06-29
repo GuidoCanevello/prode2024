@@ -4,7 +4,12 @@ import { Usuario } from "../../models/Usuario.model";
  * Obtiene el listado de todos los Usuarios cargados
  */
 export default async function () {
-    const query = await Usuario.find({ isTest: true })
+    const query = await Usuario.find({
+        $or: [
+            { nombreCuenta: "ADMIN" },
+            { isTest: true }
+        ]
+    })
         .catch((error) => {
             throw {
                 number: 500,

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useDisplay } from 'vuetify';
+import { formatoCompleto } from '~/utils/fecha';
 
 const { isGettingData, hasData, dataListado } = storeToRefs(useProdeStore());
 const { isLogged } = storeToRefs(useAuthStore());
@@ -109,7 +110,7 @@ const filtrarEquipo = (value: string, query: string, item: any) => {
         </template>
 
         <template v-slot:[`item.fecha`]="{ item }">
-          <span>{{ darFormatoFecha(item.fecha) }}</span>
+          <span>{{ formatoCompleto(item.fecha) }}</span>
         </template>
 
 

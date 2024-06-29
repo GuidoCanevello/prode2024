@@ -37,6 +37,22 @@ const light: ThemeDefinition = {
     'data-predict-very-correct': '#a5d6a7',
     'data-predict-very-correct-hover': '#66bb6a',
     'data-predict-hover': '#b2ebf2',
+
+    //* Para Chat
+    'chat-card-user': '#fff59d',
+
+    'chat-card-1': '#90a4ae',
+    'chat-card-2': '#f8bbd0',
+    'chat-card-3': '#ce93d8',
+    'chat-card-4': '#9575cd',
+    'chat-card-5': '#42a5f5',
+    'chat-card-6': '#80cbc4',
+    'chat-card-7': '#66bb6a',
+    'chat-card-8': '#c5e1a5',
+    'chat-card-9': '#d4e157',
+    'chat-card-10': '#f5f5f5',
+    'chat-card-11': '#a1887f',
+    'chat-card-12': '#ff8a65',
   }
 }
 
@@ -73,6 +89,22 @@ const dark: ThemeDefinition = {
     'data-predict-very-correct': '#1b5e20',
     'data-predict-very-correct-hover': '#388e3c',
     'data-predict-hover': '#455a64',
+
+    //* Para Chat
+    'chat-card-user': '#f57f17',
+
+    'chat-card-1': '#c62828',
+    'chat-card-2': '#ad1457',
+    'chat-card-3': '#7e57c2',
+    'chat-card-4': '#1565c0',
+    'chat-card-5': '#00838f',
+    'chat-card-6': '#212121',
+    'chat-card-7': '#6a1b9a',
+    'chat-card-8': '#4e342e',
+    'chat-card-9': '#616161',
+    'chat-card-10': '#558b2f',
+    'chat-card-11': '#9e9d24',
+    'chat-card-12': '#00695c',
   }
 }
 
