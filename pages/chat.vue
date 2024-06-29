@@ -3,7 +3,7 @@ const { isLogged, isDoingLogin } = storeToRefs(useAuthStore())
 </script>
 
 <template>
-  <v-container v-if="!isLogged && !isDoingLogin">
+  <v-container v-if="!isLogged && !isDoingLogin" id="page-container">
     <v-card>
       <v-card-title primary-title>
         Debe Loguearse para poder Enviar Mensajes.
@@ -11,11 +11,11 @@ const { isLogged, isDoingLogin } = storeToRefs(useAuthStore())
     </v-card>
   </v-container>
 
-  <v-container v-else-if="!isLogged && isDoingLogin">
+  <v-container v-else-if="!isLogged && isDoingLogin" id="page-container">
     <LoadingCard />
   </v-container>
 
-  <v-container v-else style="height: 100%; display: flex;">
+  <v-container v-else style="height: 100%; display: flex;" id="page-container">
     <ChatCard />
   </v-container>
 </template>

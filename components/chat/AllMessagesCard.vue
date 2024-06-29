@@ -7,9 +7,7 @@ const { msgPorFecha, hasData, isGettingData } = storeToRefs(useChatStore());
   <v-card class="history-card" variant="outlined" :loading="!hasData && isGettingData">
     <template v-for="fecha in msgPorFecha">
       <template v-for="mensaje in fecha.messages">
-        <div>
-          {{ darFormatoFecha(new Date(mensaje.fecha ?? "")) }} - {{ mensaje.usuarioId }} - {{ mensaje.texto }}
-        </div>
+        <chat-message-card :mensaje="mensaje" />
       </template>
       {{ fecha.fecha }}
     </template>

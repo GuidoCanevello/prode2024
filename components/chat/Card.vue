@@ -28,7 +28,7 @@ onMounted(() => {
 <template>
   <v-card class="chat-card">
     <v-container class="chat-container">
-      <chat-messages-card />
+      <chat-all-messages-card />
 
       <v-form ref="form" @submit="onSendMessage" @submit.prevent>
         <v-text-field v-model="newMessageText" label="Mensaje" append-icon="mdi-send" variant="outlined" type="text"
@@ -50,11 +50,18 @@ onMounted(() => {
     flex-flow: column;
     height: 100%;
     padding: 0%;
+    margin-inline: 0px;
+    max-width: 100%;
 
     .v-form {
       margin-top: 16px;
-
       padding-right: 12px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .chat-container {
+      padding-inline: 0 ;
     }
   }
 }

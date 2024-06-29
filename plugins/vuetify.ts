@@ -91,20 +91,20 @@ const dark: ThemeDefinition = {
     'data-predict-hover': '#455a64',
 
     //* Para Chat
-    'chat-card-user': '#b2ebf2',
+    'chat-card-user': '#1a237e',
 
-    'chat-card-1': '#b2ebf2',
-    'chat-card-2': '#b2ebf2',
-    'chat-card-3': '#b2ebf2',
-    'chat-card-4': '#b2ebf2',
-    'chat-card-5': '#b2ebf2',
-    'chat-card-6': '#b2ebf2',
-    'chat-card-7': '#b2ebf2',
-    'chat-card-8': '#b2ebf2',
-    'chat-card-9': '#b2ebf2',
-    'chat-card-10': '#b2ebf2',
-    'chat-card-11': '#b2ebf2',
-    'chat-card-12': '#b2ebf2',
+    'chat-card-1': '#6a1b9a',
+    'chat-card-2': '#6a1b9a',
+    'chat-card-3': '#6a1b9a',
+    'chat-card-4': '#6a1b9a',
+    'chat-card-5': '#6a1b9a',
+    'chat-card-6': '#6a1b9a',
+    'chat-card-7': '#6a1b9a',
+    'chat-card-8': '#6a1b9a',
+    'chat-card-9': '#6a1b9a',
+    'chat-card-10': '#6a1b9a',
+    'chat-card-11': '#6a1b9a',
+    'chat-card-12': '#6a1b9a',
   }
 }
 
