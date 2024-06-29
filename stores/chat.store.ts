@@ -92,6 +92,9 @@ export const useChatStore = defineStore('chatStore', {
     },
 
     addMessage(newMessage: IChatMessage) {
+      //* Si el mensaje ya esta ingresado, no lo agrega
+      if (this.msgPorFecha.some(msgs => msgs.messages.some(m => m._id == newMessage._id))) return;
+
       //* Insertar Usuario si no estaba
       if (this.userColors.find(uid => uid == useAuthStore().userId) == undefined) {
         this.userColors.push({

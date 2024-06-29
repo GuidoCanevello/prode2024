@@ -16,7 +16,7 @@ export default defineEventHandler((event) => {
     });
     io.attach(event.node.res.socket?.server);
 
-    io.on("connect", (socket) => {      
+    io.on("connect", (socket) => {
       socket.on('disconnect', () => {
         clients = clients.filter(c => c == socket);
         global.clients = clients;

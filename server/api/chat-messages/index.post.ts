@@ -8,9 +8,7 @@ export default defineEventHandler(async (event) => {
         let response = await chat_messages_create_post(data);
         setResponseStatus(event, 201);
 
-        for (const client of globalThis.clients) {
-            client.emit('newMessage', data)
-        }
+        for (const client of globalThis.clients) client.emit('newMessage', data);
 
         return response;
     } catch (error) {

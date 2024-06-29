@@ -14,10 +14,7 @@ const passwordUsuario = computed(() => {
 const isLoadingChanges = ref(false);
 
 async function handleGuardar() {
-  if (nombreUsuario.value == "" || apellidoUsuario.value == "") {
-    console.log("Ingrese nombre y apellido");
-    return;
-  }
+  if (nombreUsuario.value == "" || apellidoUsuario.value == "") return;
 
   isLoadingChanges.value = true
 

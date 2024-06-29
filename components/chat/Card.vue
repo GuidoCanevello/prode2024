@@ -20,6 +20,9 @@ onMounted(() => {
     $socket.once('connect', () => {
       isSocketConnected.value = true;
     })
+    $socket.on('newMessage', (data: IChatMessage) => {
+      store.addMessage(data);
+    })
     $socket.connect();
   }
 })
@@ -61,7 +64,7 @@ onMounted(() => {
 
   @media (max-width: 600px) {
     .chat-container {
-      padding-inline: 0 ;
+      padding-inline: 0;
     }
   }
 }
