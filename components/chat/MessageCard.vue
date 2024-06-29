@@ -1,26 +1,25 @@
 <script setup lang="ts">
-const { mensaje } = defineProps<{
-  mensaje: IChatMessage,
-}>();
-const { userColors } = storeToRefs(useChatStore())
+const props = defineProps(["mensaje"]);
 
 const isMensajeUsuario = ref(false);
 const color = ref("");
 
 const userName = ref("");
+const usuarioImagenSrc = ref("")
 
 onUpdated(setData)
 onMounted(setData)
 
 function setData() {
-  console.log("set Data", mensaje._id)
-  const user = useChatStore().userColors.find(u => u.usuarioId == mensaje.usuarioId);
+  const chatUsuario = useChatStore().userColors.find(u => u.usuarioId == props.mensaje.usuarioId);
+  const datosUsuario = useProdeStore().usuarios.find(u => chatUsuario?.usuarioId == u._id);
 
-  if (user != undefined) {
-    color.value = user.color;
-    isMensajeUsuario.value = user.isUsuario;
+  if (chatUsuario != undefined && datosUsuario != undefined) {
+    color.value = chatUsuario.color;
+    isMensajeUsuario.value = chatUsuario.isUsuario;
 
-    userName.value = useProdeStore().usuarios.find(u => user.usuarioId == u._id)?.nombreJugador ?? ""
+    userName.value = datosUsuario.nombreJugador ?? "";
+    usuarioImagenSrc.value = datosUsuario.imagenSrc ?? "";
   }
 }
 </script>
@@ -31,8 +30,12 @@ function setData() {
 
     <!-- v-if="!isMensajeUsuario" -->
     <v-col class="avatar-col" cols="auto">
-      <v-avatar v-slot color="blue lighten-1">
-        s
+      <v-avatar v-if="usuarioImagenSrc">
+        <v-img :src="usuarioImagenSrc" alt="img" />
+      </v-avatar>
+
+      <v-avatar v-else color="blue lighten-1">
+        {{ userName.substring(0, 1) }}
       </v-avatar>
     </v-col>
 
@@ -42,7 +45,7 @@ function setData() {
         <v-card-title>
           <b>{{ userName }}</b>
         </v-card-title>
-        {{ mensaje.texto }} {{ mensaje.usuarioId }}
+        {{ props.mensaje.texto }}
       </v-card>
     </v-col>
 
