@@ -9,7 +9,7 @@ let io: Server
 let clients: Socket[] = []
 
 export default defineEventHandler((event) => {
-  if (global.io == undefined) {
+  if (global.io == undefined && event.node.res.socket?.server != undefined) {
     io = new Server({
       path: '/api/socket.io',
       serveClient: false
