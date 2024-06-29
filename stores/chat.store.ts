@@ -96,10 +96,20 @@ export const useChatStore = defineStore('chatStore', {
       if (this.msgPorFecha.some(msgs => msgs.messages.some(m => m._id == newMessage._id))) return;
 
       //* Insertar Usuario si no estaba
-      if (this.userColors.find(uid => uid == useAuthStore().userId) == undefined) {
+      if (this.userColors.find(uid => uid == newMessage.usuarioId) == undefined) {
+        let color: string;
+        if (newMessage.usuarioId == useAuthStore().userId) {
+          color = 'chat-card-user'
+        } else {
+          const freeColors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter(n => !this.userColors.some(u => u.color == `chat-card-${n}`));
+          const colorIndex = randomInt(freeColors.length);
+          color = `chat-card-${freeColors[colorIndex]}`;
+          freeColors.splice(colorIndex, 1);
+        }
+
         this.userColors.push({
-          color: 'chat-card-user',
-          isUsuario: true,
+          color,
+          isUsuario: useAuthStore().userId == newMessage.usuarioId,
           usuarioId: newMessage.usuarioId
         })
       }
