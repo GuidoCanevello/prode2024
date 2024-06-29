@@ -6,6 +6,7 @@
  * @returns The error message, if any
  */
 export default function (error: any) {
+    console.log("-> ERROR", error)
     throw createError({
         statusCode: error.number ?? 500,
         statusMessage: error.content != undefined ? error.content : error

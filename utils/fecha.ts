@@ -8,13 +8,21 @@ import obtenerNombreDia from "./obtenerNombreDia";
  * 
  * @returns El string resultante
  */
-export default function (fecha: Date) {
+export function formatoCompleto(fecha: Date) {
+    return formatoFecha(fecha) + " - " + formatoHora(fecha);
+}
+
+export function formatoFecha(fecha: Date) {
     const nombreDia = obtenerNombreDia(fecha.getDay()),
         dia = addCero(fecha.getDate()),
         mes = addCero(fecha.getMonth() + 1);
 
+    return `${nombreDia} ${dia}/${mes}`;
+}
+
+export function formatoHora(fecha: Date) {
     const hora = addCero(fecha.getHours()),
         minutos = addCero(fecha.getMinutes());
 
-    return `${nombreDia} ${dia}/${mes} - ${hora}:${minutos}`
+    return `${hora}:${minutos}`;
 }

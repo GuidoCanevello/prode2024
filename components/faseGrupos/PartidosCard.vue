@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDisplay } from 'vuetify';
-import darFormatoFecha from '../../utils/darFormatoFecha';
+import { formatoCompleto } from '../../utils/fecha';
 
 const props = defineProps(["nombre", "partidos"]);
 const emit = defineEmits(['onPrediccionActualizada'])
@@ -290,7 +290,7 @@ const onUpdatePredicciones = async () => {
 
           <tr>
             <td :colspan="columns.length">
-              Fecha: {{ darFormatoFecha(item.fecha) }}
+              Fecha: {{ formatoCompleto(item.fecha) }}
             </td>
           </tr>
         </template>
