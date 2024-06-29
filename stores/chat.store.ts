@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 
-
 export const useChatStore = defineStore('chatStore', {
   state: (): NChatStore.IStoreState => ({
     //* Datos de Mensajes
@@ -8,6 +7,7 @@ export const useChatStore = defineStore('chatStore', {
     userColors: [],
 
     //* State Booleans
+    isSocketWorking: true,
     isSendingMessage: false,
     isSocketConnected: false,
     isGettingData: false,

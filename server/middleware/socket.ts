@@ -24,7 +24,9 @@ export default defineEventHandler((event) => {
 
       clients.push(socket);
       global.clients = clients;
+      console.log("->New Client Connected")
     })
     global.io = io
+    console.log("->Socket Server Created")
   }
 })

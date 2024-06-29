@@ -1,5 +1,10 @@
 <script setup lang="ts">
 const { isLogged, isDoingLogin } = storeToRefs(useAuthStore())
+const { isSocketWorking } = storeToRefs(useChatStore())
+
+onBeforeMount(() => {
+  if (!isSocketWorking.value) useRouter().push('/')
+})
 </script>
 
 <template>

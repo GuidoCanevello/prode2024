@@ -18,14 +18,26 @@ onMounted(() => {
   if (!$socket.connected) {
     isSocketConnected.value = false;
     $socket.once('connect', () => {
+      useChatStore().isSocketWorking = true;
       isSocketConnected.value = true;
     })
     $socket.on('newMessage', (data: IChatMessage) => {
       store.addMessage(data);
     })
+
+    $socket.on('connect_error', onConnectionError)
+    $socket.on('connect_failed', onConnectionError)
+    $socket.on('disconnect', onConnectionError)
+
     $socket.connect();
   }
 })
+
+function onConnectionError(err: any) {
+  console.log(err)
+  useChatStore().isSocketWorking = false;
+  useRouter().push('/')
+}
 </script>
 
 <template>
