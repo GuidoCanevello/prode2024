@@ -37,6 +37,7 @@ export default async function (data: IChatMessage) {
     }
 
     data._id = new mongoose.Types.ObjectId();
+    data.fecha = new Date();
 
     const newChatMessage = await ChatMessage.create(data)
         .catch((error) => {

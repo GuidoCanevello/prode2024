@@ -9,7 +9,7 @@ import obtenerNombreDia from "./obtenerNombreDia";
  * @returns El string resultante
  */
 export default function (fecha: Date) {
-    const nombreDia = obtenerNombreDia(fecha.getDay()),
+        const nombreDia = obtenerNombreDia(fecha.getDay()),
         dia = addCero(fecha.getDate()),
         mes = addCero(fecha.getMonth() + 1);
 

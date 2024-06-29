@@ -1,32 +1,8 @@
 <script setup lang="ts">
-const { $socket } = useNuxtApp()
-
-onMounted(() => {
-  console.log("onMounted")
-  // TODO no lo puedo hacer andar, ver si lo arreglo o busco otro
-  $socket.onopen = () => {
-    console.log("Send")
-    $socket.send(useAuthStore().userId)
-  }
-
-  $socket.onmessage = ({ data }: any) => {
-    console.log("data", data)
-    // message.value = data
-  }
-
-  $socket.onclose = function () {
-    console.log("disconnected")
-  }
-})
-
-function doTest() {
-  useChatStore().sendMessage("TEST")
-}
 </script>
 
 <template>
   <v-container id="page-container">
-    <v-btn color="info" @click="doTest">TEst</v-btn>
     <v-row>
       <v-col>
         <v-container>

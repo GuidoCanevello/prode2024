@@ -1,42 +1,30 @@
-type Client = {
-  id: string
-  send: (message: string) => void
-  readyState: number
-}
+import { Server, Socket } from 'socket.io';
 
 declare global {
-  var wss: WebSocketServer
-  var clients: Client[]
+  var io: Server
+  var clients: Socket[]
 }
 
-let wss: WebSocketServer
-let clients: Client[] = []
+let io: Server
+let clients: Socket[] = []
 
 export default defineEventHandler((event) => {
+  if (global.io == undefined) {
+    io = new Server({
+      path: '/api/socket.io',
+      serveClient: false
+    });
+    io.attach(event.node.res.socket?.server);
 
-  if (!global.wss) {
-    wss = new WebSocketServer({ server: event.node.res.socket?.server })
-
-    wss.on("connection", function (socket) {
-      console.log("new Client")
-
-      socket.send("connected")
-
-      socket.on("message", function (message) {
-        console.log("chau")
-        wss.clients.forEach(function (client) {
-          console.log("hola")
-          if (client == socket && client.readyState === WebSocket.OPEN) {
-            clients.push({
-              id: message.toString(),
-              send: (data: string) => client.send(data),
-              readyState: client.readyState,
-            })
-            global.clients = clients
-          }
-        })
+    io.on("connect", (socket) => {      
+      socket.on('disconnect', () => {
+        clients = clients.filter(c => c == socket);
+        global.clients = clients;
       })
-      global.wss = wss
+
+      clients.push(socket);
+      global.clients = clients;
     })
+    global.io = io
   }
 })

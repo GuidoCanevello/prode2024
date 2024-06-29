@@ -28,8 +28,12 @@ function checkAllowedCases(event: { _path?: string | undefined, method: string, 
     if (!event._path.startsWith('/api')) return true;
 
     //* Specific path exceptions
-    if(['/login', '/token', '/logout', '/test'].some(p => `/api${p}` == event._path) || event._path.startsWith('/api/_content')) return true;
-    
+    if (['/login', '/token', '/logout', '/test'].some(p =>
+        `/api${p}` == event._path) ||
+        event._path.startsWith('/api/_content') ||
+        event._path.startsWith('/api/socket.io')
+    ) return true;
+
     //* Allow any GET functions for Equipos and Partidos
     if (event.method == "GET" && ['/equipos', '/partidos', '/jugadores'].some(p => event._path?.startsWith(`/api${p}`))) return true;
 

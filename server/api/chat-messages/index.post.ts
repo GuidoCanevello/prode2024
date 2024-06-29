@@ -7,15 +7,10 @@ export default defineEventHandler(async (event) => {
     try {
         let response = await chat_messages_create_post(data);
         setResponseStatus(event, 201);
-        
-        for (const client of globalThis.clients) {
-            if (client.id !== data.usuarioId && client.readyState === WebSocket.OPEN) {
-                // console.log("Client", client)
-                client.send(data.texto ?? "ERROR")
-            }
-        }
 
-        console.log("llega")
+        for (const client of globalThis.clients) {
+            client.emit('newMessage', data)
+        }
 
         return response;
     } catch (error) {

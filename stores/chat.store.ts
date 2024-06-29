@@ -9,6 +9,7 @@ export const useChatStore = defineStore('chatStore', {
 
     //* State Booleans
     isSendingMessage: false,
+    isSocketConnected: false,
     isGettingData: false,
     hasData: false,
   }),
@@ -23,11 +24,12 @@ export const useChatStore = defineStore('chatStore', {
       this.userColors = [];
       this.msgPorFecha = [];
 
-      const mensajes = await $fetchWithAuth(`/api/chat-messages`, {
+      let mensajes = await $fetchWithAuth(`/api/chat-messages`, {
         query: {
           isOnlyTest: useRuntimeConfig().public.USE_TEST_DATA == "true"
         }
       }) as IChatMessage[];
+      mensajes = mensajes.reverse();
 
       //* Ordenar Mensajes
       const freeColors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -55,14 +57,16 @@ export const useChatStore = defineStore('chatStore', {
         }
 
         //* Insertar Mensaje en fecha adecuada
-        const fechaIndex = addedDates.findIndex(fecha => fecha == mensaje.fecha?.toLocaleDateString())
-        if (fechaIndex == -1) {
-          const fecha = mensaje.fecha?.toLocaleDateString() ?? new Date().toLocaleDateString();
-          addedDates.push(fecha)
+        if (mensaje.fecha != undefined) {
+          const fechaIndex = addedDates.findIndex(fecha => fecha == new Date(mensaje.fecha ?? "").toLocaleDateString())
+          if (fechaIndex == -1) {
+            const fecha = new Date(mensaje.fecha).toLocaleDateString();
+            addedDates.push(fecha)
 
-          this.msgPorFecha.push({ fecha, messages: [mensaje] })
-        } else {
-          this.msgPorFecha[fechaIndex].messages.push(mensaje)
+            this.msgPorFecha.push({ fecha, messages: [mensaje] })
+          } else {
+            this.msgPorFecha[fechaIndex].messages.push(mensaje)
+          }
         }
       });
 
@@ -73,37 +77,41 @@ export const useChatStore = defineStore('chatStore', {
     async sendMessage(texto: string) {
       this.isSendingMessage = true;
 
-      const usuarioId = useAuthStore().userId;
-
       const mensaje = await $fetchWithAuth(`/api/chat-messages`, {
         method: "POST",
         body: {
-          usuarioId,
+          usuarioId: useAuthStore().userId,
           texto,
           isTest: useRuntimeConfig().public.USE_TEST_DATA == "true"
         }
       }) as IChatMessage;
 
+      this.addMessage(mensaje);
+
+      this.isSendingMessage = false;
+    },
+
+    addMessage(newMessage: IChatMessage) {
       //* Insertar Usuario si no estaba
-      if (this.userColors.find(uid => uid == usuarioId) == undefined) {
+      if (this.userColors.find(uid => uid == useAuthStore().userId) == undefined) {
         this.userColors.push({
           color: 'chat-card-user',
           isUsuario: true,
-          usuarioId: mensaje.usuarioId
+          usuarioId: newMessage.usuarioId
         })
       }
 
       //* Insertar Mensaje en fecha adecuada
-      const fechaIndex = this.msgPorFecha.findIndex(msgs => msgs.fecha == mensaje.fecha?.toLocaleDateString())
-      if (fechaIndex == -1) {
-        const fecha = mensaje.fecha?.toLocaleDateString() ?? new Date().toLocaleDateString();
+      if (newMessage.fecha != undefined) {
+        const fechaIndex = this.msgPorFecha.findIndex(msgs => msgs.fecha == new Date(newMessage.fecha ?? "").toLocaleDateString())
+        if (fechaIndex == -1) {
+          const fecha = new Date(newMessage.fecha).toLocaleDateString();
 
-        this.msgPorFecha.push({ fecha, messages: [mensaje] })
-      } else {
-        this.msgPorFecha[fechaIndex].messages.push(mensaje)
+          this.msgPorFecha.unshift({ fecha, messages: [newMessage] })
+        } else {
+          this.msgPorFecha[fechaIndex].messages.unshift(newMessage)
+        }
       }
-
-      this.isSendingMessage = false;
     }
   }
 });

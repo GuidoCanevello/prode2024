@@ -19,6 +19,7 @@ export const useAuthStore = defineStore('authStore', {
         isDoingLogin: false,
         isDoingLogout: false,
         isLogged: false,
+        // TODO agregar arreglo de arrow Functions que se ejecuten una vez que el usuario se conecta
     }),
 
     getters: {
