@@ -12,7 +12,8 @@ export default defineEventHandler((event) => {
   if (global.io == undefined && event.node.res.socket?.server != undefined) {
     io = new Server({
       path: '/api/socket.io',
-      serveClient: false
+      serveClient: false,
+      allowEIO3: true,
     });
     io.attach(event.node.res.socket?.server);
 
