@@ -12,6 +12,7 @@ namespace NChatStore {
         }[];
 
         //* State Booleans
+        isSocketWorking: boolean;
         isSendingMessage: boolean;
         isSocketConnected: boolean;
         isGettingData: boolean;
