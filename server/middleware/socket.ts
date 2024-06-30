@@ -14,6 +14,11 @@ export default defineEventHandler((event) => {
       path: '/api/socket.io',
       serveClient: false,
       allowEIO3: true,
+      cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"],
+        credentials: true
+      },
     });
     io.attach(event.node.res.socket?.server);
 
