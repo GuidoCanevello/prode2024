@@ -55,8 +55,8 @@ export const useProdeStore = defineStore('prodeStore', {
             }
         },
 
-        async dispatchUpdateResultadoPartido(partidoId: string, golesEquipo1: number, golesEquipo2: number) {
-            const body: IPartido = { golesEquipo1, golesEquipo2 }
+        async dispatchUpdateResultadoPartido(partidoId: string, golesEquipo1: number, golesEquipo2: number, penalesEquipo1?: number, penalesEquipo2?: number) {
+            const body: IPartido = { golesEquipo1, golesEquipo2, penalesEquipo1, penalesEquipo2 }
             try {
                 const partido = await $fetchWithAuth(`/api/partidos/${partidoId}`, { method: "put", body }) as IPartido;
 

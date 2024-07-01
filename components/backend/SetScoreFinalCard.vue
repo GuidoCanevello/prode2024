@@ -2,12 +2,13 @@
 import { formatoCompleto } from '~/utils/fecha';
 
 const partidosAutocomplete = computed(() => {
-  const partidos = useProdeStore().dataListado.filter(p => p.fecha < new Date() && p.grupo != "");
+  const partidos = useProdeStore().dataListado.filter(p => p.fecha < new Date() && p.grupo == "");
   return partidos.map(p => `${p.equipo1} vs. ${p.equipo2} - ${formatoCompleto(p.fecha)} -pid: ${p.partidoId}`)
 })
 const selectedPartido = ref("");
 
 const golesEquipo1 = ref(0);
+const penalesEquipo1 = ref(0);
 const labelEquipo1 = computed(() => {
   const partidos = useProdeStore().dataListado.filter(p => p.fecha < new Date());
 
@@ -17,6 +18,7 @@ const labelEquipo1 = computed(() => {
 });
 
 const golesEquipo2 = ref(0);
+const penalesEquipo2 = ref(0);
 const labelEquipo2 = computed(() => {
   const partidos = useProdeStore().dataListado.filter(p => p.fecha < new Date());
 
@@ -28,6 +30,9 @@ const labelEquipo2 = computed(() => {
 const isLoadingChanges = ref(false);
 function handleGuardar() {
   isLoadingChanges.value = true;
+  
+  
+
   useProdeStore().dispatchUpdateResultadoPartido(getSelectedPartidoId(), golesEquipo1.value, golesEquipo2.value)
     .finally(() => {
       isLoadingChanges.value = false;
@@ -42,7 +47,7 @@ function getSelectedPartidoId() {
 <template>
   <v-card>
     <v-card-title primary-title>
-      Agregar Resultado a Partido de Fase de Grupos.
+      Agregar Resultado a Partido de Fase Final.
     </v-card-title>
 
     <v-card-text>
@@ -65,6 +70,20 @@ function getSelectedPartidoId() {
 
           <v-col>
             <v-text-field v-model="golesEquipo2" :label="labelEquipo2" variant="outlined" hide-details="auto" />
+          </v-col>
+        </v-row>
+
+        <v-row>
+          <v-col>
+            <v-text-field v-model="penalesEquipo1" label="penales 1" variant="outlined" hide-details="auto" />
+          </v-col>
+
+          <v-col cols="auto" align-self="center">
+            vs.
+          </v-col>
+
+          <v-col>
+            <v-text-field v-model="penalesEquipo2" label="penales 1" variant="outlined" hide-details="auto" />
           </v-col>
         </v-row>
       </template>
