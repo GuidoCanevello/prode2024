@@ -1,0 +1,1 @@
+type TTipoEliminatoria = "Cuartos" | "Semis" | "Tercero" | "Final";

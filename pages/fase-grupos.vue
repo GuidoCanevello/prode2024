@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-
 const { isGettingData, hasData, dataFaseGrupos } = storeToRefs(useProdeStore());
 
 const tab = ref("");
@@ -12,8 +10,6 @@ const showLoadingCard = computed(() => {
 const showGrupoCard = computed(() => {
   return !isGettingData.value && hasData.value;
 })
-
-// REVIEW por ahi meter cada grupo en una pestaña distinta, asi tengo mas espacio en la pantalla para cada uno
 </script>
 
 <template>

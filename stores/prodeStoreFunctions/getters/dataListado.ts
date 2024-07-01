@@ -66,18 +66,23 @@ function formatPartidoFinal(dataEquipos: IEquipo[], partido: IPartido, dataPredi
     const fecha = new Date(partido.fecha ?? new Date());
     const prediccion = dataPredicciones.find(prediccion => prediccion.partidoId == partido._id);
 
+    // NOTE la eliminatoria de donde empieza Fase Final (puede ser Cuartos u Octavos)
+    const tipoEliminatoriaInicio: TTipoEliminatoria = "Cuartos"
+
     const equipo1: string = objEquipo1 ?
         (objEquipo1.nombre ?? "") :
-        (partido.tipoEliminatoria == "Tercero" ? "Perdedor" : "Ganador")
+        (partido.tipoEliminatoria == "Tercero" ?
+            "Perdedor" :
+            "Ganador")
         + " de " +
-        (partido.tipoEliminatoria == "Octavos" ?
+        (partido.tipoEliminatoria == tipoEliminatoriaInicio ?
             "-" :
             dataPartidos.find(p => p._id == partido.partidoEquipo1)?.identificadorEliminatorias);
     const equipo2: string = objEquipo2 ?
         (objEquipo2.nombre ?? "") :
         (partido.tipoEliminatoria == "Tercero" ? "Perdedor" : "Ganador")
         + " de " +
-        (partido.tipoEliminatoria == "Octavos" ?
+        (partido.tipoEliminatoria == tipoEliminatoriaInicio ?
             "-" :
             dataPartidos.find(p => p._id == partido.partidoEquipo2)?.identificadorEliminatorias);
 

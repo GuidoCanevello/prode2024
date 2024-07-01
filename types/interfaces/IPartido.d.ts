@@ -10,7 +10,7 @@ interface IPartido {
     fecha?: Date,
     seRealizo?: boolean,
     esEliminatoria?: boolean,
-    tipoEliminatoria?: string,
+    tipoEliminatoria?: TTipoEliminatoria,
     identificadorEliminatorias?: string,
     partidoEquipo1?: TMongoID,
     partidoEquipo2?: TMongoID,
