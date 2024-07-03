@@ -1,3 +1,13 @@
+## 3 de Julio - 13.00hs
+
+<br/>
+
+- Habilitar pantalla de Predicciones de Fase Final.
+- Permitir ver Predicciones de Fase Final de otros Usuarios a traves de la tabla de Ranking.
+
+<br/>
+<br/>
+
 ## 22 de Junio - 03.00hs
 
 <br/>
