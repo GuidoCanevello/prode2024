@@ -31,8 +31,6 @@ const isLoadingChanges = ref(false);
 function handleGuardar() {
   isLoadingChanges.value = true;
   
-  
-
   useProdeStore().dispatchUpdateResultadoPartido(getSelectedPartidoId(), golesEquipo1.value, golesEquipo2.value)
     .finally(() => {
       isLoadingChanges.value = false;

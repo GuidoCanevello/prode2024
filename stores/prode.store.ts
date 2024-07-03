@@ -68,6 +68,19 @@ export const useProdeStore = defineStore('prodeStore', {
             }
         },
 
+        async dispatchUpdateFechaEquipoPartido(partidoId: string, fecha: Date, equipo1: string, equipo2: string) {
+            const body: IPartido = { fecha, equipo1, equipo2 }
+            try {
+                const partido = await $fetchWithAuth(`/api/partidos/${partidoId}`, { method: "put", body }) as IPartido;
+
+                if (partido != undefined) this.partidos.splice(this.partidos.findIndex(p => p._id == partido._id), 1, partido);
+
+                return partido;
+            } catch (error) {
+                console.log("error", error);
+            }
+        },
+
         updateUsuario(updUsuario: IUsuario) {
             const indexUsuario = this.usuarios.findIndex(u => u._id == updUsuario._id);
 

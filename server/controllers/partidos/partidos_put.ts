@@ -32,7 +32,7 @@ export default async function (id: TMongoID, data: IPartido) {
     // REVIEW test con Postman ambos
     // Si se modifican los goles, actualiza los puntos.
     if (data.golesEquipo1 != undefined && data.golesEquipo2 != undefined) {
-        if (data.esEliminatoria) await actualizarPuntosFaseFinal(id, data.golesEquipo1, data.golesEquipo2, data.penalesEquipo1, data.penalesEquipo2);
+        if (data.esEliminatoria) await actualizarPuntosFaseFinal((query as IPartido));
         else await actualizarPuntosFaseGrupos(id, data.golesEquipo1, data.golesEquipo2);
     }
 

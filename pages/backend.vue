@@ -26,6 +26,10 @@
         <v-container class="ml-0 px-0">
           <backend-set-score-final-card />
         </v-container>
+
+        <v-container class="ml-0 px-0">
+          <backend-set-fecha-final-card />
+        </v-container>
       </v-col>
     </v-row>
   </v-container>
