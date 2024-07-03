@@ -67,7 +67,7 @@ function formatPartidoFinal(dataEquipos: IEquipo[], partido: IPartido, dataPredi
     const prediccion = dataPredicciones.find(prediccion => prediccion.partidoId == partido._id);
 
     // NOTE la eliminatoria de donde empieza Fase Final (puede ser Cuartos u Octavos)
-    const tipoEliminatoriaInicio: TTipoEliminatoria = "Cuartos"
+    const tipoEliminatoriaInicio: TTipoEliminatoria = "Cuartos";
 
     const equipo1: string = objEquipo1 ?
         (objEquipo1.nombre ?? "") :

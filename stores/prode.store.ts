@@ -15,6 +15,10 @@ export const useProdeStore = defineStore('prodeStore', {
     }),
 
     getters: {
+        dataFaseFinal(): IPartido[] {
+            return this.partidos.filter(p => p.esEliminatoria != undefined && p.esEliminatoria);
+        },
+
         dataFaseGrupos(): NProdeStore.FaseGrupos.IData[] {
             return getters.dataFaseGrupos(this);
         },
