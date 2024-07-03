@@ -51,10 +51,8 @@ function getEquipoName(valor: 1 | 2) {
 
   return equipo != undefined ?
     (equipo.nombre ?? "") :
-    (props.partido.tipoEliminatoria == "Tercero" ?
-      "Perdedor" :
-      "Ganador")
-    + " de " +
+    (props.partido.tipoEliminatoria == "Tercero" ? "Perdedor" : "Ganador") +
+    " de " +
     (props.partido.tipoEliminatoria == tipoEliminatoriaInicio ?
       "-" :
       useProdeStore().partidos.find(p => p._id == (valor == 1 ? props.partido.partidoEquipo1 : props.partido.partidoEquipo2))?.identificadorEliminatorias);
