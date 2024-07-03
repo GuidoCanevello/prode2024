@@ -15,6 +15,10 @@ export const useProdeStore = defineStore('prodeStore', {
     }),
 
     getters: {
+        dataFaseFinal(): IPartido[] {
+            return this.partidos.filter(p => p.esEliminatoria != undefined && p.esEliminatoria);
+        },
+
         dataFaseGrupos(): NProdeStore.FaseGrupos.IData[] {
             return getters.dataFaseGrupos(this);
         },
@@ -55,8 +59,21 @@ export const useProdeStore = defineStore('prodeStore', {
             }
         },
 
-        async dispatchUpdateResultadoPartido(partidoId: string, golesEquipo1: number, golesEquipo2: number) {
-            const body: IPartido = { golesEquipo1, golesEquipo2 }
+        async dispatchUpdateResultadoPartido(partidoId: string, golesEquipo1: number, golesEquipo2: number, penalesEquipo1?: number, penalesEquipo2?: number) {
+            const body: IPartido = { golesEquipo1, golesEquipo2, penalesEquipo1, penalesEquipo2 }
+            try {
+                const partido = await $fetchWithAuth(`/api/partidos/${partidoId}`, { method: "put", body }) as IPartido;
+
+                if (partido != undefined) this.partidos.splice(this.partidos.findIndex(p => p._id == partido._id), 1, partido);
+
+                return partido;
+            } catch (error) {
+                console.log("error", error);
+            }
+        },
+
+        async dispatchUpdateFechaEquipoPartido(partidoId: string, fecha: Date, equipo1: string, equipo2: string) {
+            const body: IPartido = { fecha, equipo1, equipo2 }
             try {
                 const partido = await $fetchWithAuth(`/api/partidos/${partidoId}`, { method: "put", body }) as IPartido;
 

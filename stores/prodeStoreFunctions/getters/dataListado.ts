@@ -66,18 +66,23 @@ function formatPartidoFinal(dataEquipos: IEquipo[], partido: IPartido, dataPredi
     const fecha = new Date(partido.fecha ?? new Date());
     const prediccion = dataPredicciones.find(prediccion => prediccion.partidoId == partido._id);
 
+    // NOTE la eliminatoria de donde empieza Fase Final (puede ser Cuartos u Octavos)
+    const tipoEliminatoriaInicio: TTipoEliminatoria = "Cuartos";
+
     const equipo1: string = objEquipo1 ?
         (objEquipo1.nombre ?? "") :
-        (partido.tipoEliminatoria == "Tercero" ? "Perdedor" : "Ganador")
+        (partido.tipoEliminatoria == "Tercero" ?
+            "Perdedor" :
+            "Ganador")
         + " de " +
-        (partido.tipoEliminatoria == "Octavos" ?
+        (partido.tipoEliminatoria == tipoEliminatoriaInicio ?
             "-" :
             dataPartidos.find(p => p._id == partido.partidoEquipo1)?.identificadorEliminatorias);
     const equipo2: string = objEquipo2 ?
         (objEquipo2.nombre ?? "") :
         (partido.tipoEliminatoria == "Tercero" ? "Perdedor" : "Ganador")
         + " de " +
-        (partido.tipoEliminatoria == "Octavos" ?
+        (partido.tipoEliminatoria == tipoEliminatoriaInicio ?
             "-" :
             dataPartidos.find(p => p._id == partido.partidoEquipo2)?.identificadorEliminatorias);
 
@@ -89,7 +94,7 @@ function formatPartidoFinal(dataEquipos: IEquipo[], partido: IPartido, dataPredi
         fecha,
         golesEquipo1: partido.golesEquipo1 != undefined ? partido.golesEquipo1 + (partido.penalesEquipo1 != undefined ? ` (${partido.penalesEquipo1})` : "") : 0,
         golesEquipo2: partido.golesEquipo2 != undefined ? partido.golesEquipo2 + (partido.penalesEquipo1 != undefined ? ` (${partido.penalesEquipo2})` : "") : 0,
-        descripcionPartido: `${partido.identificadorEliminatorias} - ${equipo1} vs. ${equipo2}`,
+        descripcionPartido: `${equipo1} vs. ${equipo2}`,
 
         tienePrediccion: prediccion != undefined,
         prediccion: prediccion != undefined ? {
