@@ -4,37 +4,73 @@
 
 ### Para Fase de Grupos - [Ir al Sitio](/fase-grupos)
 
-- 3 pts por acertar el resultado completo. Por ejemplo:
+&nbsp; - 3 pts por acertar el resultado completo. Por ejemplo:
   
-&nbsp;&nbsp;&nbsp;&nbsp; - Pronóstico: *Argentina* ***3 - 2*** *Arabia Saudita* 
+&nbsp;&nbsp;&nbsp;&nbsp; - Pronóstico: *Argentina* ***3 - 2*** *Brasil* 
 
-&nbsp;&nbsp;&nbsp;&nbsp; - Resultado: *Argentina* ***3 - 2*** *Arabia Saudita* 
+&nbsp;&nbsp;&nbsp;&nbsp; - Resultado: *Argentina* ***3 - 2*** *Brasil* 
 
 &nbsp;&nbsp;&nbsp;&nbsp; - Puntos: **3**
 
-- 1 pts por acertar el resultado pero no los goles. Por ejemplo:
+&nbsp; - 1 pts por acertar el resultado pero no los goles. Por ejemplo:
 
-&nbsp;&nbsp;&nbsp;&nbsp; - Pronóstico: *Argentina* ***3 - 2*** *Arabia Saudita* - (Victoria de Argentina)
+&nbsp;&nbsp;&nbsp;&nbsp; - Pronóstico: *Argentina* ***3 - 2*** *Brasil* - (Victoria de Argentina)
 
-&nbsp;&nbsp;&nbsp;&nbsp; - Resultado: *Argentina* ***2 - 0*** *Arabia Saudita* - (Victoria de Argentina)
+&nbsp;&nbsp;&nbsp;&nbsp; - Resultado: *Argentina* ***2 - 0*** *Brasil* - (Victoria de Argentina)
 
 &nbsp;&nbsp;&nbsp;&nbsp; - Puntos: **1**
 
-- 0 pts por no acertar ni goles ni resultado.
+&nbsp; - 0 pts por no acertar ni goles ni resultado.
   
 <br/>
 
 ### Para Fase Final - [Ir al Sitio](/fase-final)
 
-- 2 pts por acertar al ganador del partido (sin importar los goles o penales).
+&nbsp; - 3 pts por acertar el resultado completo (sin penales). Por ejemplo:
+  
+&nbsp;&nbsp;&nbsp;&nbsp; - Pronóstico: *Argentina* ***3 - 2*** *Brasil* 
+
+&nbsp;&nbsp;&nbsp;&nbsp; - Resultado: *Argentina* ***3 - 2*** *Brasil* 
+
+&nbsp;&nbsp;&nbsp;&nbsp; - Puntos: **3**
+
+&nbsp; - 1 pts por acertar el resultado pero no los goles (sin penales). Por ejemplo:
+
+&nbsp;&nbsp;&nbsp;&nbsp; - Pronóstico: *Argentina* ***3 - 2*** *Brasil* - (Victoria de Argentina)
+
+&nbsp;&nbsp;&nbsp;&nbsp; - Resultado: *Argentina* ***2 - 0*** *Brasil* - (Victoria de Argentina)
+
+&nbsp;&nbsp;&nbsp;&nbsp; - Puntos: **1**
+
+&nbsp; - 0 pts por no acertar ni goles ni resultado.
+
+<br/>
+
+Si el Pronóstico es un empate, no es necesario indicar los penales que se realizan despues (solo se asignan puntos si el Partido termina con penales). Por Ejemplo:
+  
+&nbsp;&nbsp;&nbsp;&nbsp; - Pronóstico: *Argentina* ***1 - 1*** *Brasil* 
+
+&nbsp;&nbsp;&nbsp;&nbsp; - Resultado: *Argentina* ***1 (5) - (3) 1*** *Brasil* 
+
+&nbsp;&nbsp;&nbsp;&nbsp; - Puntos: **3**
+
+<br/>
+
+&nbsp;&nbsp;&nbsp;&nbsp; - Pronóstico: *Argentina* ***3 - 3*** *Brasil* 
+
+&nbsp;&nbsp;&nbsp;&nbsp; - Resultado: *Argentina* ***1 (5) - (3) 1*** *Brasil* 
+
+&nbsp;&nbsp;&nbsp;&nbsp; - Puntos: **1**
 
 <br/>
 
 ### Para Mejores Jugadores - [Ir al Sitio](/mejores-jugadores)
 
-- 6 pts por acertar al Mejor Jugador.
-- 6 pts por acertar al Mejor Arquero.
-- 6 pts por acertar al Mejor Goleador.
+&nbsp; - 6 pts por acertar al Mejor Jugador.
+
+&nbsp; - 6 pts por acertar al Mejor Arquero. 
+
+&nbsp; - 6 pts por acertar al Mejor Goleador.
 
 <br/>
 
@@ -55,9 +91,12 @@ Una vez anotados todos los pronósticos de un Grupo, presionar el boton de *Guar
 
 <br/>
 
-<!-- ### Para Fase Final - [Ir al Sitio](/fase-final) -->
+### Para Fase Final - [Ir al Sitio](/fase-final)
 
-<!-- REVIEW escribir -->
+
+Anotar Pronóstico en los campos de cada partido y *Guardar Cambios* en cada pronóstico.
+
+*Ayuda: Se puede usar la tecla *Tab* para avanzar rapidamente entre los pronosticos.
 
 <br/>
 
@@ -74,9 +113,8 @@ Es posible actualizar los Jugadores luego de realizar un pronostico.
 
 ## Pronosticos
 
-<!-- - Las pronosticos se realizarán en dos etapas: antes y durante la fase de grupos,  -->
-<!-- TODO revisar y reescribir -->
-  <!-- y cuando se conozcan los cruces de octavos de final (hasta las 12:00 del 03/12/2022). -->
-<!-- - Justo antes del inicio de cada partido, la predicción correspondiente se cerrará. -->
-<!-- TODO revisar y reescribir -->
-<!-- - En la segunda fase se predice **qué equipo pasa** (es decir, quien gana, independientemente del resultado). -->
+&nbsp; - Los pronosticos en Fase de Grupos se realizarán antes y durante el transcurso de la fase de grupos.
+
+&nbsp; - Los pronosticos en Fase Final se realizarán antes de cada Partido, una vez que se conozcan ambos Equipos.
+
+&nbsp; - Justo antes del inicio de cada partido, la predicción correspondiente se cerrará.

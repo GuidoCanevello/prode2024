@@ -63,6 +63,12 @@ const currentUsuario = computed(() => {
                   </h3>
                 </v-tab>
 
+                <v-tab>
+                  <h3>
+                    Fase Final
+                  </h3>
+                </v-tab>
+
                 <!-- <v-tab>
                                 <h3>Mejores Jugadores</h3>
                             </v-tab> -->
@@ -70,19 +76,15 @@ const currentUsuario = computed(() => {
                                 <perfil-mejores-jugadores :mejorJugadorId="mejorJugadorId" :mejorArqueroId="mejorArqueroId"
                                     :mejorGoleadorId="mejorGoleadorId" />
                             </v-tab-item> -->
-
-                <!-- <v-tab>
-                                <h3>Fase Final</h3>
-                            </v-tab> -->
-                <!-- <v-tab-item>
-                                <perfil-fase-final v-if="IS_SCREEN_BEYOND_MEDIUM" :predicciones="prediccionesFaseFinal" />
-                                <perfil-fase-final-small v-else :predicciones="prediccionesFaseFinal" />
-                            </v-tab-item> -->
               </v-tabs>
 
               <v-tabs-window v-model="tab">
                 <v-tabs-window-item v-for="nombreGrupo in ['A', 'B', 'C', 'D']" :value="nombreGrupo">
                   <home-ranking-perfil-grupo-card :nombreCuenta="nombreCuenta" :nombreGrupo="nombreGrupo" />
+                </v-tabs-window-item>
+
+                <v-tabs-window-item>
+                  <home-ranking-perfil-fase-final-card :nombreCuenta="nombreCuenta" />
                 </v-tabs-window-item>
               </v-tabs-window>
             </template>
