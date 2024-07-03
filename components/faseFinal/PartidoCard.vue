@@ -14,6 +14,22 @@ const isSavingData = ref(false);
 const equipo1 = computed(() => useProdeStore().equipos.find(e => e._id == props.partido.equipo1));
 const equipo2 = computed(() => useProdeStore().equipos.find(e => e._id == props.partido.equipo2));
 
+const fechaFormateada = computed(() => {
+  if (props.partido.fecha != undefined) {
+    return formatoFecha(new Date(props.partido.fecha));
+  } else {
+    return "";
+  }
+})
+
+const horaFormateada = computed(() => {
+  if (props.partido.fecha != undefined) {
+    return formatoHora(new Date(props.partido.fecha));
+  } else {
+    return "";
+  }
+})
+
 // NOTE usado para actualiar la prediccion
 const prediccion = computed(() => {
   const pred = predicciones.value.find(p => p.partidoId == props.partido._id);
@@ -71,11 +87,15 @@ function guardarCambios() {
       </v-row>
     </v-card-title>
 
+    <v-card-subtitle>
+      Fecha: {{ fechaFormateada }} - Hora: {{ horaFormateada }}
+    </v-card-subtitle>
+
     <v-card-text v-if="isLogged">
       <v-container id="page-container">
         <template v-if="equipo1 != undefined && equipo2 != undefined">
           <v-row>
-            <v-spacer v-if="!mdAndUp"/>
+            <v-spacer v-if="!mdAndUp" />
 
             <v-col cols="auto" align-self="center">
               <BanderaImg :code="equipo1.code" />
@@ -118,7 +138,7 @@ function guardarCambios() {
               <BanderaImg :code="equipo2.code" />
             </v-col>
 
-            <v-spacer v-if="!mdAndUp"/>
+            <v-spacer v-if="!mdAndUp" />
           </v-row>
 
           <v-row v-if="xs">

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useDisplay } from 'vuetify';
+import { formatoFecha, formatoHora } from '~/utils/fecha';
 
 const { isGettingData, hasData, dataProxPartido } = storeToRefs(useProdeStore());
 const { isLogged } = storeToRefs(useAuthStore());
@@ -12,11 +13,7 @@ const isLoadingProxPartido = computed(() => {
 const fechaFormateada = computed(() => {
   if (!isLoadingProxPartido.value && dataProxPartido.value != undefined) {
     const fecha = dataProxPartido.value.fecha;
-    const nombreDia = obtenerNombreDia(fecha.getDay()),
-      dia = addCero(fecha.getDate()),
-      mes = addCero(fecha.getMonth() + 1);
-
-    return `${nombreDia} ${dia}/${mes}`;
+    return formatoFecha(fecha);
   } else {
     return "";
   }
@@ -25,10 +22,7 @@ const fechaFormateada = computed(() => {
 const horaFormateada = computed(() => {
   if (!isLoadingProxPartido.value && dataProxPartido.value != undefined) {
     const fecha = dataProxPartido.value.fecha;
-    const hora = addCero(fecha.getHours()),
-      minutos = addCero(fecha.getMinutes());
-
-    return `${hora}:${minutos}`;
+    return formatoHora(fecha);
   } else {
     return "";
   }
