@@ -190,17 +190,21 @@ function getIsEmpate() {
             <v-spacer />
 
             <v-col md="auto" align-self="center">
-              Gana {{ equipo1.nombre }} por Penales
+              <v-card class="pa-1" variant="outlined" color="penales-1">
+                Gana {{ equipo1.nombre }} por Penales
+              </v-card>
             </v-col>
 
             <v-col cols="auto" align-self="center">
               <v-switch v-model="isPrediccionPenalesEquipo1" :indeterminate="isPrediccionPenalesEquipo1 == undefined"
-                hide-details="auto" color="success"
-                :base-color="isPrediccionPenalesEquipo1 != undefined ? 'info' : ''" />
+                hide-details="auto" color="penales-2"
+                :base-color="isPrediccionPenalesEquipo1 != undefined ? 'penales-1' : ''" />
             </v-col>
 
             <v-col md="auto" align-self="center" style="text-align: end;">
-              Gana {{ equipo2.nombre }} por Penales
+              <v-card class="pa-1" variant="outlined" color="penales-2">
+                Gana {{ equipo2.nombre }} por Penales
+              </v-card>
             </v-col>
 
             <v-spacer />
