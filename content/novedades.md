@@ -1,10 +1,20 @@
+## 4 de Julio - 17.00hs
+
+<br/>
+
+- Permitir predicciones sobre resultado de Penales en Partidos de Fase Final.
+- Actualizar información de Reglamento.
+
+<br/>
+<br/>
+
 ## 3 de Julio - 13.00hs
 
 <br/>
 
 - Habilitar pantalla de Predicciones de Fase Final.
 - Permitir ver Predicciones de Fase Final de otros Usuarios a traves de la tabla de Ranking.
-- Actualiar información de Reglamento.
+- Actualizar información de Reglamento.
 
 <br/>
 <br/>
