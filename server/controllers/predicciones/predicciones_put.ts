@@ -8,6 +8,7 @@ import { Usuario } from "../../models/Usuario.model";
  * @param data Los datos actualizados de la Prediccion (no es necesario que vengan todos, solo los que se van a actualizar)
  */
 export default async function (usuarioId: TMongoID, prediccionId: TMongoID, data: IPrediccion) {
+    console.log(data)
     const usuario = await Usuario.findById(usuarioId).exec()
         .catch((error) => {
             if (error.name === "CastError") {
@@ -39,6 +40,7 @@ export default async function (usuarioId: TMongoID, prediccionId: TMongoID, data
     } else {
         usuario.predicciones[prediccionIndex].golesEquipo1 = data.golesEquipo1 != undefined ? data.golesEquipo1 : usuario.predicciones[prediccionIndex].golesEquipo1;
         usuario.predicciones[prediccionIndex].golesEquipo2 = data.golesEquipo2 != undefined ? data.golesEquipo2 : usuario.predicciones[prediccionIndex].golesEquipo2;
+        usuario.predicciones[prediccionIndex].penales = data.penales != undefined ? data.penales : usuario.predicciones[prediccionIndex].penales;
         usuario.predicciones[prediccionIndex].puntos = data.puntos != undefined ? data.puntos : usuario.predicciones[prediccionIndex].puntos;
         usuario.predicciones[prediccionIndex].partidoId = usuario.predicciones[prediccionIndex].partidoId;
 

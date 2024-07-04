@@ -32,16 +32,29 @@ const horaFormateada = computed(() => {
 
 // NOTE usado para actualiar la prediccion
 const prediccion = computed(() => {
-  const pred = predicciones.value.find(p => p.partidoId == props.partido._id);
-  if (pred != undefined) {
-    prediccionEquipo1.value = pred.golesEquipo1?.toString() ?? ""
-    prediccionEquipo2.value = pred.golesEquipo2?.toString() ?? ""
+  if (prediccionEquipo1.value == "" && prediccionEquipo2.value == "") {
+    const pred = predicciones.value.find(p => p.partidoId == props.partido._id);
+    if (pred != undefined) {
+      prediccionEquipo1.value = pred.golesEquipo1?.toString() ?? "";
+      prediccionEquipo2.value = pred.golesEquipo2?.toString() ?? "";
+
+      if (getIsEmpate()) {
+        isPrediccionPenalesEquipo1.value = pred.penales == "GanaE2";
+      }
+    }
+    return pred;
   }
-  return pred;
 })
 
 const prediccionEquipo1 = ref("");
 const prediccionEquipo2 = ref("");
+
+const showSeleccionEmpate = computed(() => {
+  const isEmpate = getIsEmpate()
+  if (!isEmpate) isPrediccionPenalesEquipo1.value = undefined;
+  return isEmpate;
+});
+const isPrediccionPenalesEquipo1 = ref<boolean | undefined>(undefined);
 
 const nomEquipo1 = computed(() => getEquipoName(1));
 const nomEquipo2 = computed(() => getEquipoName(2));
@@ -60,10 +73,15 @@ function getEquipoName(valor: 1 | 2) {
 
 function guardarCambios() {
   isSavingData.value = true;
-  useUserStore().updatePrediccion(props.partido._id, prediccionEquipo1.value, prediccionEquipo2.value)
+  const penales: TPrediccionPenales = isPrediccionPenalesEquipo1.value == undefined ? "Sin" : isPrediccionPenalesEquipo1.value ? "GanaE2" : "GanaE1";
+  useUserStore().updatePrediccion(props.partido._id, prediccionEquipo1.value, prediccionEquipo2.value, penales)
     .finally(() => {
       isSavingData.value = false;
     });
+}
+
+function getIsEmpate() {
+  return prediccionEquipo1.value != "" && prediccionEquipo2.value != "" && prediccionEquipo1.value == prediccionEquipo2.value;
 }
 </script>
 
@@ -167,6 +185,26 @@ function guardarCambios() {
                 :disabled="isSavingData" />
             </v-col>
           </v-row>
+
+          <v-row v-if="showSeleccionEmpate" id="penales-row">
+            <v-spacer />
+
+            <v-col md="auto" align-self="center">
+              Gana {{ equipo1.nombre }} por Penales
+            </v-col>
+
+            <v-col cols="auto" align-self="center">
+              <v-switch v-model="isPrediccionPenalesEquipo1" :indeterminate="isPrediccionPenalesEquipo1 == undefined"
+                hide-details="auto" color="success"
+                :base-color="isPrediccionPenalesEquipo1 != undefined ? 'info' : ''" />
+            </v-col>
+
+            <v-col md="auto" align-self="center" style="text-align: end;">
+              Gana {{ equipo2.nombre }} por Penales
+            </v-col>
+
+            <v-spacer />
+          </v-row>
         </template>
 
         <v-row v-else> <v-col> <b> No se encuentra habilitada la Predicción </b> </v-col> </v-row>
@@ -184,3 +222,36 @@ function guardarCambios() {
     </v-card-actions>
   </v-card>
 </template>
+
+<style>
+@media (min-width: 800px) {
+  #penales-row {
+    .v-selection-control__wrapper {
+      width: 200px;
+
+      .v-switch__track {
+        width: 200px;
+      }
+    }
+
+    .v-switch {
+      .v-selection-control__input {
+        transform: translateX(-100px);
+      }
+
+      .v-selection-control--dirty {
+        .v-selection-control__input {
+          transform: translateX(100px);
+        }
+      }
+    }
+
+    .v-switch--indeterminate {
+      .v-selection-control__input {
+        transform: translateX(0px) !important;
+        transform: scale(0.8);
+      }
+    }
+  }
+}
+</style>

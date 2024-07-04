@@ -1,0 +1,1 @@
+type TPrediccionPenales = "Sin" | "GanaE1" | "GanaE2";

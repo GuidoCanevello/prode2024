@@ -56,8 +56,8 @@ export const useUserStore = defineStore('userStore', {
             }
         },
 
-        async updatePrediccion(partidoId: TMongoID, golesEquipo1: number | string, golesEquipo2: number | string) {
-            await updatePrediccion(this, partidoId, golesEquipo1, golesEquipo2);
+        async updatePrediccion(partidoId: TMongoID, golesEquipo1: number | string, golesEquipo2: number | string, penales?: TPrediccionPenales) {
+            await updatePrediccion(this, partidoId, golesEquipo1, golesEquipo2, penales);
         },
 
         removeUserData() {
