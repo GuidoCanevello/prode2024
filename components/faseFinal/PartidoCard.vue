@@ -187,7 +187,7 @@ function getIsEmpate() {
           </v-row>
 
           <v-row v-if="showSeleccionEmpate" id="penales-row">
-            <v-spacer />
+            <v-spacer v-if="mdAndUp" />
 
             <v-col md="auto" align-self="center">
               <v-card class="pa-1" variant="outlined" color="penales-1">
@@ -207,7 +207,7 @@ function getIsEmpate() {
               </v-card>
             </v-col>
 
-            <v-spacer />
+            <v-spacer v-if="mdAndUp" />
           </v-row>
         </template>
 
