@@ -31,7 +31,7 @@ const isLoadingChanges = ref(false);
 function handleGuardar() {
   isLoadingChanges.value = true;
   
-  useProdeStore().dispatchUpdateResultadoPartido(getSelectedPartidoId(), golesEquipo1.value, golesEquipo2.value)
+  useProdeStore().dispatchUpdateResultadoPartido(getSelectedPartidoId(), golesEquipo1.value, golesEquipo2.value, penalesEquipo1.value, penalesEquipo2.value)
     .finally(() => {
       isLoadingChanges.value = false;
     });
@@ -81,7 +81,7 @@ function getSelectedPartidoId() {
           </v-col>
 
           <v-col>
-            <v-text-field v-model="penalesEquipo2" label="penales 1" variant="outlined" hide-details="auto" />
+            <v-text-field v-model="penalesEquipo2" label="penales 2" variant="outlined" hide-details="auto" />
           </v-col>
         </v-row>
       </template>

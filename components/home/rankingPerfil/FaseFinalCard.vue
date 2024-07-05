@@ -28,6 +28,9 @@ const partidos = computed(() => {
       tienePrediccion: prediccion != undefined,
       golesPrediccionEquipo1: prediccion?.golesEquipo1,
       golesPrediccionEquipo2: prediccion?.golesEquipo2,
+      penalesPrediccion: prediccion?.penales == undefined || partido.golesEquipo1 != partido.golesEquipo2 ? "-" : (
+        prediccion?.penales == "Sin" ? "Sin Predicción" :
+          `Gana ${getEquipoName(partido, prediccion?.penales == "GanaE1" ? 1 : 2)}`),
 
       prediccionPuntos: isAdmin.value ? (prediccion?.puntos ?? "-") : undefined,
     }
@@ -106,6 +109,12 @@ function getEquipoName(partido: IPartido, valor: 1 | 2) {
               title: "Predicción",
               align: "start",
               value: "prediccion",
+              sortable: false,
+            },
+            {
+              title: "Predicción Penales",
+              align: "start",
+              value: "penalesPrediccion",
               sortable: false,
             },
             {
