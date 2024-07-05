@@ -10,6 +10,12 @@ const { predicciones } = storeToRefs(useProdeStore());
 const { xs, mdAndUp } = useDisplay();
 
 const isSavingData = ref(false);
+const isEnabled = computed(() => {
+  return props.partido.fecha != undefined && new Date() < new Date(props.partido.fecha)
+});
+const isTextFieldDisabled = computed(() => {
+  return isSavingData.value || !isEnabled.value;
+})
 
 const equipo1 = computed(() => useProdeStore().equipos.find(e => e._id == props.partido.equipo1));
 const equipo2 = computed(() => useProdeStore().equipos.find(e => e._id == props.partido.equipo2));
@@ -98,7 +104,7 @@ function getIsEmpate() {
         </v-col>
 
         <v-col v-if="mdAndUp && isLogged" cols="auto">
-          <v-btn color="success" variant="elevated" @click="guardarCambios">Guardar</v-btn>
+          <v-btn color="success" variant="elevated" :disabled="isTextFieldDisabled" @click="guardarCambios">Guardar</v-btn>
         </v-col>
       </v-row>
     </v-card-title>
@@ -123,7 +129,7 @@ function getIsEmpate() {
 
             <v-col v-if="mdAndUp" align-self="center">
               <v-text-field v-model="prediccionEquipo1" :label="`Predicción Goles ${equipo1.nombre}`"
-                hide-details="auto" :variant="!isSavingData ? 'outlined' : 'filled'" :disabled="isSavingData" />
+                hide-details="auto" :variant="!isTextFieldDisabled ? 'outlined' : 'filled'" :disabled="isTextFieldDisabled" />
             </v-col>
 
             <v-col cols="auto" align-self="center">
@@ -142,8 +148,8 @@ function getIsEmpate() {
 
             <v-col v-if="mdAndUp" align-self="center">
               <v-text-field v-model="prediccionEquipo2" :label="`Predicción Goles ${equipo2.nombre}`"
-                style="text-align: end;" hide-details="auto" :variant="!isSavingData ? 'outlined' : 'filled'"
-                :disabled="isSavingData" />
+                style="text-align: end;" hide-details="auto" :variant="!isTextFieldDisabled ? 'outlined' : 'filled'"
+                :disabled="isTextFieldDisabled" />
             </v-col>
 
             <v-col cols="auto" align-self="center">
@@ -172,7 +178,7 @@ function getIsEmpate() {
           <v-row v-if="!mdAndUp">
             <v-col align-self="center">
               <v-text-field v-model="prediccionEquipo1" :label="`${equipo1.nombre}`" type="number" hide-details="auto"
-                :variant="!isSavingData ? 'outlined' : 'filled'" :disabled="isSavingData" />
+                :variant="!isTextFieldDisabled ? 'outlined' : 'filled'" :disabled="isTextFieldDisabled" />
             </v-col>
 
             <v-col cols="auto" align-self="center">
@@ -181,8 +187,8 @@ function getIsEmpate() {
 
             <v-col align-self="center">
               <v-text-field v-model="prediccionEquipo2" :label="`${equipo2.nombre}`" type="number"
-                style="text-align: end;" hide-details="auto" :variant="!isSavingData ? 'outlined' : 'filled'"
-                :disabled="isSavingData" />
+                style="text-align: end;" hide-details="auto" :variant="(!isTextFieldDisabled) ? 'outlined' : 'filled'"
+                :disabled="isTextFieldDisabled" />
             </v-col>
           </v-row>
 
@@ -197,7 +203,7 @@ function getIsEmpate() {
 
             <v-col cols="auto" align-self="center">
               <v-switch v-model="isPrediccionPenalesEquipo1" :indeterminate="isPrediccionPenalesEquipo1 == undefined"
-                hide-details="auto" color="penales-2"
+                hide-details="auto" color="penales-2" :disabled="isTextFieldDisabled"
                 :base-color="isPrediccionPenalesEquipo1 != undefined ? 'penales-1' : ''" />
             </v-col>
 
@@ -220,7 +226,7 @@ function getIsEmpate() {
         <v-spacer />
 
         <v-col cols="auto">
-          <v-btn color="success" variant="elevated" @click="guardarCambios">Guardar</v-btn>
+          <v-btn color="success" variant="elevated" :disabled="isTextFieldDisabled" @click="guardarCambios">Guardar</v-btn>
         </v-col>
       </v-row>
     </v-card-actions>
