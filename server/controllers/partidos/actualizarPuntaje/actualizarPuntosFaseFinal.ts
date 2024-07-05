@@ -2,6 +2,7 @@ import { Partido } from "~/server/models/Partido.model";
 import predicciones_put from "../../predicciones/predicciones_put";
 import usuarios_list from "../../usuarios/usuarios_list";
 import usuarios_put from "../../usuarios/usuarios_put";
+import partidos_get from "../partidos_get";
 
 /**
  * Actualiza las predicciones que los Usuarios realizaron sobre el partido y el total de Puntos del Usuario.
@@ -12,9 +13,11 @@ import usuarios_put from "../../usuarios/usuarios_put";
  * @param penalesEquipo1 (Opcional) Los Penales anotados por el Equipo 1
  * @param penalesEquipo2 (Opcional) Los Penales anotados por el Equipo 2
  */
-export default async function ({ _id, equipo1, equipo2, golesEquipo1, golesEquipo2, penalesEquipo1, penalesEquipo2, tipoEliminatoria }: IPartido) {
-    if (_id == undefined || equipo1 == undefined || equipo2 == undefined || golesEquipo1 == undefined || golesEquipo2 == undefined || tipoEliminatoria == undefined) return;
-    const partidoId = _id;
+export default async function (partidoId: TMongoID) {
+    const { equipo1, equipo2, golesEquipo1, golesEquipo2, penalesEquipo1, penalesEquipo2, esEliminatoria, isTest, tipoEliminatoria } = await partidos_get(partidoId);
+
+    if (equipo1 == undefined || equipo2 == undefined || golesEquipo1 == undefined || golesEquipo2 == undefined) return;
+
     const esVictoriaEquipo1 = golesEquipo1 > golesEquipo2 ||
         (golesEquipo1 == golesEquipo2 &&
             penalesEquipo1 != undefined &&
@@ -22,7 +25,7 @@ export default async function ({ _id, equipo1, equipo2, golesEquipo1, golesEquip
             penalesEquipo1 > penalesEquipo2);
 
     // Obtener Usuarios
-    const usuarios = await usuarios_list();
+    const usuarios = await usuarios_list(isTest);
 
     for (const usuario of usuarios) {
         // Obtener index prediccion
@@ -30,13 +33,24 @@ export default async function ({ _id, equipo1, equipo2, golesEquipo1, golesEquip
 
         if (prediccionIndex != -1) {
             // Obtener puntos correspondientes al resultado
-            const puntos = obtenerPuntajeResultado(
+            let puntos = obtenerPuntajeResultado(
                 {
                     golesEquipo1: usuario.predicciones[prediccionIndex].golesEquipo1,
                     golesEquipo2: usuario.predicciones[prediccionIndex].golesEquipo2
                 },
                 { golesEquipo1, golesEquipo2 }
             )
+
+            // Si es Partido de eliminatorias, ver si hubo prediccion de penales
+            if (esEliminatoria && penalesEquipo1 != undefined && penalesEquipo2 != undefined &&
+                usuario.predicciones[prediccionIndex].penales != undefined && usuario.predicciones[prediccionIndex].penales != "Sin") {
+
+                // Si acerto a ganador de Penales, sumar 1 punto
+                if ((penalesEquipo1 > penalesEquipo2 && usuario.predicciones[prediccionIndex].penales == "GanaE1") ||
+                    (penalesEquipo2 > penalesEquipo1 && usuario.predicciones[prediccionIndex].penales == "GanaE2"))
+
+                    puntos++;
+            }
 
             // Sumar puntos de predicciones
             let userPuntos = 0;

@@ -29,18 +29,18 @@ export default async function (id: TMongoID, data: IPartido) {
             }
         });
 
-    // REVIEW test con Postman ambos
-    // Si se modifican los goles, actualiza los puntos.
-    if (data.golesEquipo1 != undefined && data.golesEquipo2 != undefined) {
-        if (data.esEliminatoria) await actualizarPuntosFaseFinal((query as IPartido));
-        else await actualizarPuntosFaseGrupos(id, data.golesEquipo1, data.golesEquipo2);
-    }
 
     if (query === null) {
         throw {
             number: 404,
             content: "No se encuentra el Partido",
         };
+    }
+    
+    // Si se modifican los goles, actualiza los puntos.
+    if (data.golesEquipo1 != undefined && data.golesEquipo2 != undefined) {
+        if (query.esEliminatoria) await actualizarPuntosFaseFinal(id);
+        else await actualizarPuntosFaseGrupos(id, data.golesEquipo1, data.golesEquipo2);
     }
 
     return query;

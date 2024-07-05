@@ -53,6 +53,10 @@ const light: ThemeDefinition = {
     'chat-card-10': '#f5f5f5',
     'chat-card-11': '#a1887f',
     'chat-card-12': '#ff8a65',
+
+    //* Para Prediccion Penales
+    'penales-1': '#BF360C',
+    'penales-2': '#00695C',
   }
 }
 
@@ -105,6 +109,10 @@ const dark: ThemeDefinition = {
     'chat-card-10': '#558b2f',
     'chat-card-11': '#9e9d24',
     'chat-card-12': '#00695c',
+
+    //* Para Prediccion Penales
+    'penales-1': '#FFAB91',
+    'penales-2': '#80CBC4',
   }
 }
 

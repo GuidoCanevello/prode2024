@@ -46,21 +46,22 @@
 
 <br/>
 
-Si el Pronóstico es un empate, no es necesario indicar los penales que se realizan despues (solo se asignan puntos si el Partido termina con penales). Por Ejemplo:
+<!-- Si el Pronóstico es un empate, no es necesario indicar los penales que se realizan despues (solo se asignan puntos si el Partido termina con penales). Por Ejemplo: -->
+Si el Pronóstico es un empate, es posible indicar el resultado de los penales que se realizan despues. Los resultados de los goles durante el Partido son iguales al Pronostico común, pero acertar el ganador de Penales da **1 punto extra**. Por Ejemplo:
   
-&nbsp;&nbsp;&nbsp;&nbsp; - Pronóstico: *Argentina* ***1 - 1*** *Brasil* 
+&nbsp;&nbsp;&nbsp;&nbsp; - Pronóstico: *Argentina* ***1 - 1*** *Brasil*  - *Gana Argentina por Penales*
 
 &nbsp;&nbsp;&nbsp;&nbsp; - Resultado: *Argentina* ***1 (5) - (3) 1*** *Brasil* 
 
-&nbsp;&nbsp;&nbsp;&nbsp; - Puntos: **3**
+&nbsp;&nbsp;&nbsp;&nbsp; - Puntos: **4** = *(3 de Resultado + 1 de Penales)*
 
 <br/>
 
-&nbsp;&nbsp;&nbsp;&nbsp; - Pronóstico: *Argentina* ***3 - 3*** *Brasil* 
+&nbsp;&nbsp;&nbsp;&nbsp; - Pronóstico: *Argentina* ***3 - 3*** *Brasil* - *Gana Argentina por Penales*
 
-&nbsp;&nbsp;&nbsp;&nbsp; - Resultado: *Argentina* ***1 (5) - (3) 1*** *Brasil* 
+&nbsp;&nbsp;&nbsp;&nbsp; - Resultado: *Argentina* ***1 (3) - (5) 1*** *Brasil* 
 
-&nbsp;&nbsp;&nbsp;&nbsp; - Puntos: **1**
+&nbsp;&nbsp;&nbsp;&nbsp; - Puntos: **1** = *(1 de Empate sin acertar Goles + 0 de Penales ya que gano Brasil)*
 
 <br/>
 

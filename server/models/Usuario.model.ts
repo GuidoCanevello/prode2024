@@ -10,6 +10,10 @@ const prediccionSchema = new Schema({
         type: Number,
         required: true
     },
+    penales: {
+        type: String,
+        default: "Sin"
+    },
     puntos: {
         type: Number,
         default: 0,
