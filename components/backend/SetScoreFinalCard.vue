@@ -8,7 +8,7 @@ const partidosAutocomplete = computed(() => {
 const selectedPartido = ref("");
 
 const golesEquipo1 = ref(0);
-const penalesEquipo1 = ref(0);
+const penalesEquipo1 = ref<number | undefined>(undefined);
 const labelEquipo1 = computed(() => {
   const partidos = useProdeStore().dataListado.filter(p => p.fecha < new Date());
 
@@ -18,7 +18,7 @@ const labelEquipo1 = computed(() => {
 });
 
 const golesEquipo2 = ref(0);
-const penalesEquipo2 = ref(0);
+const penalesEquipo2 = ref<number | undefined>(undefined);
 const labelEquipo2 = computed(() => {
   const partidos = useProdeStore().dataListado.filter(p => p.fecha < new Date());
 
