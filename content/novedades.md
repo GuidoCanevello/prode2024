@@ -1,8 +1,9 @@
-## 4 de Julio - 17.00hs
+## 5 de Julio - 18.00hs
 
 <br/>
 
 - Permitir predicciones sobre resultado de Penales en Partidos de Fase Final.
+- Permitir visualizar predicciones sobre resultado de Penales de otros Jugadores.
 - Actualizar información de Reglamento.
 
 <br/>
