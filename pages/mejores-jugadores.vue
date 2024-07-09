@@ -1,5 +1,7 @@
 <script setup lang="ts">
-// TODO https://github.com/openfootball/copa-america
+// https://github.com/openfootball/copa-america
+const { hasData: hasProdeData } = storeToRefs(useProdeStore());
+const { hasData: hasUserData } = storeToRefs(useUserStore());
 </script>
 
 <template>
@@ -14,9 +16,29 @@
       </v-col>
     </v-row>
 
-    <v-row>
+    <template v-if="hasProdeData && hasUserData">
+      <v-row>
+        <v-col>
+          <mejores-jugadores-card :tipo="'Jugador'" />
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col>
+          <mejores-jugadores-card :tipo="'Goleador'" />
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col>
+          <mejores-jugadores-card :tipo="'Arquero'" />
+        </v-col>
+      </v-row>
+    </template>
+
+    <v-row v-else>
       <v-col>
-        <UnderConstructionCard />
+        <loading-card />
       </v-col>
     </v-row>
   </v-container>
