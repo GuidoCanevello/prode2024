@@ -2,6 +2,8 @@
 // https://github.com/openfootball/copa-america
 const { hasData: hasProdeData } = storeToRefs(useProdeStore());
 const { hasData: hasUserData } = storeToRefs(useUserStore());
+
+const prediccionesAllowed = ref(true);
 </script>
 
 <template>
@@ -19,19 +21,19 @@ const { hasData: hasUserData } = storeToRefs(useUserStore());
     <template v-if="hasProdeData && hasUserData">
       <v-row>
         <v-col>
-          <mejores-jugadores-card :tipo="'Jugador'" />
+          <mejores-jugadores-card :tipo="'Jugador'" :isEnabled="prediccionesAllowed" />
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <mejores-jugadores-card :tipo="'Goleador'" />
+          <mejores-jugadores-card :tipo="'Goleador'" :isEnabled="prediccionesAllowed" />
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <mejores-jugadores-card :tipo="'Arquero'" />
+          <mejores-jugadores-card :tipo="'Arquero'" :isEnabled="prediccionesAllowed" />
         </v-col>
       </v-row>
     </template>

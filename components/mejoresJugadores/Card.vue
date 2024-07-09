@@ -3,7 +3,7 @@ import { useDisplay } from 'vuetify';
 
 type TTipoMejorJugador = "Jugador" | "Goleador" | "Arquero";
 
-const props = defineProps<{ tipo: TTipoMejorJugador }>()
+const props = defineProps<{ tipo: TTipoMejorJugador, isEnabled: boolean }>()
 const { mdAndUp } = useDisplay();
 
 onMounted(() => {
@@ -93,7 +93,7 @@ function guardarCambios() {
         </v-col>
 
         <v-col v-if="mdAndUp" cols="auto">
-          <v-btn color="success" variant="elevated" :disabled="isDisabled || isSavingData"
+          <v-btn color="success" variant="elevated" :disabled="isDisabled || isSavingData || !isEnabled"
             @click="guardarCambios">Guardar</v-btn>
         </v-col>
       </v-row>
@@ -103,7 +103,7 @@ function guardarCambios() {
       <v-row>
         <v-col cols="10" sm="5">
           <v-autocomplete v-model="selectedEquipoName" label="Equipo" :items="equiposAutocomplete" variant="outlined"
-            hide-details="auto" @update:model-value="onSelectEquipo" />
+            hide-details="auto" @update:model-value="onSelectEquipo" :disabled="!isEnabled" />
         </v-col>
 
         <template v-if="selectedEquipo != undefined">
@@ -115,7 +115,7 @@ function guardarCambios() {
 
           <v-col cols="12" sm="6">
             <v-autocomplete v-model="selectedJugadorName" label="Jugador" :items="jugadoresAutocomplete"
-              variant="outlined" hide-details="auto" @update:model-value="onSelectJugador" />
+              variant="outlined" hide-details="auto" @update:model-value="onSelectJugador" :disabled="!isEnabled" />
           </v-col>
         </template>
       </v-row>
@@ -132,7 +132,7 @@ function guardarCambios() {
         <v-spacer />
 
         <v-col cols="auto">
-          <v-btn color="success" variant="elevated" :disabled="isDisabled || isSavingData"
+          <v-btn color="success" variant="elevated" :disabled="isDisabled || isSavingData || !isEnabled"
             @click="guardarCambios">Guardar</v-btn>
         </v-col>
       </v-row>
