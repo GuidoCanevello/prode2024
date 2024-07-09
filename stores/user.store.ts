@@ -8,6 +8,9 @@ export const useUserStore = defineStore('userStore', {
         usuarioNombreJugador: "",
         usuarioImagenSrc: "",
         usuarioPuntos: 0,
+        prediccionMejorJugador: undefined,
+        prediccionMejorArquero: undefined,
+        prediccionMejorGoleador: undefined,
 
         isGettingData: false,
         hasData: false,
@@ -84,7 +87,8 @@ function updateUsuarioState(state: NUserStore.IStoreState, usuario: IUsuario) {
     state.usuarioNombreJugador = usuario.nombreJugador ?? "DEFAULT";
     state.usuarioImagenSrc = usuario.imagenSrc ?? "DEFAULT";
     state.usuarioPuntos = usuario.puntos ?? 0;
-    // this.d('SET_PREDICCION_MEJOR_JUGADOR', usuario.prediccionMejorJugador);
-    // this.d('SET_PREDICCION_MEJOR_ARQUERO', usuario.prediccionMejorArquero);
-    // this.d('SET_PREDICCION_MEJOR_GOLEADOR', usuario.prediccionMejorGoleador);
+
+    state.prediccionMejorJugador = usuario.prediccionMejorJugador;
+    state.prediccionMejorArquero = usuario.prediccionMejorArquero;
+    state.prediccionMejorGoleador = usuario.prediccionMejorGoleador;
 }

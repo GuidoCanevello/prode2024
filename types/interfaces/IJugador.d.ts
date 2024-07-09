@@ -1,7 +1,7 @@
 interface IJugador {
     _id?: TMongoID,
     nombre?: string,
-    posicion?: "Defender" | "Midfielder" | "Forward" | "Goalkeeper",
+    posicion?: TPosicionJugador,
     numero?: number,
     linkfoto?: string,
     esMejorJugador?: boolean,

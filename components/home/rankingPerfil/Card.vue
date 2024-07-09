@@ -69,6 +69,12 @@ const currentUsuario = computed(() => {
                   </h3>
                 </v-tab>
 
+                <v-tab>
+                  <h3>
+                    Mejores Jugadores
+                  </h3>
+                </v-tab>
+
                 <!-- <v-tab>
                                 <h3>Mejores Jugadores</h3>
                             </v-tab> -->
@@ -85,6 +91,10 @@ const currentUsuario = computed(() => {
 
                 <v-tabs-window-item>
                   <home-ranking-perfil-fase-final-card :nombreCuenta="nombreCuenta" />
+                </v-tabs-window-item>
+
+                <v-tabs-window-item>
+                  <home-ranking-perfil-mejores-jugadores-card :nombreCuenta="nombreCuenta" />
                 </v-tabs-window-item>
               </v-tabs-window>
             </template>

@@ -6,9 +6,9 @@ namespace NUserStore {
         usuarioNombreJugador: string,
         usuarioImagenSrc: string,
         usuarioPuntos: number,
-        // prediccionMejorJugador: null,
-        // prediccionMejorArquero: null,
-        // prediccionMejorGoleador: null,
+        prediccionMejorJugador: undefined | TMongoID,
+        prediccionMejorArquero: undefined | TMongoID,
+        prediccionMejorGoleador: undefined | TMongoID,
 
         //* State Booleans
         isGettingData: boolean;

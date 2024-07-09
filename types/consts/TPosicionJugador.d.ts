@@ -1,0 +1,1 @@
+type TPosicionJugador = "Arquero" | "Defensor" | "Mediocampista" | "Delantero";
