@@ -1,3 +1,13 @@
+## 9 de Julio - 18.00hs
+
+<br/>
+
+- Permitir predicciones de mejor jugador
+- Permitir visualizar predicciones de mejor jugador de otros Jugadores.
+
+<br/>
+<br/>
+
 ## 5 de Julio - 18.00hs
 
 <br/>
