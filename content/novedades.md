@@ -2,7 +2,7 @@
 
 <br/>
 
-- Permitir predicciones de mejor jugador
+- Permitir predicciones de mejor jugador.
 - Permitir visualizar predicciones de mejor jugador de otros Jugadores.
 
 <br/>

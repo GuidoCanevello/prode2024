@@ -3,7 +3,7 @@
 const { hasData: hasProdeData } = storeToRefs(useProdeStore());
 const { hasData: hasUserData } = storeToRefs(useUserStore());
 
-const prediccionesAllowed = ref(true);
+const prediccionesAllowed = ref(false);
 </script>
 
 <template>
