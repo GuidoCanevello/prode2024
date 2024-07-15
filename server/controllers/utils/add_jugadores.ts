@@ -4,7 +4,7 @@ import { Equipo } from '~/server/models/Equipo.model';
 import { Jugador } from '~/server/models/Jugador.model';
 import mongoose from 'mongoose';
 
-const PARTIDOS_TEST = true;
+const PARTIDOS_TEST = false;
 
 export default async function () {
   await Jugador.deleteMany({ isTest: PARTIDOS_TEST });
