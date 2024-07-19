@@ -3,7 +3,7 @@ import { useDisplay } from 'vuetify';
 
 type TTipoMejorJugador = "Jugador" | "Goleador" | "Arquero";
 
-const props = defineProps<{ tipo: TTipoMejorJugador, isEnabled: boolean }>()
+const props = defineProps<{ tipo: TTipoMejorJugador, winningJugadorId?: string }>()
 const { mdAndUp } = useDisplay();
 
 onMounted(() => {
@@ -26,6 +26,13 @@ onMounted(() => {
 const isDisabled = ref(false);
 const isSavingData = ref(false);
 const isShowError = ref(false);
+const hasWinner = computed(() => {
+  return props.winningJugadorId != undefined && props.winningJugadorId != "";
+})
+const isEnabled = computed(() => {
+  // TODO implement fecha de bloqueo de predicciones de MJ
+  return !hasWinner.value && false;
+})
 
 const selectedEquipo = computed(() => {
   if (selectedEquipoName.value == undefined) return;
@@ -46,6 +53,15 @@ const jugadoresAutocomplete = computed(() => {
 
   return jugadores.map(e => `${e.numero?.toString().padStart(2, "0")} - ${e.posicion} - ${e.nombre?.toUpperCase()}`).sort();
 });
+
+const winnerJugadorText = computed(() => {
+  const jugador = useProdeStore().jugadores.find(j => j._id == props.winningJugadorId);
+  const equipoName = useProdeStore().equipos.find(e => e._id == jugador?.equipo)?.nombre;
+
+  if (jugador == undefined || equipoName == undefined || equipoName == "") return "Sin Ganador";
+
+  return `${equipoName}: ${jugador.numero} - ${jugador.nombre}`;
+})
 
 function onSelectEquipo() {
   isShowError.value = false;
@@ -118,6 +134,12 @@ function guardarCambios() {
               variant="outlined" hide-details="auto" @update:model-value="onSelectJugador" :disabled="!isEnabled" />
           </v-col>
         </template>
+      </v-row>
+
+      <v-row v-if="hasWinner">
+        <v-col>
+          Ganador: {{ winnerJugadorText }}
+        </v-col>
       </v-row>
 
       <v-row v-if="isShowError">

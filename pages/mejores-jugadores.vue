@@ -3,7 +3,15 @@
 const { hasData: hasProdeData } = storeToRefs(useProdeStore());
 const { hasData: hasUserData } = storeToRefs(useUserStore());
 
-const prediccionesAllowed = ref(false);
+const mejorJugadorId = computed(() => {
+  return useProdeStore().jugadores.find(j => j.esMejorJugador)?._id;
+})
+const mejorGoleadorId = computed(() => {
+  return useProdeStore().jugadores.find(j => j.esMejorGoleador)?._id;
+})
+const mejorArqueroId = computed(() => {
+  return useProdeStore().jugadores.find(j => j.esMejorArquero)?._id;
+})
 </script>
 
 <template>
@@ -21,19 +29,19 @@ const prediccionesAllowed = ref(false);
     <template v-if="hasProdeData && hasUserData">
       <v-row>
         <v-col>
-          <mejores-jugadores-card :tipo="'Jugador'" :isEnabled="prediccionesAllowed" />
+          <mejores-jugadores-card :tipo="'Jugador'" :winningJugadorId="mejorJugadorId" />
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <mejores-jugadores-card :tipo="'Goleador'" :isEnabled="prediccionesAllowed" />
+          <mejores-jugadores-card :tipo="'Goleador'" :winningJugadorId="mejorGoleadorId" />
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <mejores-jugadores-card :tipo="'Arquero'" :isEnabled="prediccionesAllowed" />
+          <mejores-jugadores-card :tipo="'Arquero'" :winningJugadorId="mejorArqueroId" />
         </v-col>
       </v-row>
     </template>
