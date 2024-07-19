@@ -85,6 +85,17 @@ export const useProdeStore = defineStore('prodeStore', {
             }
         },
 
+        async dispatchUpdateMejoresJugadores(idMejorJugador: string, idMejorArquero: string, idMejorGoleador: string) {
+            const body = { idMejorJugador, idMejorArquero, idMejorGoleador }
+
+            console.log(body)
+            try {
+                await $fetchWithAuth(`/api/admin/actualizarMejorJugador`, { method: "put", body });
+            } catch (error) {
+                console.log("error", error);
+            }
+        },
+
         updateUsuario(updUsuario: IUsuario) {
             const indexUsuario = this.usuarios.findIndex(u => u._id == updUsuario._id);
 
